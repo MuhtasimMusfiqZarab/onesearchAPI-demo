@@ -13,6 +13,11 @@ input CreateUserInput {
   password: String!
 }
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type JobRole {
   roleId: ID!
   roleName: String!
@@ -25,6 +30,7 @@ type Mutation {
 }
 
 type Query {
+  channel(id: Int!): Youtube!
   jobRole(id: ID!): JobRole!
   user(id: ID!): User!
 }
@@ -45,4 +51,25 @@ type User {
   profilePicture: String!
   userId: ID!
   userName: String!
+}
+
+type Youtube {
+  bio_email: String!
+  channel_name: String!
+  channel_url: String!
+  description: String!
+  facebook: String!
+  id: Int!
+  instagram: String!
+  joined: String!
+  location: String!
+  others: String!
+  pinterest: String!
+  socialblade_category: String!
+  socialblade_similar_scraped: String!
+  subscribers: String!
+  tiktok: String!
+  timestamp: DateTime!
+  twitter: String!
+  views: String!
 }

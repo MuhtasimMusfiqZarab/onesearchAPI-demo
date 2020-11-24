@@ -5,6 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { JobRoleModule } from './job-role/job-role.module';
+import { YoutubeModule } from './youtube/youtube.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { JobRoleModule } from './job-role/job-role.module';
     TypeOrmModule.forRoot(typeOrmConfig),
     UsersModule,
     JobRoleModule,
+    YoutubeModule,
   ],
 })
 export class AppModule {}
