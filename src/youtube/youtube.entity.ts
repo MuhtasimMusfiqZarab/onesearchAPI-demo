@@ -1,17 +1,18 @@
 import {
   BaseEntity,
   Entity,
-  PrimaryGeneratedColumn,
   PrimaryColumn,
   Column,
   Unique,
   CreateDateColumn,
+  Generated,
 } from 'typeorm';
 
-@Entity('test')
-@Unique(['id'])
+@Entity('youtube_details')
+@Unique('unique_id', ['id'])
 export class Youtube extends BaseEntity {
-  @PrimaryGeneratedColumn({ type: 'bigint' })
+  @Column({ type: 'bigint' })
+  @Generated()
   id: number;
 
   @Column({ type: 'text', nullable: true })
@@ -21,7 +22,6 @@ export class Youtube extends BaseEntity {
     type: 'varchar',
     length: 100,
     nullable: false,
-    default: false,
   })
   channel_url: string;
 
@@ -37,7 +37,11 @@ export class Youtube extends BaseEntity {
   @Column({ type: 'mediumtext', nullable: true })
   channel_name: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({
+    precision: null,
+    default: () => 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
+  })
   timestamp: Date;
 
   @Column({ type: 'longtext', nullable: true })
