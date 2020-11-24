@@ -1,0 +1,48 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateJobRoleInput {
+  roleName: String!
+}
+
+input CreateUserInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+}
+
+type JobRole {
+  roleId: ID!
+  roleName: String!
+}
+
+type Mutation {
+  createJobRole(data: CreateJobRoleInput!): JobRole!
+  createUser(data: CreateUserInput!): User!
+  updateUserFirstname(data: UpdateUserInput!): User!
+}
+
+type Query {
+  jobRole(id: ID!): JobRole!
+  user(id: ID!): User!
+}
+
+input UpdateUserInput {
+  firstname: String!
+  id: String!
+}
+
+type User {
+  createDate: String!
+  email: String!
+  employeeId: String!
+  firstName: String!
+  lastName: String!
+  lastUpdateDate: String!
+  password: String!
+  profilePicture: String!
+  userId: ID!
+  userName: String!
+}
