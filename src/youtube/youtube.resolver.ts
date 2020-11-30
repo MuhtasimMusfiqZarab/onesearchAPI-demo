@@ -18,4 +18,13 @@ export class YoutubeResolver {
     }
     return channel;
   }
+  //get all channels
+  @Query(() => [YoutubeType])
+  async channels(): Promise<YoutubeType[]> {
+    const channel = await this.youtubeService.getAllChannels();
+    if (!channel) {
+      throw new NotFoundException('No Channel found@!');
+    }
+    return channel;
+  }
 }
