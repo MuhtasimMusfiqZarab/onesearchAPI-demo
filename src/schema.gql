@@ -32,7 +32,6 @@ type Mutation {
 type Query {
   channel(id: Int!): Youtube!
   channels: [Youtube!]!
-  index(limit: Float!, page: Float!): [Youtube!]!
   jobRole(id: ID!): JobRole!
   user(id: ID!): User!
 }

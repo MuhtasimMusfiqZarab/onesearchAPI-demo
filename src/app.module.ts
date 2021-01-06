@@ -6,6 +6,7 @@ import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { JobRoleModule } from './job-role/job-role.module';
 import { YoutubeModule } from './youtube/youtube.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { YoutubeModule } from './youtube/youtube.module';
     UsersModule,
     JobRoleModule,
     YoutubeModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
