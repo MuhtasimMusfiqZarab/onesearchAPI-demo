@@ -30,7 +30,7 @@ type Mutation {
 }
 
 type Query {
-  channel(id: Int!): Youtube!
+  channel(id: Int!): Youtube
   channels: [Youtube!]!
   jobRole(id: ID!): JobRole!
   user(id: ID!): User!

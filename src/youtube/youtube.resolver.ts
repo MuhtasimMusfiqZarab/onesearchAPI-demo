@@ -3,12 +3,12 @@ import { NotFoundException } from '@nestjs/common';
 import { YoutubeService } from './youtube.service';
 import { YoutubeType } from './youtube.type';
 
-@Resolver()
+@Resolver(() => YoutubeType)
 export class YoutubeResolver {
   constructor(private readonly youtubeService: YoutubeService) {}
 
   //get specific user
-  @Query(() => YoutubeType)
+  @Query(() => YoutubeType, { nullable: true })
   async channel(
     @Args('id', { type: () => Int }) id: number,
   ): Promise<YoutubeType> {
