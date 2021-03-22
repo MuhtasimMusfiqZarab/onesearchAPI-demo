@@ -20,11 +20,11 @@ export class YoutubeService {
 
   async getAllChannels(): Promise<Youtube[]> {
     const found = await this.youtubeRepository.find({
-      where: {
-        bio_email: Like('%@%'),
-        location: 'Bangladesh',
-        socialblade_category: 'Travel',
-      },
+      // where: {
+      //   bio_email: Like('%@%'),
+      //   location: 'Bangladesh',
+      //   socialblade_category: 'Travel',
+      // },
       skip: 0,
       take: 100,
     });

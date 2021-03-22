@@ -23,7 +23,7 @@ import { ConfigModule } from '@nestjs/config';
       sortSchema: true,
     }),
     TypeOrmModule.forRoot(typeOrmConfig),
-    TypeOrmModule.forRoot(typeOrmConfig1),
+    // TypeOrmModule.forRoot(typeOrmConfig1),
 
     UsersModule,
     JobRoleModule,
