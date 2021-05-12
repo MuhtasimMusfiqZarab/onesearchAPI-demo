@@ -21,6 +21,7 @@ import { ConfigModule } from '@nestjs/config';
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
+      introspection: true,
     }),
     TypeOrmModule.forRoot(typeOrmConfig),
     // TypeOrmModule.forRoot(typeOrmConfig1),
