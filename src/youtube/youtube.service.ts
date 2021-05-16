@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { YoutubeRepository } from './youtube.repository';
 import { Youtube } from './youtube.entity';
+import { ChannelsPayload } from './types/channels.type';
 import { Like } from 'typeorm';
 @Injectable()
 export class YoutubeService {
@@ -19,17 +20,18 @@ export class YoutubeService {
   }
 
   async getAllChannels(): Promise<Youtube[]> {
-    const found = await this.youtubeRepository.find({
+    const [channels, totalCount] = await this.youtubeRepository.findAndCount({
       where: {
         bio_email: Like('%@%'),
         socialblade_category: 'Music',
       },
       skip: 0,
-      take: 100,
+      take: 5,
     });
-    if (!found) {
+    if (!channels) {
       throw new NotFoundException(`No Channel found@!`);
     }
-    return found;
+
+    return channels;
   }
 }
