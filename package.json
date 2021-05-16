@@ -5,9 +5,6 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
-  "engines": {
-    "node": "12.18.3"
-  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -26,7 +23,7 @@
   "dependencies": {
     "@nestjs/common": "^7.6.5",
     "@nestjs/config": "^0.6.3",
-    "@nestjs/core": "^7.0.0",
+    "@nestjs/core": "^7.4.4",
     "@nestjs/graphql": "^7.8.1",
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.0.0",
