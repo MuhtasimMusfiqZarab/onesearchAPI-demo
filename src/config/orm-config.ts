@@ -39,4 +39,13 @@ class OrmConfig extends BaseConfig {
   }
 }
 
+//== Mandatory fields for connection
+// type: '',
+// host: '',
+// port: 3306,
+// username: '',
+//database: '',
+//entities: [__dirname + '/../**/*.entity.{js,ts}'],
+//synchronize: false,
+
 export default OrmConfig;
