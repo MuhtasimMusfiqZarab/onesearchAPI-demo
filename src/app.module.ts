@@ -12,10 +12,15 @@ import { GoogleModule } from './google/google.module';
 //load the environment variables
 import { ConfigModule } from '@nestjs/config';
 
+//custom configuration option
+import configuration from './config/configuration';
+
 @Module({
   imports: [
-    //for environmennt variables
-    ConfigModule.forRoot({ isGlobal: true }),
+    //for loading environmennt variables
+    ConfigModule.forRoot({
+      load: [configuration],
+    }),
 
     //adding graphql into the mix
     GraphQLModule.forRoot({
@@ -25,6 +30,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
     TypeOrmModule.forRoot(typeOrmConfig),
     // TypeOrmModule.forRoot(typeOrmConfig1),
+    // TypeOrmModule.forRoot(configuration),
 
     UsersModule,
     JobRoleModule,

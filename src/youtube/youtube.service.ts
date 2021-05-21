@@ -20,6 +20,7 @@ export class YoutubeService {
   }
 
   async getAllChannels(): Promise<Youtube[]> {
+    console.log('This is env', process.env.TYPE);
     const [channels, totalCount] = await this.youtubeRepository.findAndCount({
       where: {
         bio_email: Like('%@%'),
