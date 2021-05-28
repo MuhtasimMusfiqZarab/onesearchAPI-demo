@@ -1,6 +1,8 @@
 import { Args, Query, Resolver, Int } from '@nestjs/graphql';
 import { NotFoundException } from '@nestjs/common';
 import { YoutubeService } from './youtube.service';
+import { ChannelsPayload } from './types/channels.type';
+import { GetChannelsInput } from './input/get-channels.input';
 import { YoutubeType } from './youtube.type';
 
 @Resolver(() => YoutubeType)
@@ -20,11 +22,9 @@ export class YoutubeResolver {
   }
   //get all channels
   @Query(() => [YoutubeType])
-  async channels(): Promise<YoutubeType[]> {
-    const channel = await this.youtubeService.getAllChannels();
-    if (!channel) {
-      throw new NotFoundException('No Channel found@!');
-    }
-    return channel;
+  async getAllChannels(
+    @Args('data') data: GetChannelsInput,
+  ): Promise<YoutubeType[]> {
+    return await this.youtubeService.getAllChannels(data);
   }
 }

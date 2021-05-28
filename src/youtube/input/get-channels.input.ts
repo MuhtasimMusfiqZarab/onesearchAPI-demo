@@ -5,17 +5,22 @@ import { Field, InputType } from '@nestjs/graphql';
 export class GetChannelsInput {
   @IsNotEmpty()
   @Field()
-  firstName: string;
+  socialblade_category: string;
+
+  @Field({ nullable: true })
+  subscribers: string;
+
+  @Field({ nullable: true })
+  location: string;
+
+  @Field({ nullable: true })
+  searchText: string;
 
   @IsNotEmpty()
   @Field()
-  lastName: string;
+  offset: number;
 
   @IsNotEmpty()
   @Field()
-  email: string;
-
-  @IsNotEmpty()
-  @Field()
-  password: string;
+  limit: number;
 }

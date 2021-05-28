@@ -13,10 +13,14 @@ input CreateUserInput {
   password: String!
 }
 
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
+input GetChannelsInput {
+  limit: Float!
+  location: String
+  offset: Float!
+  searchText: String
+  socialblade_category: String!
+  subscribers: String
+}
 
 type JobRole {
   roleId: ID!
@@ -31,7 +35,7 @@ type Mutation {
 
 type Query {
   channel(id: Int!): Youtube
-  channels: [Youtube!]!
+  getAllChannels(data: GetChannelsInput!): [Youtube!]!
   jobRole(id: ID!): JobRole!
   user(id: ID!): User!
 }
@@ -55,22 +59,7 @@ type User {
 }
 
 type Youtube {
-  bio_email: String!
   channel_name: String!
   channel_url: String!
-  description: String!
-  facebook: String!
   id: Int!
-  instagram: String!
-  joined: String!
-  location: String!
-  others: String!
-  pinterest: String!
-  socialblade_category: String!
-  socialblade_similar_scraped: String!
-  subscribers: String!
-  tiktok: String!
-  timestamp: DateTime!
-  twitter: String!
-  views: String!
 }

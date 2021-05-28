@@ -2,8 +2,12 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { YoutubeRepository } from './youtube.repository';
 import { Youtube } from './youtube.entity';
-import { ChannelsPayload } from './types/channels.type';
-import { Like } from 'typeorm';
+import { ILike } from 'typeorm';
+import { YoutubeType } from './youtube.type';
+import { GetChannelsInput } from './input/get-channels.input';
+import { isValidString } from '../utils/validation';
+import { defaultOrder } from '../utils/query';
+
 @Injectable()
 export class YoutubeService {
   constructor(
@@ -19,20 +23,48 @@ export class YoutubeService {
     return found;
   }
 
-  async getAllChannels(): Promise<Youtube[]> {
-    console.log('This is env', process.env.TYPE);
-    const [channels, totalCount] = await this.youtubeRepository.findAndCount({
-      where: {
-        bio_email: Like('%@%'),
-        socialblade_category: 'Music',
-      },
-      skip: 0,
-      take: 5,
-    });
-    if (!channels) {
-      throw new NotFoundException(`No Channel found@!`);
-    }
+  /**
+   * @Query getAllChannels
+   * @param  data GetChannelsInput
+   * @return YoutubeType
+   */
 
-    return channels;
+  async getAllChannels(data: GetChannelsInput): Promise<YoutubeType[]> {
+    const {
+      socialblade_category,
+      location,
+      searchText,
+      subscribers,
+      offset,
+      limit,
+    } = data;
+
+    try {
+      let query: any = {};
+
+      if (socialblade_category) query = { ...query, socialblade_category };
+      if (location) query = { ...query, location };
+
+      if (isValidString(searchText)) {
+        query = [
+          { ...query, channel_name: ILike(`%${searchText}%`) },
+          { ...query, bio_email: ILike(`%${searchText}%`) },
+        ];
+      }
+
+      const [channels, totalCount] = await this.youtubeRepository.findAndCount({
+        where: query,
+        order: { ...defaultOrder },
+        skip: offset,
+        take: limit,
+      });
+      if (!channels) {
+        throw new NotFoundException(`No Channel found@!`);
+      }
+
+      return channels;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
