@@ -21,10 +21,10 @@ export class YoutubeResolver {
     return channel;
   }
   //get all channels
-  @Query(() => [YoutubeType])
+  @Query(() => ChannelsPayload)
   async getAllChannels(
     @Args('data') data: GetChannelsInput,
-  ): Promise<YoutubeType[]> {
+  ): Promise<ChannelsPayload> {
     return await this.youtubeService.getAllChannels(data);
   }
 }

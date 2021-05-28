@@ -7,6 +7,7 @@ import { YoutubeType } from './youtube.type';
 import { GetChannelsInput } from './input/get-channels.input';
 import { isValidString } from '../utils/validation';
 import { defaultOrder } from '../utils/query';
+import { ChannelsPayload } from './types/channels.type';
 
 @Injectable()
 export class YoutubeService {
@@ -29,7 +30,7 @@ export class YoutubeService {
    * @return YoutubeType
    */
 
-  async getAllChannels(data: GetChannelsInput): Promise<YoutubeType[]> {
+  async getAllChannels(data: GetChannelsInput): Promise<ChannelsPayload> {
     const {
       socialblade_category,
       location,
@@ -58,11 +59,12 @@ export class YoutubeService {
         skip: offset,
         take: limit,
       });
+
       if (!channels) {
         throw new NotFoundException(`No Channel found@!`);
       }
 
-      return channels;
+      return { channels, totalCount };
     } catch (error) {
       throw new Error(error);
     }

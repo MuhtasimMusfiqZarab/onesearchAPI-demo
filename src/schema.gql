@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type ChannelsPayload {
+  channels: [Youtube!]!
+  totalCount: Int!
+}
+
 input CreateJobRoleInput {
   roleName: String!
 }
@@ -35,7 +40,7 @@ type Mutation {
 
 type Query {
   channel(id: Int!): Youtube
-  getAllChannels(data: GetChannelsInput!): [Youtube!]!
+  getAllChannels(data: GetChannelsInput!): ChannelsPayload!
   jobRole(id: ID!): JobRole!
   user(id: ID!): User!
 }
