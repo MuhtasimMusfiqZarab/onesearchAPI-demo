@@ -23,7 +23,7 @@ input GetChannelsInput {
   location: String
   offset: Float!
   searchText: String
-  socialblade_category: String!
+  socialblade_category: String
   subscribers: String
 }
 

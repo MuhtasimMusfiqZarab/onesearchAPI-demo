@@ -3,8 +3,7 @@ import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
 export class GetChannelsInput {
-  @IsNotEmpty()
-  @Field()
+  @Field({ nullable: true })
   socialblade_category: string;
 
   @Field({ nullable: true })
