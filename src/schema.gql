@@ -65,6 +65,8 @@ type User {
 
 type Youtube {
   channel_name: String!
-  channel_url: String!
   id: Int!
+  joined: String!
+  subscribers: String!
+  views: String!
 }

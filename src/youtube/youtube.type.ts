@@ -6,8 +6,14 @@ export class YoutubeType {
   id: number;
 
   @Field()
-  channel_url: string;
+  channel_name: string;
 
   @Field()
-  channel_name: string;
+  joined: string;
+
+  @Field()
+  views: string;
+
+  @Field()
+  subscribers: string;
 }
