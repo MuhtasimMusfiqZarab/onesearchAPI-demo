@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
-import CreateUpdateUser from './dto/create.user.dto';
+import CreateUserInput from './input/create-user.input';
 import { UserRepository } from './user.repository';
 
 @Injectable()
@@ -27,7 +27,7 @@ export class UsersService {
     return this.usersRepository.find(criteria);
   }
 
-  async store(data: CreateUpdateUser) {
+  async store(data: CreateUserInput) {
     if ((await this.usersRepository.findAndCount({ email: data.email }))[1] > 0)
       throw new BadRequestException('User already exists');
     const user = new User();
@@ -39,7 +39,7 @@ export class UsersService {
     return this.usersRepository.save(user);
   }
 
-  async update(id: string, data: CreateUpdateUser) {
+  async update(id: string, data: CreateUserInput) {
     const user = await this.usersRepository.findOne(id);
     if (!user) throw new NotFoundException();
 
