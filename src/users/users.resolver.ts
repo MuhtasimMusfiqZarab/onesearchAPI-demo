@@ -20,6 +20,7 @@ export class UsersResolver {
   async createUser(
     @Args('input', { type: () => CreateUserInput }) input: CreateUserInput,
   ): Promise<UserType> {
+    console.log('This is input', input);
     return await this.usersService.store(input);
   }
 }

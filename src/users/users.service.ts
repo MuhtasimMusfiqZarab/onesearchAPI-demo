@@ -28,15 +28,19 @@ export class UsersService {
   }
 
   async store(data: CreateUserInput) {
-    if ((await this.usersRepository.findAndCount({ email: data.email }))[1] > 0)
-      throw new BadRequestException('User already exists');
-    const user = new User();
+    const { email, firstName, lastName } = data;
+    const user = await this.usersRepository.findOne({ email });
+    if (user) throw new BadRequestException('User already exists');
 
-    // WARNING: In this case password is stored as PLAINTEXT
-    // It is only for show how it works!!!
-    Object.assign(user, data);
+    const newUser = await this.usersRepository.save({
+      email,
+      firstName,
+      lastName,
+    });
 
-    return this.usersRepository.save(user);
+    console.log('This is the new user found after mutation', newUser);
+
+    return newUser;
   }
 
   async update(id: string, data: CreateUserInput) {

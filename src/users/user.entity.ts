@@ -1,10 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { Exclude } from 'class-transformer';
+import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   firstName: string;
@@ -12,18 +11,12 @@ export class User {
   @Column()
   lastName: string;
 
-  @Column({ default: null })
-  @Exclude()
-  password: string;
-
   @Column({ unique: true })
   email: string;
 
-  @Column({ default: null })
-  @Exclude()
-  googleId: string;
+  @Column({ default: 'google' })
+  authProvider: string;
 
-  @Column({ default: null })
-  @Exclude()
-  facebookId: string;
+  @Column({ nullable: true })
+  authProdiverId: string;
 }
