@@ -7,6 +7,12 @@ type ChannelsPayload {
   totalCount: Int!
 }
 
+input CreateUserInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+}
+
 input GetChannelsInput {
   limit: Float!
   location: String
@@ -16,9 +22,21 @@ input GetChannelsInput {
   subscribers: String
 }
 
+type Mutation {
+  createUser(input: CreateUserInput!): User!
+}
+
 type Query {
   channel(id: Int!): Youtube
   getAllChannels(data: GetChannelsInput!): ChannelsPayload!
+  getUser(userId: String): User
+}
+
+type User {
+  email: String!
+  firstName: String!
+  id: String!
+  lastName: String!
 }
 
 type Youtube {
