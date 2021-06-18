@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { YoutubeModule } from './youtube/youtube.module';
 import { GoogleModule } from './google/google.module';
@@ -8,15 +7,9 @@ import { configService } from './config/config.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 
-const resolvers = [YoutubeModule, GoogleModule];
+const modules = [YoutubeModule, GoogleModule, AuthModule];
 
 @Module({
-  imports: [
-    ...resolvers,
-    TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
-    GraphQLModule.forRoot(configService.getGqlConfig()),
-    AuthModule,
-    UsersModule,
-  ],
+  imports: [...modules, GraphQLModule.forRoot(configService.getGqlConfig())],
 })
 export class AppModule {}
