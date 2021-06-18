@@ -1,10 +1,8 @@
-import { Field, ObjectType, Int } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { ExtendedBaseEntity } from '../config/_base.entity';
 
-@ObjectType('User')
-export class UserType {
-  @Field()
-  id: string;
-
+@ObjectType()
+export class UserType extends ExtendedBaseEntity {
   @Field()
   firstName: string;
 

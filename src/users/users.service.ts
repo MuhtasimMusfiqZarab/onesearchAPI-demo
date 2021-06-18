@@ -28,19 +28,18 @@ export class UsersService {
   }
 
   async store(data: CreateUserInput) {
+    console.log('In the service', data);
     const { email, firstName, lastName } = data;
     const user = await this.usersRepository.findOne({ email });
     if (user) throw new BadRequestException('User already exists');
 
-    const newUser = await this.usersRepository.save({
-      email,
-      firstName,
-      lastName,
-    });
+    // const newUser = await this.usersRepository.save({
+    //   email,
+    //   firstName,
+    //   lastName,
+    // });
 
-    console.log('This is the new user found after mutation', newUser);
-
-    return newUser;
+    return { email };
   }
 
   async update(id: string, data: CreateUserInput) {

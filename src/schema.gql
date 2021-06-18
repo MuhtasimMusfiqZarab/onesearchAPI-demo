@@ -13,6 +13,11 @@ input CreateUserInput {
   lastName: String!
 }
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 input GetChannelsInput {
   limit: Float!
   location: String
@@ -23,20 +28,24 @@ input GetChannelsInput {
 }
 
 type Mutation {
-  createUser(input: CreateUserInput!): User!
+  createUser(input: CreateUserInput!): UserType!
 }
 
 type Query {
   channel(id: Int!): Youtube
   getAllChannels(data: GetChannelsInput!): ChannelsPayload!
-  getUser(userId: String): User
+  getUser(userId: String): UserType
 }
 
-type User {
+type UserType {
+  createdAt: DateTime!
+  createdBy: String!
   email: String!
   firstName: String!
-  id: String!
+  id: ID!
   lastName: String!
+  updatedAt: DateTime!
+  updatedBy: String!
 }
 
 type Youtube {

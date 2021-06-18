@@ -19,8 +19,7 @@ export class UsersResolver {
   @Mutation(() => UserType)
   async createUser(
     @Args('input', { type: () => CreateUserInput }) input: CreateUserInput,
-  ): Promise<UserType> {
-    console.log('This is input', input);
+  ): Promise<any> {
     return await this.usersService.store(input);
   }
 }

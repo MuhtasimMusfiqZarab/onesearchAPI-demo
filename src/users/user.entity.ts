@@ -1,10 +1,9 @@
 import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn } from 'typeorm';
+import { ExtendedBaseEntity } from '../config/_base.entity';
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+export class User extends ExtendedBaseEntity {
   @Column()
   firstName: string;
 
@@ -13,10 +12,4 @@ export class User {
 
   @Column({ unique: true })
   email: string;
-
-  @Column({ default: 'google' })
-  authProvider: string;
-
-  @Column({ nullable: true })
-  authProdiverId: string;
 }
