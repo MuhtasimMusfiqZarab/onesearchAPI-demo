@@ -13,11 +13,8 @@ import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectRepository(UserRepository) private userRepository: UserRepository,
-  ) {}
-
-  async createUser(input: RegistrationInput): Promise<User> {
+  async createUser(input: any): Promise<User> {
+    console.log('This is the input provided', input);
     const { userId, email, firstName, lastName, key, authProvider } = input;
     try {
       let queryArgs: any = [{ email }, { key }];

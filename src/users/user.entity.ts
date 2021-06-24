@@ -44,8 +44,8 @@ export default class User extends ExtendedBaseEntity {
   key: string;
 
   @Field(() => AuthProvider, { nullable: true })
-  @Column({ type: 'enum', enum: AuthProvider, nullable: true })
-  authProvider: AuthProvider;
+  @Column({ nullable: true })
+  authProvider: string;
 
   @Field()
   @Column({ type: 'boolean', default: true })
