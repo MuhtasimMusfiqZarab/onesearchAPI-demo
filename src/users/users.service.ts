@@ -1,62 +1,63 @@
-import {
-  Injectable,
-  NotFoundException,
-  BadRequestException,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './user.entity';
-import CreateUserInput from './input/create-user.input';
+import { v4 as uuid } from 'uuid';
+import { Repository } from 'typeorm';
+import {
+  RegistrationInput,
+  GetUserArgs,
+  BulkUserInput,
+  UpdateUserInput,
+} from './input/user.input';
+import User, { UserAccessRole } from './user.entity';
 import { UserRepository } from './user.repository';
 
 @Injectable()
-export class UsersService {
+export class UserService {
   constructor(
-    @InjectRepository(User)
-    private usersRepository: UserRepository,
+    @InjectRepository(UserRepository) private userRepository: UserRepository,
   ) {}
 
-  findAll() {
-    return this.usersRepository.find();
-  }
+  async createUser(input: RegistrationInput): Promise<User> {
+    const { userId, email, firstName, lastName, key, authProvider } = input;
+    try {
+      let queryArgs: any = [{ email }, { key }];
+      // if (isValidString(userId)) {
+      queryArgs = [{ userId }, { email }, { key }];
+      // }
+      // First checking if the user already exists
+      const user = await User.findOne({ where: queryArgs });
 
-  findOne(id: string) {
-    return this.usersRepository.findOne(id);
-  }
+      if (user) {
+        if (user.email === email || user.key === key) {
+          throw new Error('User already exists!');
+        }
+        if (userId && user.userId === userId) {
+          throw new Error('UserId already exists, try another one!');
+        }
+      }
+      const createdBy = 'DEFAULT_USER';
 
-  findBy(criteria: any) {
-    return this.usersRepository.find(criteria);
-  }
+      let accessRole: UserAccessRole = UserAccessRole.Employee;
 
-  async store(data: CreateUserInput) {
-    console.log('In the service', data);
-    const { email, firstName, lastName } = data;
-    const user = await this.usersRepository.findOne({ email });
-    if (user) throw new BadRequestException('User already exists');
+      // One Email address should be provided in the env variables, to make the first super-admin
+      if (email === process.env.DEFAULT_ADMIN_EMAIL) {
+        accessRole = UserAccessRole.RtsAdmin;
+      }
 
-    // const newUser = await this.usersRepository.save({
-    //   email,
-    //   firstName,
-    //   lastName,
-    // });
-
-    return { email };
-  }
-
-  async update(id: string, data: CreateUserInput) {
-    const user = await this.usersRepository.findOne(id);
-    if (!user) throw new NotFoundException();
-
-    // WARNING: In this case password is stored as PLAINTEXT
-    // It is only for show how it works!!!
-    Object.assign(user, data);
-
-    this.usersRepository.update(id, user);
-    return user;
-  }
-
-  async destroy(id: string) {
-    const user = await this.usersRepository.findOne(id);
-    if (!user) throw new NotFoundException();
-    this.usersRepository.remove(user);
+      const newUser = User.create({
+        userId,
+        email,
+        firstName,
+        lastName,
+        key,
+        authProvider,
+        accessRole,
+        createdBy,
+        updatedBy: createdBy,
+      });
+      return await newUser.save();
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

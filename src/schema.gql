@@ -2,15 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+enum AuthProvider {
+  ADFS
+  Cognito
+}
+
 type ChannelsPayload {
   channels: [Youtube!]!
   totalCount: Int!
-}
-
-input CreateUserInput {
-  email: String!
-  firstName: String!
-  lastName: String!
 }
 
 """
@@ -28,24 +27,46 @@ input GetChannelsInput {
 }
 
 type Mutation {
-  createUser(input: CreateUserInput!): UserType!
+  createUser(input: RegistrationInput!): User!
 }
 
 type Query {
   channel(id: Int!): Youtube
   getAllChannels(data: GetChannelsInput!): ChannelsPayload!
-  getUser(userId: String): UserType
 }
 
-type UserType {
+input RegistrationInput {
+  authProvider: AuthProvider!
+  email: String!
+  firstName: String!
+  key: String!
+  lastName: String!
+  userId: String
+}
+
+type User {
+  accessRole: UserAccessRole!
+  authProvider: AuthProvider
+  avatarLink: String
   createdAt: DateTime!
   createdBy: String!
   email: String!
   firstName: String!
   id: ID!
+  isActive: Boolean!
+  key: String
+  language: String!
   lastName: String!
   updatedAt: DateTime!
   updatedBy: String!
+  userId: String
+}
+
+enum UserAccessRole {
+  CompanyAdmin
+  Employee
+  Facilitator
+  RtsAdmin
 }
 
 type Youtube {
