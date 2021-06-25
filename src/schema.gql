@@ -3,8 +3,7 @@
 # ------------------------------------------------------
 
 enum AuthProvider {
-  ADFS
-  Cognito
+  Google
 }
 
 type ChannelsPayload {
@@ -36,12 +35,11 @@ type Query {
 }
 
 input RegistrationInput {
-  authProvider: AuthProvider!
+  authProvider: AuthProvider
   email: String!
   firstName: String!
-  key: String!
   lastName: String!
-  userId: String
+  token: String!
 }
 
 type User {
@@ -54,19 +52,19 @@ type User {
   firstName: String!
   id: ID!
   isActive: Boolean!
-  key: String
   language: String!
   lastName: String!
+  token: String
   updatedAt: DateTime!
   updatedBy: String!
-  userId: String
 }
 
 enum UserAccessRole {
-  CompanyAdmin
-  Employee
-  Facilitator
-  RtsAdmin
+  Admin
+  Demo
+  Developer
+  Pro
+  Support
 }
 
 type Youtube {

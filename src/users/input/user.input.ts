@@ -4,9 +4,6 @@ import { UserAccessRole, AuthProvider } from '../user.entity';
 
 @InputType()
 export class RegistrationInput {
-  @Field({ nullable: true })
-  userId: string;
-
   @Field()
   firstName: string;
 
@@ -18,18 +15,15 @@ export class RegistrationInput {
   email: string;
 
   @Field()
-  key: string;
+  token: string;
 
-  @Field(() => AuthProvider)
+  @Field(() => AuthProvider, { nullable: true })
   authProvider: AuthProvider;
 }
 
 //CREATE USER
 @InputType()
 export class UserInput {
-  @Field({ nullable: true })
-  userId: string;
-
   @Field()
   firstName: string;
 
@@ -37,7 +31,7 @@ export class UserInput {
   lastName: string;
 
   @Field({ nullable: true })
-  key: string;
+  token: string;
 
   @Field(() => AuthProvider, { nullable: true })
   authProvider: AuthProvider;
@@ -46,9 +40,11 @@ export class UserInput {
   avatarLink: string;
 
   @IsIn([
-    UserAccessRole.Employee,
-    UserAccessRole.CompanyAdmin,
-    UserAccessRole.RtsAdmin,
+    UserAccessRole.Demo,
+    UserAccessRole.Pro,
+    UserAccessRole.Admin,
+    UserAccessRole.Developer,
+    UserAccessRole.Support,
   ])
   @Field(() => UserAccessRole, { nullable: true })
   accessRole: UserAccessRole;

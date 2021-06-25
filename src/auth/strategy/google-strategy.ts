@@ -14,6 +14,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       clientSecret: process.env.OAUTH_CLIENT_SECRET,
       callbackURL: process.env.CALLBACK_URL,
       scope: ['email', 'profile'],
+      prompt: 'consent',
     });
   }
 
@@ -25,11 +26,12 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   ): Promise<any> {
     const { name, emails, photos } = profile;
     const user = {
-      email: emails[0].value,
       firstName: name.givenName,
       lastName: name.familyName,
-      picture: photos[0].value,
-      accessToken,
+      email: emails[0].value,
+      avatarLink: photos[0].value,
+      token: accessToken,
+      authProvider: 'google',
     };
     done(null, user);
   }
