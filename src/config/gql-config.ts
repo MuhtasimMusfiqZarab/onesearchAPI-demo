@@ -8,6 +8,7 @@ class GqlConfig {
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       // sorting the schema lexicographically
       sortSchema: true,
+      // playground: false,
       context: ({ req }) => {
         return {
           token: req.headers.authorization || null,

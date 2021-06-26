@@ -14,7 +14,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       clientSecret: process.env.OAUTH_CLIENT_SECRET,
       callbackURL: process.env.CALLBACK_URL,
       scope: ['email', 'profile'],
-      prompt: 'consent',
+      concent: true,
     });
   }
 
