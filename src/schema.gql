@@ -30,6 +30,11 @@ input GetChannelsInput {
   subscribers: String
 }
 
+type LocationsType {
+  locations: [String!]!
+  totalCount: Int!
+}
+
 type Mutation {
   createUser(input: RegistrationInput!): User!
 }
@@ -38,6 +43,7 @@ type Query {
   channel(id: Int!): Youtube
   getAllCategories: CategoriesType!
   getAllChannels(data: GetChannelsInput!): ChannelsPayload!
+  getChannelCountries: LocationsType!
 }
 
 input RegistrationInput {

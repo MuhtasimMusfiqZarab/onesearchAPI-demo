@@ -9,6 +9,7 @@ import { isValidString } from '../utils/validation';
 import { defaultOrder } from '../utils/query';
 import { ChannelsPayload } from './types/channels.type';
 import { CategoriesType } from './types/categories.type';
+import { LocationsType } from './types/locations.type';
 import { getConnection } from 'typeorm';
 
 @Injectable()
@@ -84,6 +85,19 @@ export class YoutubeService {
       category => category.socialblade_category,
     );
 
-    return { categories: categoryNames, totalCount: categories.length };
+    return { categories: categoryNames, totalCount: categoryNames.length };
+  }
+
+  //get all categories
+  async getChannelCountries(): Promise<LocationsType> {
+    const locations = await this.youtubeRepository
+      .createQueryBuilder()
+      .select('location')
+      .distinct(true)
+      .getRawMany();
+
+    const locationNames = locations.map(category => category.location);
+
+    return { locations: locationNames, totalCount: locationNames.length };
   }
 }
