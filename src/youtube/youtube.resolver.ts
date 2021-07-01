@@ -4,6 +4,7 @@ import { YoutubeService } from './youtube.service';
 import { ChannelsPayload } from './types/channels.type';
 import { GetChannelsInput } from './input/get-channels.input';
 import { YoutubeType } from './youtube.type';
+import { CategoriesType } from './types/categories.type';
 
 @Resolver(() => YoutubeType)
 export class YoutubeResolver {
@@ -26,5 +27,10 @@ export class YoutubeResolver {
     @Args('data') data: GetChannelsInput,
   ): Promise<ChannelsPayload> {
     return await this.youtubeService.getAllChannels(data);
+  }
+
+  @Query(() => CategoriesType)
+  async getAllLocations(): Promise<CategoriesType> {
+    return await this.youtubeService.getChannelCategories();
   }
 }

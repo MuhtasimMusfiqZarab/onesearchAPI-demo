@@ -6,6 +6,11 @@ enum AuthProvider {
   Google
 }
 
+type CategoriesType {
+  categories: [String!]!
+  totalCount: Int!
+}
+
 type ChannelsPayload {
   channels: [Youtube!]!
   totalCount: Int!
@@ -32,6 +37,7 @@ type Mutation {
 type Query {
   channel(id: Int!): Youtube
   getAllChannels(data: GetChannelsInput!): ChannelsPayload!
+  getAllLocations: CategoriesType!
 }
 
 input RegistrationInput {

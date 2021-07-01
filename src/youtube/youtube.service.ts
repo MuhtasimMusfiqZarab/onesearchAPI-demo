@@ -8,6 +8,8 @@ import { GetChannelsInput } from './input/get-channels.input';
 import { isValidString } from '../utils/validation';
 import { defaultOrder } from '../utils/query';
 import { ChannelsPayload } from './types/channels.type';
+import { CategoriesType } from './types/categories.type';
+import { getConnection } from 'typeorm';
 
 @Injectable()
 export class YoutubeService {
@@ -68,5 +70,16 @@ export class YoutubeService {
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  //get all categories
+  async getChannelCategories(): Promise<CategoriesType> {
+    const categories = await this.youtubeRepository
+      .createQueryBuilder()
+      .select('socialblade_category')
+      .distinct(true)
+      .getRawMany();
+
+    return { categories, totalCount: categories.length };
   }
 }
