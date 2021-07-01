@@ -17,10 +17,10 @@ export class AuthController {
     return this.appService.googleLogin(req);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get('profile')
   getProfile(@Req() req) {
-    console.log(req);
+    console.log(req.user);
     return req.user;
   }
 }

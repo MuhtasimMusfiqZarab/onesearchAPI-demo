@@ -16,9 +16,8 @@ export class AuthService {
 
     //save the user in the database
     const savedUser = await this.userService.createUser(req.user);
-    console.log('Here is the saved user', savedUser);
     //return the jwt token
-    const payload = { username: savedUser.firstName, sub: savedUser.id };
+    const payload = { email: savedUser.email, sub: savedUser.id };
     return {
       access_token: this.jwtService.sign(payload),
     };
