@@ -30,7 +30,7 @@ export class YoutubeResolver {
   }
 
   @Query(() => CategoriesType)
-  async getAllLocations(): Promise<CategoriesType> {
+  async getAllCategories(): Promise<CategoriesType> {
     return await this.youtubeService.getChannelCategories();
   }
 }

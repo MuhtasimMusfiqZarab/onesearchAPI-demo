@@ -36,8 +36,8 @@ type Mutation {
 
 type Query {
   channel(id: Int!): Youtube
+  getAllCategories: CategoriesType!
   getAllChannels(data: GetChannelsInput!): ChannelsPayload!
-  getAllLocations: CategoriesType!
 }
 
 input RegistrationInput {

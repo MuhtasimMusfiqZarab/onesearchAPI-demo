@@ -80,6 +80,10 @@ export class YoutubeService {
       .distinct(true)
       .getRawMany();
 
-    return { categories, totalCount: categories.length };
+    const categoryNames = categories.map(
+      category => category.socialblade_category,
+    );
+
+    return { categories: categoryNames, totalCount: categories.length };
   }
 }
