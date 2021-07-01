@@ -3,14 +3,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { YoutubeRepository } from './youtube.repository';
 import { Youtube } from './youtube.entity';
 import { ILike } from 'typeorm';
-import { YoutubeType } from './youtube.type';
 import { GetChannelsInput } from './input/get-channels.input';
 import { isValidString } from '../utils/validation';
 import { defaultOrder } from '../utils/query';
 import { ChannelsPayload } from './types/channels.type';
 import { CategoriesType } from './types/categories.type';
 import { LocationsType } from './types/locations.type';
-import { getConnection } from 'typeorm';
 
 @Injectable()
 export class YoutubeService {
@@ -96,7 +94,7 @@ export class YoutubeService {
       .distinct(true)
       .getRawMany();
 
-    const locationNames = locations.map(category => category.location);
+    const locationNames = locations.map(location => location.location);
 
     return { locations: locationNames, totalCount: locationNames.length };
   }
