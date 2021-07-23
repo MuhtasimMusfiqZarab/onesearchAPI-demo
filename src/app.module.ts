@@ -7,7 +7,8 @@ import { configService } from './config/config.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 
-const modules = [YoutubeModule, GoogleModule, AuthModule, UsersModule];
+// const modules = [YoutubeModule, GoogleModule, AuthModule, UsersModule];
+const modules = [YoutubeModule, GoogleModule];
 
 @Module({
   imports: [...modules, GraphQLModule.forRoot(configService.getGqlConfig())],
