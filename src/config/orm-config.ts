@@ -16,10 +16,10 @@ class OrmConfig extends BaseConfig {
       username: this.getValue('DB_USER'),
       password: this.getValue('DB_PASSWORD'),
       database: this.getValue('DB_NAME'),
-      synchronize: true,
+      synchronize: false,
       entities: ['dist/**/*.entity{.ts,.js}'],
       //thrown error in the server while runnig
-      keepConnectionAlive: true,
+      // keepConnectionAlive: true,
     };
   }
 }
