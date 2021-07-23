@@ -18,6 +18,8 @@ class OrmConfig extends BaseConfig {
       database: this.getValue('DB_NAME'),
       synchronize: true,
       entities: ['dist/**/*.entity{.ts,.js}'],
+      //thrown error in the server while runnig
+      keepConnectionAlive: true,
     };
   }
 }

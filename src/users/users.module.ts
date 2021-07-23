@@ -19,6 +19,8 @@ import User from './user.entity';
       database: process.env.USER_DB,
       entities: [User],
       synchronize: true,
+      //thrown error in the server while runnig
+      keepConnectionAlive: true,
     }),
   ],
   providers: [UserService, UserResolver],
