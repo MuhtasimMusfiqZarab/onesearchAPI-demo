@@ -5,7 +5,7 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @Controller('google')
 export class AuthController {
-  constructor(private readonly appService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Get()
   @UseGuards(AuthGuard('google'))
@@ -14,7 +14,7 @@ export class AuthController {
   @Get('redirect')
   @UseGuards(AuthGuard('google'))
   googleAuthRedirect(@Req() req) {
-    return this.appService.googleLogin(req);
+    return this.authService.googleLogin(req);
   }
 
   // @UseGuards(JwtAuthGuard)
