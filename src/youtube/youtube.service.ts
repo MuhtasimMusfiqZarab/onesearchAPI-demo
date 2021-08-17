@@ -50,7 +50,7 @@ export class YoutubeService {
       if (isValidString(searchText)) {
         query = [
           { ...query, channel_name: ILike(`%${searchText}%`) },
-          { ...query, bio_email: ILike(`%${searchText}%`) },
+          // { ...query, bio_email: ILike(`%${searchText}%`) },
         ];
       }
 
