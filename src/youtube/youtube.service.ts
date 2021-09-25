@@ -48,10 +48,7 @@ export class YoutubeService {
       if (location) query = { ...query, location };
 
       if (isValidString(searchText)) {
-        query = [
-          { ...query, channel_name: ILike(`%${searchText}%`) },
-          // { ...query, bio_email: ILike(`%${searchText}%`) },
-        ];
+        query = [{ ...query, channel_name: ILike(`%${searchText}%`) }];
       }
 
       const [channels, totalCount] = await this.youtubeRepository.findAndCount({
