@@ -22,4 +22,13 @@ export class AuthService {
       JWT_TOKEN: this.jwtService.sign(payload),
     };
   }
+
+  async validateUser(userId: string): Promise<any> {
+    const user = await this.userService.findOne(userId);
+
+    if (user) {
+      return user;
+    }
+    return null;
+  }
 }

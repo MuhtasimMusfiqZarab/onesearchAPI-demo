@@ -8,6 +8,8 @@ import { UserService } from '../users/users.service';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 
+import { UsersModule } from '../users/users.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -15,8 +17,9 @@ import { JwtModule } from '@nestjs/jwt';
       secret: process.env.JWT_SECRET,
       // signOptions: { expiresIn: '120s' },
     }),
+    UsersModule,
   ],
-  providers: [AuthService, GoogleStrategy, UserService, JwtStrategy],
+  providers: [AuthService, GoogleStrategy, JwtStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}

@@ -10,9 +10,12 @@ export class AuthController {
   @Get()
   @UseGuards(AuthGuard('google'))
   async googleAuth(@Req() req) {}
+
+  //upon redirection req.user is assigned by passport with the request
   @Get('redirect')
   @UseGuards(AuthGuard('google'))
   googleAuthRedirect(@Req() req) {
+    //upon redirection user is created and JWT token is provided
     return this.authService.googleLogin(req);
   }
 

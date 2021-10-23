@@ -22,5 +22,8 @@ import User from './user.entity';
     }),
   ],
   providers: [UserService, UserResolver],
+
+  //this service can be used by other modules (ex Auth Module)
+  exports: [UserService],
 })
 export class UsersModule {}
