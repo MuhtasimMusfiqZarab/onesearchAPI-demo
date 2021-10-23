@@ -33,6 +33,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       token: accessToken,
       authProvider: 'google',
     };
+    //attach the information of the user to req.user here
     done(null, user);
   }
 }

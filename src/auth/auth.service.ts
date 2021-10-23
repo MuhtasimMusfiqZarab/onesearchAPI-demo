@@ -19,7 +19,7 @@ export class AuthService {
     //return the jwt token
     const payload = { email: savedUser.email, sub: savedUser.id };
     return {
-      access_token: this.jwtService.sign(payload),
+      JWT_TOKEN: this.jwtService.sign(payload),
     };
   }
 }
