@@ -17,7 +17,7 @@ import { UsersModule } from '../users/users.module';
     ConfigModule.forRoot(),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '3600s' },
+      signOptions: { expiresIn: '86400s' },
     }),
   ],
   providers: [AuthService, GoogleStrategy, JwtStrategy],
