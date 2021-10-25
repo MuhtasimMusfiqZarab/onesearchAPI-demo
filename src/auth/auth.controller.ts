@@ -1,28 +1,27 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthGuard } from '@nestjs/passport';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { GoogleAuthGuard } from './guards/google-auth.guard';
 
 @Controller('google')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Get()
-  @UseGuards(AuthGuard('google'))
-  async googleAuth(@Req() req) {}
+  @UseGuards(GoogleAuthGuard)
+  async googleAuth(@Request() req) {}
 
   //upon redirection req.user is assigned by passport with the request
   @Get('redirect')
-  @UseGuards(AuthGuard('google'))
-  googleAuthRedirect(@Req() req) {
+  @UseGuards(GoogleAuthGuard)
+  googleAuthRedirect(@Request() req) {
     //upon redirection user is created and JWT token is provided
     return this.authService.googleLogin(req);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('profile')
-  getProfile(@Req() req) {
-    console.log(req.user);
+  getProfile(@Request() req) {
     return req.user;
   }
 }
