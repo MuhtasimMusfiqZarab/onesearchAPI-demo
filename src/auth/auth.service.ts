@@ -13,15 +13,18 @@ export class AuthService {
   ) {}
 
   //this login both validates the user and provides a JWT token to the user
-  async googleLogin(req) {
+  async googleLogin(req, res) {
     if (!req.user) throw new BadRequestException();
 
     //save the user in the database if not present & return a JWT token
     const savedUser = await this.userService.createUser(req.user);
 
     const payload = { email: savedUser.email, sub: savedUser.id };
-    return {
-      JWT_TOKEN: this.jwtService.sign(payload),
-    };
+
+    //send the jwt token to the url param as because I cound not send JWT froma here as rest response
+    const redirectURL =
+      'http://localhost:3000/login/saveToken?JWT=' +
+      this.jwtService.sign(payload);
+    res.redirect(redirectURL);
   }
 }
