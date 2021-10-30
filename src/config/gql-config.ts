@@ -9,13 +9,6 @@ class GqlConfig {
       // sorting the schema lexicographically
       sortSchema: true,
       playground: true,
-      context: ({ req }) => {
-        return {
-          token: req.headers.authorization || null,
-          email: req.headers.email || null,
-          key: req.headers.key || null,
-        };
-      },
     };
   }
 }

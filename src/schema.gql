@@ -44,6 +44,7 @@ type Query {
   getAllCategories: CategoriesType!
   getAllChannels(data: GetChannelsInput!): ChannelsPayload!
   getChannelCountries: LocationsType!
+  getProfile: User
 }
 
 input RegistrationInput {
