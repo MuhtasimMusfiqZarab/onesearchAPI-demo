@@ -17,7 +17,7 @@ export class AuthController {
   @Get('redirect')
   @UseGuards(GoogleAuthGuard)
   googleAuthRedirect(@Request() req, @Res() res: Response) {
-    //upon redirection user is created and JWT token is provided
+    //upon redirection user is created and JWT token is provided to the URL
     return this.authService.googleLogin(req, res);
   }
 

@@ -24,6 +24,8 @@ export class AuthService {
     //send the jwt token to the url param as because I cound not send JWT froma here as rest response
     const redirectURL =
       'http://localhost:3000/login/' + this.jwtService.sign(payload);
+
+    console.log('This is redirection URL', redirectURL);
     res.redirect(redirectURL);
   }
 }
