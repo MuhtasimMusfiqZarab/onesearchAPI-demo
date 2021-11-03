@@ -25,7 +25,6 @@ export class AuthService {
     const redirectURL =
       'http://localhost:3000/login/' + this.jwtService.sign(payload);
 
-    console.log('This is redirection URL', redirectURL);
     res.redirect(redirectURL);
   }
 }

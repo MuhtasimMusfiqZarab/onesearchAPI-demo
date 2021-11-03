@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import User, { UserAccessRole } from './user.entity';
+import { RegistrationInput } from './input/user.input';
 
 import { UserRepository } from './user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -25,7 +26,7 @@ export class UserService {
   }
 
   //create user using google login
-  async createUser(input: any): Promise<User> {
+  async createUser(input: RegistrationInput): Promise<User> {
     const {
       firstName,
       lastName,
@@ -34,6 +35,7 @@ export class UserService {
       token,
       authProvider,
     } = input;
+
     try {
       let queryArgs: any = [{ email }, { token }];
       queryArgs = [{ email }, { token }];

@@ -49,6 +49,7 @@ type Query {
 
 input RegistrationInput {
   authProvider: AuthProvider
+  avatarLink: String!
   email: String!
   firstName: String!
   lastName: String!
