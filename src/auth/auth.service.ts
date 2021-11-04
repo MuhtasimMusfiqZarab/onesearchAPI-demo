@@ -19,11 +19,21 @@ export class AuthService {
     //save the user in the database if not present & return a JWT token
     const savedUser = await this.userService.createUser(req.user);
 
-    const payload = { email: savedUser.email, sub: savedUser.id };
+    const payload = {
+      email: savedUser.email,
+      sub: savedUser.id,
+    };
 
     //send the jwt token to the url param as because I cound not send JWT froma here as rest response
+
+    //for dev
+    // const redirectURL =
+    //   'http://localhost:3000/login/' +
+    //   this.jwtService.sign(payload);
+
+    //for prod
     const redirectURL =
-      'http://localhost:3000/login/' + this.jwtService.sign(payload);
+      'https://onesearch.io/login/' + this.jwtService.sign(payload);
 
     res.redirect(redirectURL);
   }
