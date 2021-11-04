@@ -25,15 +25,8 @@ export class AuthService {
     };
 
     //send the jwt token to the url param as because I cound not send JWT froma here as rest response
-
-    //for dev
-    // const redirectURL =
-    //   'http://localhost:3000/login/' +
-    //   this.jwtService.sign(payload);
-
-    //for prod
     const redirectURL =
-      'https://onesearch.io/login/' + this.jwtService.sign(payload);
+      process.env.redirectURLAfterSignToken + this.jwtService.sign(payload);
 
     res.redirect(redirectURL);
   }
