@@ -5,7 +5,6 @@ import { GoogleStrategy } from './strategy/google-strategy';
 import { JwtStrategy } from './strategy/jwt-strategy';
 
 import { PassportModule } from '@nestjs/passport';
-import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 
 import { UsersModule } from '../users/users.module';
@@ -14,7 +13,6 @@ import { UsersModule } from '../users/users.module';
   imports: [
     UsersModule,
     PassportModule,
-    ConfigModule.forRoot(),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '86400s' },
