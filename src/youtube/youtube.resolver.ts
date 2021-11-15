@@ -10,9 +10,14 @@ import { LocationsType } from './types/locations.type';
 import { AuthGuard } from 'src/shared/guards/user.guard';
 import { UseGuards } from '@nestjs/common';
 
+import { AuthService } from '../auth/auth.service';
+
 @Resolver(() => YoutubeType)
 export class YoutubeResolver {
-  constructor(private readonly youtubeService: YoutubeService) {}
+  constructor(
+    private readonly youtubeService: YoutubeService,
+    private readonly authService: AuthService,
+  ) {}
 
   //get specific user
   @Query(() => YoutubeType, { nullable: true })
@@ -26,7 +31,7 @@ export class YoutubeResolver {
     return channel;
   }
   //get all channels
-  @UseGuards(new AuthGuard())
+  @UseGuards(AuthGuard)
   @Query(() => ChannelsPayload)
   async getAllChannels(
     @Args('data') data: GetChannelsInput,

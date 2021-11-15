@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { BadRequestException, ForbiddenException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
+import { Logger } from '@nestjs/common';
+
 import { UserService } from '../users/users.service';
 
 //most of the user validation should be done in this service with the help of user service
@@ -29,5 +31,23 @@ export class AuthService {
       process.env.redirectURLAfterSignToken + this.jwtService.sign(payload);
 
     res.redirect(redirectURL);
+  }
+
+  //for manual token validation used by other modules
+  async validateToken(token: string): Promise<boolean> {
+    if (!token || token.length === 0) {
+      Logger.warn('No token provided with the request');
+      return false;
+    }
+
+    try {
+      // jwt is defined, decode and verify. and provide the current user to the guard
+      const result: any = await this.jwtService.verify(token);
+      return result;
+    } catch (e) {
+      Logger.error('ERROR: ', e);
+    }
+
+    return false;
   }
 }
