@@ -20,7 +20,7 @@ import { UsersModule } from '../users/users.module';
   ],
   providers: [AuthService, GoogleStrategy, JwtStrategy],
   controllers: [AuthController],
-  //this service can be used by other modules (ex Auth Module)
+  //this service can be used by other modules
   exports: [AuthService],
 })
 export class AuthModule {}

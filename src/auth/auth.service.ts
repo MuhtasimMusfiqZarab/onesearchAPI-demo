@@ -33,7 +33,7 @@ export class AuthService {
     res.redirect(redirectURL);
   }
 
-  //for manual token validation used by other modules
+  //for manual token validation used by other modules (except -authModule  which does it auto for getting user profile google/profile endpoint)
   async validateToken(token: string): Promise<boolean> {
     if (!token || token.length === 0) {
       Logger.warn('No token provided with the request');

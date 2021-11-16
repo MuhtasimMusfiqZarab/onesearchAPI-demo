@@ -20,6 +20,7 @@ export class YoutubeResolver {
   ) {}
 
   //get specific user
+  @UseGuards(AuthGuard)
   @Query(() => YoutubeType, { nullable: true })
   async channel(
     @Args('id', { type: () => Int }) id: number,
@@ -39,11 +40,13 @@ export class YoutubeResolver {
     return await this.youtubeService.getAllChannels(data);
   }
 
+  @UseGuards(AuthGuard)
   @Query(() => CategoriesType)
   async getAllCategories(): Promise<CategoriesType> {
     return await this.youtubeService.getChannelCategories();
   }
 
+  @UseGuards(AuthGuard)
   @Query(() => LocationsType)
   async getChannelCountries(): Promise<LocationsType> {
     return await this.youtubeService.getChannelCountries();
