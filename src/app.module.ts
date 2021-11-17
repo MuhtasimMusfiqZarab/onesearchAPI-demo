@@ -15,14 +15,12 @@ import { ConfigModule } from '@nestjs/config';
 const modules = [YoutubeModule, AuthModule, UsersModule, StripeModule];
 
 @Module({
-  // imports: [...modules, GraphQLModule.forRoot(configService.getGqlConfig())],
   imports: [
     ...modules,
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       // defining the generated schema file name and location
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      // sorting the schema lexicographically
       sortSchema: true,
       playground: true,
     }),

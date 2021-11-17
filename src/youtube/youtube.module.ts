@@ -3,13 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { YoutubeService } from './youtube.service';
 import { YoutubeResolver } from './youtube.resolver';
 import { YoutubeRepository } from './youtube.repository';
-import { configService } from '../config/config.service';
+
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([YoutubeRepository]),
-    TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
-  ],
+  imports: [AuthModule, TypeOrmModule.forFeature([YoutubeRepository])],
   providers: [YoutubeService, YoutubeResolver],
 })
 export class YoutubeModule {}
