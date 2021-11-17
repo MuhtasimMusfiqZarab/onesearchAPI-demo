@@ -1,16 +1,10 @@
-import { UseGuards, Request } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Args, Query } from '@nestjs/graphql';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import User from './user.entity';
-
 import { RegistrationInput } from './input/user.input';
-
-/**
- * call the services here
- */
 import { UserService } from './users.service';
-
-import { AuthGuard } from 'src/shared/guards/user.guard';
+import { GqlAuthGuard } from '../shared/guards/gql-auth.guard';
+import { CurrentUser } from '../shared/decorators/current-user.decorator';
 
 @Resolver(() => User)
 export default class UserResolver {
@@ -24,10 +18,10 @@ export default class UserResolver {
     return this.userService.createUser(input);
   }
 
-  @UseGuards(AuthGuard)
-  @Query(() => User, { nullable: true })
-  // @UseGuards(new JwtAuthGuard())
-  async getProfile(@Request() req) {
-    return req.user;
+  //get all the user data from DB using session
+  @Query(() => User)
+  @UseGuards(GqlAuthGuard)
+  currentUser(@CurrentUser() user: any) {
+    return this.userService.findOne(user.userId);
   }
 }

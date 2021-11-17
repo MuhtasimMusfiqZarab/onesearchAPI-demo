@@ -41,10 +41,10 @@ type Mutation {
 
 type Query {
   channel(id: Int!): Youtube
+  currentUser: User!
   getAllCategories: CategoriesType!
   getAllChannels(data: GetChannelsInput!): ChannelsPayload!
   getChannelCountries: LocationsType!
-  getProfile: User
 }
 
 input RegistrationInput {
