@@ -9,8 +9,10 @@ import { join } from 'path';
 
 import User from './users/user.entity';
 import { Youtube } from './youtube/youtube.entity';
+import { Subscription } from './subscriptions/subscription.entity';
 
 import { ConfigModule } from '@nestjs/config';
+import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 
 const modules = [YoutubeModule, AuthModule, UsersModule, StripeModule];
 
@@ -31,9 +33,10 @@ const modules = [YoutubeModule, AuthModule, UsersModule, StripeModule];
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.USER_DB,
-      entities: [User, Youtube],
+      entities: [User, Youtube, Subscription],
       synchronize: true,
     }),
+    SubscriptionsModule,
   ],
 })
 export class AppModule {}
