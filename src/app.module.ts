@@ -22,7 +22,7 @@ const modules = [YoutubeModule, AuthModule, UsersModule, StripeModule];
       // defining the generated schema file name and location
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
-      playground: true,
+      playground: false,
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
