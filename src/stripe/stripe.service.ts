@@ -3,10 +3,7 @@ import { Injectable } from '@nestjs/common';
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_PRIVATE_KEY);
 
-const storeItems = new Map([
-  [1, { priceCents: 10000, name: 'Learn React' }],
-  [2, { priceCents: 20000, name: 'Learn Node' }],
-]);
+const storeItems = new Map([[1, { priceCents: 100, name: 'Support Us' }]]);
 
 @Injectable()
 export class StripeService {
@@ -28,8 +25,8 @@ export class StripeService {
             quantity: item.quantity,
           };
         }),
-        success_url: `${process.env.CLIENT_SERVER_URL}/success`,
-        cancel_url: `${process.env.CLIENT_SERVER_URL}/cancel`,
+        success_url: `${process.env.CLIENT_SERVER_URL}/dashboard`,
+        cancel_url: `${process.env.CLIENT_SERVER_URL}/login`,
       });
       return res.json({ url: session.url });
     } catch (e) {
