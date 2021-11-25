@@ -32,7 +32,7 @@ const modules = [YoutubeModule, AuthModule, UsersModule, StripeModule];
       port: 3306,
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      database: process.env.USER_DB,
+      database: process.env.DB_NAME,
       entities: [User, Youtube, Subscription],
       synchronize: true,
     }),
