@@ -9,4 +9,9 @@ export class StripeController {
   async processPayment(@Req() req, @Res() res) {
     return this.stripeService.processPayment(req, res);
   }
+
+  @Post('create-payment-intent')
+  async createPaymentIntent(@Req() req, @Res() res) {
+    return this.stripeService.createPaymentIntent(req, res);
+  }
 }
