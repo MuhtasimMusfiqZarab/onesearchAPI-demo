@@ -6,7 +6,7 @@ import { ILike } from 'typeorm';
 import { GetChannelsInput } from './input/get-channels.input';
 import { isValidString } from '../utils/validation';
 import { defaultOrder } from '../utils/query';
-import { ChannelsPayload } from './types/channels.type';
+import { ChannelsType } from './types/channels.type';
 import { CategoriesType } from './types/categories.type';
 import { LocationsType } from './types/locations.type';
 
@@ -31,7 +31,7 @@ export class YoutubeService {
    * @return YoutubeType
    */
 
-  async getAllChannels(data: GetChannelsInput): Promise<ChannelsPayload> {
+  async getAllChannels(data: GetChannelsInput): Promise<ChannelsType> {
     const {
       socialblade_category,
       location,

@@ -1,10 +1,10 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { YoutubeType } from '../youtube.type';
+import { YoutubeBasicType } from './youtube-basic.type';
 
 @ObjectType()
-export class ChannelsPayload {
-  @Field(() => [YoutubeType])
-  channels: YoutubeType[];
+export class ChannelsType {
+  @Field(() => [YoutubeBasicType])
+  channels: YoutubeBasicType[];
 
   @Field(() => Int)
   totalCount: number;

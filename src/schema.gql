@@ -11,7 +11,7 @@ type CategoriesType {
   totalCount: Int!
 }
 
-type ChannelsPayload {
+type ChannelsType {
   channels: [Youtube!]!
   totalCount: Int!
 }
@@ -43,7 +43,7 @@ type Query {
   channel(id: Int!): Youtube
   currentUser: User!
   getAllCategories: CategoriesType!
-  getAllChannels(data: GetChannelsInput!): ChannelsPayload!
+  getAllChannels(data: GetChannelsInput!): ChannelsType!
   getChannelCountries: LocationsType!
 }
 

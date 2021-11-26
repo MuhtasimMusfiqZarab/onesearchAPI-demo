@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, Max } from 'class-validator';
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
@@ -20,6 +20,7 @@ export class GetChannelsInput {
   offset: number;
 
   @IsNotEmpty()
+  @Max(10)
   @Field()
   limit: number;
 }

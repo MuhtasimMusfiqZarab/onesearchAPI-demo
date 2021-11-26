@@ -1,7 +1,7 @@
 import { Field, ObjectType, Int } from '@nestjs/graphql';
 
 @ObjectType('Youtube')
-export class YoutubeType {
+export class YoutubeBasicType {
   @Field(() => Int)
   id: number;
 
