@@ -5,13 +5,15 @@ import { StripeService } from './stripe.service';
 export class StripeController {
   constructor(private readonly stripeService: StripeService) {}
 
+  //only for donate button
   @Post()
   async processPayment(@Req() req, @Res() res) {
     return this.stripeService.processPayment(req, res);
   }
 
-  @Post('create-payment-intent')
+  //process payment using payment intent
+  @Post('pay')
   async createPaymentIntent(@Req() req, @Res() res) {
-    return this.stripeService.createPaymentIntent(req, res);
+    return this.stripeService.processStripePayment(req, res);
   }
 }
