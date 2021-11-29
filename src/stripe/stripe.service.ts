@@ -11,6 +11,7 @@ export class StripeService {
   async processPayment(req, res) {
     try {
       const session = await stripe.checkout.sessions.create({
+        customer_email: 'customer@example.com',
         payment_method_types: ['card'],
         mode: 'payment',
         line_items: req.body.items.map(item => {
@@ -26,7 +27,7 @@ export class StripeService {
             quantity: item.quantity,
           };
         }),
-        success_url: `${process.env.CLIENT_SERVER_URL}/dashboard`,
+        success_url: `${process.env.CLIENT_SERVER_URL}/dashboard?session_id={CHECKOUT_SESSION_ID}',`,
         cancel_url: `${process.env.CLIENT_SERVER_URL}/login`,
       });
       return res.json({ url: session.url });
@@ -43,6 +44,8 @@ export class StripeService {
         // Create the PaymentIntent
         intent = await stripe.paymentIntents.create({
           payment_method: request.body.payment_method_id,
+          //or this
+          // automatic_payment_methods: { enabled: true },
           amount: 1099,
           currency: 'usd',
           confirmation_method: 'manual',
