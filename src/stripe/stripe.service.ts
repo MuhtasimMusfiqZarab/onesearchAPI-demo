@@ -43,11 +43,11 @@ export class StripeService {
       if (request.body.payment_method_id) {
         // Create the PaymentIntent
         intent = await stripe.paymentIntents.create({
-          payment_method: request.body.payment_method_id,
-          //or this
-          // automatic_payment_methods: { enabled: true },
           amount: 1099,
           currency: 'usd',
+          // payment_method: request.body.payment_method_id,
+          //or this one (same)
+          automatic_payment_methods: { enabled: true },
           confirmation_method: 'manual',
           confirm: true,
         });
