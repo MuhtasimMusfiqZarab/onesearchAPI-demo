@@ -21,6 +21,11 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type GetAllUsersType {
+  totalCount: Int!
+  users: [UserType!]!
+}
+
 input GetChannelsInput {
   limit: Float!
   location: String
@@ -28,6 +33,13 @@ input GetChannelsInput {
   searchText: String
   socialblade_category: String
   subscribers: String
+}
+
+input GetUsersInput {
+  limit: Float!
+  location: String
+  offset: Float!
+  searchText: String
 }
 
 type LocationsType {
@@ -44,6 +56,7 @@ type Query {
   currentUser: UserType!
   getAllCategories: CategoriesType!
   getAllChannels(data: GetChannelsInput!): ChannelsType!
+  getAllUsers(data: GetUsersInput!): GetAllUsersType!
   getChannelCountries: LocationsType!
 }
 
@@ -70,12 +83,12 @@ type UserType {
   avatarLink: String
   createdAt: DateTime!
   createdBy: String!
-  email: String!
-  firstName: String!
+  email: String
+  firstName: String
   id: ID!
   isActive: Boolean!
   language: String!
-  lastName: String!
+  lastName: String
   token: String
   updatedAt: DateTime!
   updatedBy: String!

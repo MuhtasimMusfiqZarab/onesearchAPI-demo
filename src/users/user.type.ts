@@ -4,13 +4,13 @@ import { AuthProvider, UserAccessRole } from './user.enum';
 
 @ObjectType()
 export class UserType extends ExtendedBaseEntity {
-  @Field()
+  @Field({ nullable: true })
   firstName: string;
 
-  @Field()
+  @Field({ nullable: true })
   lastName: string;
 
-  @Field()
+  @Field({ nullable: true })
   email: string;
 
   @Field({ nullable: true })

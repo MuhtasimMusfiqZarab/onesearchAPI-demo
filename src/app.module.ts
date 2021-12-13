@@ -33,7 +33,7 @@ const modules = [
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
-      playground: false,
+      playground: true,
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
