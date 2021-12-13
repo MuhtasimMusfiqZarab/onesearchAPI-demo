@@ -94,7 +94,7 @@ export class UserService {
 
       const [users, totalCount] = await this.userRepository.findAndCount({
         where: query,
-        order: { ...defaultOrder },
+        // order: { ...defaultOrder },
         skip: offset,
         take: limit,
       });

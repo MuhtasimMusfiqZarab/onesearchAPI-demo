@@ -4,5 +4,5 @@ export enum Sort {
 }
 
 export const defaultOrder: any = {
-  updatedAt: Sort.DESC,
+  timestamp: Sort.DESC,
 };
