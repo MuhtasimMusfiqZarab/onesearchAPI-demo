@@ -1,6 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import User, { UserAccessRole } from './user.entity';
-import { RegistrationInput } from './input/user.input';
+import User from './user.entity';
+import { RegistrationInput, GetUsersInput } from './user.input';
+import { UserAccessRole } from './user.enum';
+import { GetAllUsersType } from './user.type';
+
+import { isValidString } from '../utils/validation';
+import { ILike } from 'typeorm';
+import { defaultOrder } from '../utils/query';
 
 import { UserRepository } from './user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,6 +19,7 @@ export class UserService {
     private userRepository: UserRepository,
   ) {}
 
+  // find the user(used for current user decorator)
   async findOne(id: string): Promise<User> {
     //find the t
     const found = await this.userRepository.findOne({
@@ -68,6 +75,35 @@ export class UserService {
         });
         return await newUser.save();
       }
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async getAllUsers(data: GetUsersInput): Promise<GetAllUsersType> {
+    const { location, searchText, offset, limit } = data;
+
+    try {
+      let query: any = {};
+
+      if (location) query = { ...query, location };
+
+      if (isValidString(searchText)) {
+        query = [{ ...query, channel_name: ILike(`%${searchText}%`) }];
+      }
+
+      const [users, totalCount] = await this.userRepository.findAndCount({
+        where: query,
+        order: { ...defaultOrder },
+        skip: offset,
+        take: limit,
+      });
+
+      if (!users) {
+        throw new NotFoundException(`No user found@!`);
+      }
+
+      return { users, totalCount };
     } catch (error) {
       throw new Error(error);
     }
