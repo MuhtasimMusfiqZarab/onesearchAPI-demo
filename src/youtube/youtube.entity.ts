@@ -29,7 +29,7 @@ export class Youtube extends BaseEntity {
   bio_email: string;
 
   @Column({ type: 'bigint', nullable: true, default: null })
-  subscribers: string;
+  subscribers: number;
 
   @Column({ type: 'text', nullable: true })
   location: string;
