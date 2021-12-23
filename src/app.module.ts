@@ -17,6 +17,8 @@ import { StripeModule } from './stripe/stripe.module';
 import User from './users/user.entity';
 import { Youtube } from './youtube/youtube.entity';
 import { Subscription } from './subscriptions/subscription.entity';
+import { LinkedinModule } from './linkedin/linkedin.module';
+import { GoogleModule } from './google/google.module';
 
 const modules = [
   YoutubeModule,
@@ -45,6 +47,8 @@ const modules = [
       entities: [User, Youtube, Subscription],
       synchronize: true,
     }),
+    LinkedinModule,
+    GoogleModule,
   ],
 })
 export class AppModule {}
