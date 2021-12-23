@@ -47,7 +47,7 @@ const modules = [
       entities: [User, Youtube, Subscription],
       synchronize: true,
     }),
-    LinkedinModule,
+    // LinkedinModule,
     GoogleModule,
   ],
 })
