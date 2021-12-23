@@ -17,9 +17,7 @@ export class YoutubeResolver {
   //get specific user
   @UseGuards(AuthGuard)
   @Query(() => YoutubeBasicType, { nullable: true })
-  async channel(
-    @Args('id', { type: () => Int }) id: number,
-  ): Promise<YoutubeBasicType> {
+  async channel(@Args('id', { type: () => Int }) id: number): Promise<any> {
     const channel = await this.youtubeService.getChannelById(id);
     if (!channel) {
       throw new NotFoundException(id);

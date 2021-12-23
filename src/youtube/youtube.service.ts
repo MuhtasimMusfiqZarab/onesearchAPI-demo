@@ -31,7 +31,7 @@ export class YoutubeService {
    * @return YoutubeType
    */
 
-  async getAllChannels(data: GetChannelsInput): Promise<ChannelsType> {
+  async getAllChannels(data: GetChannelsInput): Promise<any> {
     const {
       socialblade_category,
       location,
