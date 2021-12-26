@@ -12,21 +12,29 @@ import { YoutubeModule } from './youtube/youtube.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { StripeModule } from './stripe/stripe.module';
+import { LinkedinModule } from './linkedin/linkedin.module';
+import { GoogleModule } from './google/google.module';
 
 //entities
 import User from './users/user.entity';
 import { Youtube } from './youtube/youtube.entity';
 import { Subscription } from './subscriptions/subscription.entity';
-import { LinkedinModule } from './linkedin/linkedin.module';
-import { GoogleModule } from './google/google.module';
+import Google from './google/google.entity';
+import linkedin from './linkedin/linkedin.entity';
 
+//all the modules
 const modules = [
   YoutubeModule,
   AuthModule,
   UsersModule,
   StripeModule,
   SubscriptionsModule,
+  // LinkedinModule,
+  GoogleModule,
 ];
+
+// all the entities
+const entities = [User, Youtube, Subscription, Google, linkedin];
 
 @Module({
   imports: [
@@ -44,11 +52,9 @@ const modules = [
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, Youtube, Subscription],
+      entities,
       synchronize: true,
     }),
-    // LinkedinModule,
-    GoogleModule,
   ],
 })
 export class AppModule {}

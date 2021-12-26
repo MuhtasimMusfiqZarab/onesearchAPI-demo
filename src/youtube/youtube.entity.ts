@@ -8,7 +8,7 @@ import {
   Generated,
 } from 'typeorm';
 
-@Entity('youtube_details')
+@Entity()
 @Unique('unique_id', ['id'])
 export class Youtube extends BaseEntity {
   @Column({ type: 'bigint' })
