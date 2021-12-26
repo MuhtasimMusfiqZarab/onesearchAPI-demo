@@ -9,7 +9,6 @@ export class Youtube extends ExtendedBaseEntity {
   @PrimaryColumn({
     type: 'varchar',
     length: 100,
-    nullable: false,
   })
   channel_url: string;
 

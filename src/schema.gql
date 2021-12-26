@@ -21,7 +21,7 @@ type CategoriesType {
 }
 
 type ChannelsType {
-  channels: [Youtube!]!
+  channels: [YoutubeBasicType!]!
   totalCount: Int!
 }
 
@@ -74,7 +74,7 @@ type Mutation {
 }
 
 type Query {
-  channel(id: String!): Youtube
+  channel(id: String!): YoutubeBasicType
   currentUser: UserType!
   getAllCategories: CategoriesType!
   getAllChannels(data: GetChannelsInput!): ChannelsType!
@@ -116,7 +116,7 @@ type UserType {
   updatedBy: String!
 }
 
-type Youtube {
+type YoutubeBasicType {
   channel_name: String!
   id: Int!
   joined: String!

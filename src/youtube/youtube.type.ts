@@ -3,7 +3,7 @@ import { ExtendedBaseEntity } from '../config/_base.entity';
 
 @ObjectType()
 export class YoutubeType extends ExtendedBaseEntity {
-  @Field({ nullable: false })
+  @Field()
   channel_url: string;
 }
 

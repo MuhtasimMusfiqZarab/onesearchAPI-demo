@@ -3,7 +3,7 @@ import { IsNotEmpty, Max } from 'class-validator';
 
 @InputType()
 export class BulkYoutubeInput {
-  @Field({ nullable: false })
+  @Field()
   channel_url: string;
 }
 
