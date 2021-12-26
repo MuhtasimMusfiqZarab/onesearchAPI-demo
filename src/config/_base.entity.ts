@@ -18,7 +18,7 @@ export abstract class ExtendedBaseEntity extends BaseEntity {
   createdAt: Date;
 
   @Field()
-  @Column({ type: 'varchar', length: 36 })
+  @Column({ type: 'varchar', length: 36, nullable: true })
   createdBy: string;
 
   @Field()
@@ -26,6 +26,6 @@ export abstract class ExtendedBaseEntity extends BaseEntity {
   updatedAt: Date;
 
   @Field()
-  @Column({ type: 'varchar', length: 36 })
+  @Column({ type: 'varchar', length: 36, nullable: true })
   updatedBy: string;
 }

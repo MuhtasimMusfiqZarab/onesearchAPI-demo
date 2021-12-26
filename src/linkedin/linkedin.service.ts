@@ -16,17 +16,17 @@ export class LinkedinService {
     private linkedinRepository: LinkedinRepository,
   ) {}
 
-  async addLinkedinLeads(id: any): Promise<any> {
+  async addLinkedinLeads(input: any): Promise<any> {
     try {
-      return await getConnection()
+      const response = await getConnection()
         .createQueryBuilder()
         .insert()
         .into(Linkedin)
-        .values({
-          firstName: 'Timber',
-          lastName: () => "CONCAT('S', 'A', 'W')",
-        })
+        .values(input)
         .execute();
+
+      console.log('This is the resposne', response);
+      return response;
     } catch (error) {
       throw new Error(error);
     }
