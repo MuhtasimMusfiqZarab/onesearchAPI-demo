@@ -6,6 +6,11 @@ enum AuthProvider {
   Google
 }
 
+input BulkInput {
+  firstName: String!
+  lastName: String!
+}
+
 type CategoriesType {
   categories: [String!]!
   totalCount: Int!
@@ -42,12 +47,24 @@ input GetUsersInput {
   searchText: String
 }
 
+type LinkedinType {
+  createdAt: DateTime!
+  createdBy: String!
+  firstName: String
+  id: ID!
+  lastName: String
+  refId: String
+  updatedAt: DateTime!
+  updatedBy: String!
+}
+
 type LocationsType {
   locations: [String!]!
   totalCount: Int!
 }
 
 type Mutation {
+  addLinkedinLeads(input: [BulkInput!]!): [LinkedinType!]!
   createUser(input: RegistrationInput!): UserType!
 }
 

@@ -29,7 +29,7 @@ const modules = [
   UsersModule,
   StripeModule,
   SubscriptionsModule,
-  // LinkedinModule,
+  LinkedinModule,
   GoogleModule,
 ];
 

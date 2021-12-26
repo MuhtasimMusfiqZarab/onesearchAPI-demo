@@ -5,9 +5,14 @@ import { LinkedinResolver } from './linkedin.resolver';
 import { LinkedinRepository } from './linkedin.repository';
 
 import { AuthModule } from '../auth/auth.module';
+import { UsersModule } from '../users/users.module';
 
 @Module({
-  imports: [AuthModule, TypeOrmModule.forFeature([LinkedinRepository])],
+  imports: [
+    AuthModule,
+    UsersModule,
+    TypeOrmModule.forFeature([LinkedinRepository]),
+  ],
   providers: [LinkedinService, LinkedinResolver],
 })
 export class LinkedinModule {}
