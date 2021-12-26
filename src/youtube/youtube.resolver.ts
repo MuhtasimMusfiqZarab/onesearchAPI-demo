@@ -1,16 +1,17 @@
 import { Args, Query, Resolver, Int, Mutation } from '@nestjs/graphql';
 import { NotFoundException } from '@nestjs/common';
 import { YoutubeService } from './youtube.service';
-import { ChannelsType } from './types/channels.type';
-import { GetChannelsInput } from './input/get-channels.input';
-import { YoutubeBasicType } from './types/youtube-basic.type';
-import { CategoriesType } from './types/categories.type';
-import { LocationsType } from './types/locations.type';
+import {
+  CategoriesType,
+  ChannelsType,
+  YoutubeBasicType,
+  LocationsType,
+} from './youtube.type';
 
 import { AuthGuard, AdminGuard } from 'src/shared/guards/user.guard';
 import { UseGuards } from '@nestjs/common';
 
-import { BulkYoutubeInput } from './youtube.input';
+import { BulkYoutubeInput, GetChannelsInput } from './youtube.input';
 import { YoutubeType } from './youtube.type';
 
 @Resolver(() => YoutubeBasicType)

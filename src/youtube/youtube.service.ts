@@ -1,14 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { YoutubeRepository } from './youtube.repository';
+
 import { Youtube } from './youtube.entity';
+
 import { ILike } from 'typeorm';
-import { GetChannelsInput } from './input/get-channels.input';
+
+import { GetChannelsInput } from './youtube.input';
+import { CategoriesType, LocationsType } from './youtube.type';
+
 import { isValidString } from '../utils/validation';
 import { defaultOrder } from '../utils/query';
-import { ChannelsType } from './types/channels.type';
-import { CategoriesType } from './types/categories.type';
-import { LocationsType } from './types/locations.type';
 
 @Injectable()
 export class YoutubeService {
