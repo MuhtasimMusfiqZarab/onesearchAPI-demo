@@ -20,11 +20,11 @@ import User from './users/user.entity';
 import { Youtube } from './youtube/youtube.entity';
 import { Subscription } from './subscriptions/subscription.entity';
 import Google from './google/google.entity';
-import linkedin from './linkedin/linkedin.entity';
+import Linkedin from './linkedin/linkedin.entity';
 
 //all the modules
 const modules = [
-  // YoutubeModule,
+  YoutubeModule,
   AuthModule,
   UsersModule,
   StripeModule,
@@ -34,7 +34,7 @@ const modules = [
 ];
 
 // all the entities
-const entities = [User, Subscription, Google, linkedin];
+const entities = [User, Subscription, Google, Linkedin, Youtube];
 
 @Module({
   imports: [

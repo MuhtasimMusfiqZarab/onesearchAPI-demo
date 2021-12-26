@@ -11,6 +11,20 @@ input BulkLinkedinInput {
   lastName: String!
 }
 
+input BulkYoutubeInput {
+  channel_url: String!
+}
+
+type CategoriesType {
+  categories: [String!]!
+  totalCount: Int!
+}
+
+type ChannelsType {
+  channels: [Youtube!]!
+  totalCount: Int!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -19,6 +33,15 @@ scalar DateTime
 type GetAllUsersType {
   totalCount: Int!
   users: [UserType!]!
+}
+
+input GetChannelsInput {
+  limit: Float!
+  location: String
+  offset: Float!
+  searchText: String
+  socialblade_category: String
+  subscribers: String
 }
 
 input GetUsersInput {
@@ -39,14 +62,24 @@ type LinkedinType {
   updatedBy: String!
 }
 
+type LocationsType {
+  locations: [String!]!
+  totalCount: Int!
+}
+
 type Mutation {
   addLinkedinLeads(input: [BulkLinkedinInput!]!): [LinkedinType!]!
+  addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
   createUser(input: RegistrationInput!): UserType!
 }
 
 type Query {
+  channel(id: String!): Youtube
   currentUser: UserType!
+  getAllCategories: CategoriesType!
+  getAllChannels(data: GetChannelsInput!): ChannelsType!
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
+  getChannelCountries: LocationsType!
 }
 
 input RegistrationInput {
@@ -79,6 +112,23 @@ type UserType {
   language: String!
   lastName: String
   token: String
+  updatedAt: DateTime!
+  updatedBy: String!
+}
+
+type Youtube {
+  channel_name: String!
+  id: Int!
+  joined: String!
+  subscribers: String!
+  views: String!
+}
+
+type YoutubeType {
+  channel_url: String!
+  createdAt: DateTime!
+  createdBy: String!
+  id: ID!
   updatedAt: DateTime!
   updatedBy: String!
 }
