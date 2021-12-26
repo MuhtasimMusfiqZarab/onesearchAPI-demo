@@ -6,24 +6,9 @@ enum AuthProvider {
   Google
 }
 
-input BulkInput {
+input BulkLinkedinInput {
   firstName: String!
   lastName: String!
-}
-
-input BulkYoutubeInput {
-  firstName: String!
-  lastName: String!
-}
-
-type CategoriesType {
-  categories: [String!]!
-  totalCount: Int!
-}
-
-type ChannelsType {
-  channels: [Youtube!]!
-  totalCount: Int!
 }
 
 """
@@ -34,15 +19,6 @@ scalar DateTime
 type GetAllUsersType {
   totalCount: Int!
   users: [UserType!]!
-}
-
-input GetChannelsInput {
-  limit: Float!
-  location: String
-  offset: Float!
-  searchText: String
-  socialblade_category: String
-  subscribers: String
 }
 
 input GetUsersInput {
@@ -63,24 +39,14 @@ type LinkedinType {
   updatedBy: String!
 }
 
-type LocationsType {
-  locations: [String!]!
-  totalCount: Int!
-}
-
 type Mutation {
-  addLinkedinLeads(input: [BulkInput!]!): [LinkedinType!]!
-  addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
+  addLinkedinLeads(input: [BulkLinkedinInput!]!): [LinkedinType!]!
   createUser(input: RegistrationInput!): UserType!
 }
 
 type Query {
-  channel(id: Int!): Youtube
   currentUser: UserType!
-  getAllCategories: CategoriesType!
-  getAllChannels(data: GetChannelsInput!): ChannelsType!
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
-  getChannelCountries: LocationsType!
 }
 
 input RegistrationInput {
@@ -113,25 +79,6 @@ type UserType {
   language: String!
   lastName: String
   token: String
-  updatedAt: DateTime!
-  updatedBy: String!
-}
-
-type Youtube {
-  channel_name: String!
-  id: Int!
-  joined: String!
-  subscribers: String!
-  views: String!
-}
-
-type YoutubeType {
-  createdAt: DateTime!
-  createdBy: String!
-  firstName: String
-  id: ID!
-  lastName: String
-  refId: String
   updatedAt: DateTime!
   updatedBy: String!
 }

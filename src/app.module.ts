@@ -24,7 +24,7 @@ import linkedin from './linkedin/linkedin.entity';
 
 //all the modules
 const modules = [
-  YoutubeModule,
+  // YoutubeModule,
   AuthModule,
   UsersModule,
   StripeModule,
@@ -34,7 +34,7 @@ const modules = [
 ];
 
 // all the entities
-const entities = [User, Youtube, Subscription, Google, linkedin];
+const entities = [User, Subscription, Google, linkedin];
 
 @Module({
   imports: [
