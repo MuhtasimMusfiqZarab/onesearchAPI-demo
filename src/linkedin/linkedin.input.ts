@@ -1,7 +1,7 @@
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class BulkInput {
+export class BulkLinkedinInput {
   @Field()
   firstName: string;
 

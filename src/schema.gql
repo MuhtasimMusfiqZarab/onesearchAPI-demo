@@ -11,6 +11,11 @@ input BulkInput {
   lastName: String!
 }
 
+input BulkYoutubeInput {
+  firstName: String!
+  lastName: String!
+}
+
 type CategoriesType {
   categories: [String!]!
   totalCount: Int!
@@ -65,6 +70,7 @@ type LocationsType {
 
 type Mutation {
   addLinkedinLeads(input: [BulkInput!]!): [LinkedinType!]!
+  addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
   createUser(input: RegistrationInput!): UserType!
 }
 
@@ -117,4 +123,15 @@ type Youtube {
   joined: String!
   subscribers: String!
   views: String!
+}
+
+type YoutubeType {
+  createdAt: DateTime!
+  createdBy: String!
+  firstName: String
+  id: ID!
+  lastName: String
+  refId: String
+  updatedAt: DateTime!
+  updatedBy: String!
 }

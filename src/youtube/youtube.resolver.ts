@@ -1,4 +1,4 @@
-import { Args, Query, Resolver, Int } from '@nestjs/graphql';
+import { Args, Query, Resolver, Int, Mutation } from '@nestjs/graphql';
 import { NotFoundException } from '@nestjs/common';
 import { YoutubeService } from './youtube.service';
 import { ChannelsType } from './types/channels.type';
@@ -7,17 +7,30 @@ import { YoutubeBasicType } from './types/youtube-basic.type';
 import { CategoriesType } from './types/categories.type';
 import { LocationsType } from './types/locations.type';
 
-import { AuthGuard } from 'src/shared/guards/user.guard';
+import { AuthGuard, AdminGuard } from 'src/shared/guards/user.guard';
 import { UseGuards } from '@nestjs/common';
+
+import { BulkYoutubeInput } from './youtube.input';
+import { YoutubeType } from './youtube.type';
 
 @Resolver(() => YoutubeBasicType)
 export class YoutubeResolver {
   constructor(private readonly youtubeService: YoutubeService) {}
 
+  //add new lead
+  @Mutation(() => [YoutubeType])
+  @UseGuards(AdminGuard)
+  async addYoutubeLeads(
+    @Args('input', { type: () => [BulkYoutubeInput], nullable: false })
+    input: BulkYoutubeInput[],
+  ): Promise<YoutubeType[]> {
+    return this.youtubeService.addYoutubeLeads(input);
+  }
+
   //get specific user
   @UseGuards(AuthGuard)
   @Query(() => YoutubeBasicType, { nullable: true })
-  async channel(@Args('id', { type: () => Int }) id: number): Promise<any> {
+  async channel(@Args('id', { type: () => String }) id: string): Promise<any> {
     const channel = await this.youtubeService.getChannelById(id);
     if (!channel) {
       throw new NotFoundException(id);

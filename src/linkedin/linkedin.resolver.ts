@@ -4,7 +4,7 @@ import { UseGuards } from '@nestjs/common';
 import { LinkedinType } from './linkedin.type';
 
 import { LinkedinService } from './linkedin.service';
-import { BulkInput } from './linkedin.input';
+import { BulkLinkedinInput } from './linkedin.input';
 
 @Resolver(() => LinkedinType)
 export class LinkedinResolver {
@@ -14,8 +14,8 @@ export class LinkedinResolver {
   @Mutation(() => [LinkedinType])
   @UseGuards(AdminGuard)
   async addLinkedinLeads(
-    @Args('input', { type: () => [BulkInput], nullable: false })
-    input: BulkInput[],
+    @Args('input', { type: () => [BulkLinkedinInput], nullable: false })
+    input: BulkLinkedinInput[],
   ): Promise<LinkedinType[]> {
     return this.linkedinService.addLinkedinLeads(input);
   }
