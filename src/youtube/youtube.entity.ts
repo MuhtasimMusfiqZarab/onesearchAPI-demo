@@ -1,74 +1,57 @@
-import {
-  BaseEntity,
-  Entity,
-  PrimaryColumn,
-  Column,
-  Unique,
-  CreateDateColumn,
-  Generated,
-} from 'typeorm';
+import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { ExtendedBaseEntity } from '../config/_base.entity';
 
-@Entity('youtube_details')
-@Unique('unique_id', ['id'])
-export class Youtube extends BaseEntity {
-  @Column({ type: 'bigint' })
-  @Generated()
-  id: number;
-
-  @Column({ type: 'text', nullable: true })
+@Entity()
+export class Youtube extends ExtendedBaseEntity {
+  @Column({ type: 'varchar', nullable: true })
   socialblade_category: string;
 
   @PrimaryColumn({
     type: 'varchar',
     length: 100,
-    nullable: false,
   })
   channel_url: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   bio_email: string;
 
-  @Column({ type: 'bigint', nullable: true, default: null })
-  subscribers: string;
+  @Column({ type: 'bigint', nullable: true })
+  subscribers: number;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   location: string;
 
-  @Column({ type: 'mediumtext', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   channel_name: string;
 
-  @CreateDateColumn({
-    precision: null,
-    default: () => 'CURRENT_TIMESTAMP',
-    onUpdate: 'CURRENT_TIMESTAMP',
-  })
+  @Column({ type: 'date', nullable: true })
   timestamp: Date;
 
-  @Column({ type: 'longtext', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   description: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   instagram: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   twitter: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   facebook: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   tiktok: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   pinterest: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   others: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   joined: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   views: string;
 
   @Column({ type: 'tinyint', width: 1, nullable: true, default: null })

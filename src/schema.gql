@@ -6,13 +6,22 @@ enum AuthProvider {
   Google
 }
 
+input BulkLinkedinInput {
+  firstName: String!
+  lastName: String!
+}
+
+input BulkYoutubeInput {
+  channel_url: String!
+}
+
 type CategoriesType {
   categories: [String!]!
   totalCount: Int!
 }
 
 type ChannelsType {
-  channels: [Youtube!]!
+  channels: [YoutubeBasicType!]!
   totalCount: Int!
 }
 
@@ -42,17 +51,30 @@ input GetUsersInput {
   searchText: String
 }
 
+type LinkedinType {
+  createdAt: DateTime!
+  createdBy: String!
+  firstName: String
+  id: ID!
+  lastName: String
+  refId: String
+  updatedAt: DateTime!
+  updatedBy: String!
+}
+
 type LocationsType {
   locations: [String!]!
   totalCount: Int!
 }
 
 type Mutation {
+  addLinkedinLeads(input: [BulkLinkedinInput!]!): [LinkedinType!]!
+  addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
   createUser(input: RegistrationInput!): UserType!
 }
 
 type Query {
-  channel(id: Int!): Youtube
+  channel(id: String!): YoutubeBasicType
   currentUser: UserType!
   getAllCategories: CategoriesType!
   getAllChannels(data: GetChannelsInput!): ChannelsType!
@@ -94,10 +116,19 @@ type UserType {
   updatedBy: String!
 }
 
-type Youtube {
+type YoutubeBasicType {
   channel_name: String!
   id: Int!
   joined: String!
   subscribers: String!
   views: String!
+}
+
+type YoutubeType {
+  channel_url: String!
+  createdAt: DateTime!
+  createdBy: String!
+  id: ID!
+  updatedAt: DateTime!
+  updatedBy: String!
 }

@@ -1,5 +1,11 @@
-import { IsNotEmpty, Max } from 'class-validator';
 import { Field, InputType } from '@nestjs/graphql';
+import { IsNotEmpty, Max } from 'class-validator';
+
+@InputType()
+export class BulkYoutubeInput {
+  @Field()
+  channel_url: string;
+}
 
 @InputType()
 export class GetChannelsInput {

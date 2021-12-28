@@ -1,14 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { YoutubeRepository } from './youtube.repository';
+
 import { Youtube } from './youtube.entity';
+
 import { ILike } from 'typeorm';
-import { GetChannelsInput } from './input/get-channels.input';
+
+import { GetChannelsInput } from './youtube.input';
+import { CategoriesType, LocationsType } from './youtube.type';
+
 import { isValidString } from '../utils/validation';
 import { defaultOrder } from '../utils/query';
-import { ChannelsType } from './types/channels.type';
-import { CategoriesType } from './types/categories.type';
-import { LocationsType } from './types/locations.type';
 
 @Injectable()
 export class YoutubeService {
@@ -17,7 +19,15 @@ export class YoutubeService {
     private youtubeRepository: YoutubeRepository,
   ) {}
 
-  async getChannelById(id: number): Promise<Youtube> {
+  async addYoutubeLeads(input: any): Promise<any> {
+    try {
+      return await this.youtubeRepository.save(input);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async getChannelById(id: string): Promise<Youtube> {
     const found = await this.youtubeRepository.findOne({ id });
     if (!found) {
       throw new NotFoundException(`User with id ${id} not found!`);
@@ -31,7 +41,7 @@ export class YoutubeService {
    * @return YoutubeType
    */
 
-  async getAllChannels(data: GetChannelsInput): Promise<ChannelsType> {
+  async getAllChannels(data: GetChannelsInput): Promise<any> {
     const {
       socialblade_category,
       location,

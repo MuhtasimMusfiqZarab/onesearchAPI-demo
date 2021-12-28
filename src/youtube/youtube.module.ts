@@ -5,9 +5,14 @@ import { YoutubeResolver } from './youtube.resolver';
 import { YoutubeRepository } from './youtube.repository';
 
 import { AuthModule } from '../auth/auth.module';
+import { UsersModule } from '../users/users.module';
 
 @Module({
-  imports: [AuthModule, TypeOrmModule.forFeature([YoutubeRepository])],
+  imports: [
+    AuthModule,
+    UsersModule,
+    TypeOrmModule.forFeature([YoutubeRepository]),
+  ],
   providers: [YoutubeService, YoutubeResolver],
 })
 export class YoutubeModule {}
