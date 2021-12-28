@@ -15,13 +15,6 @@ import { StripeModule } from './stripe/stripe.module';
 import { LinkedinModule } from './linkedin/linkedin.module';
 import { GoogleModule } from './google/google.module';
 
-//entities
-import User from './users/user.entity';
-import { Youtube } from './youtube/youtube.entity';
-import { Subscription } from './subscriptions/subscription.entity';
-import Google from './google/google.entity';
-import Linkedin from './linkedin/linkedin.entity';
-
 //all the modules
 const modules = [
   YoutubeModule,
@@ -32,9 +25,6 @@ const modules = [
   LinkedinModule,
   GoogleModule,
 ];
-
-// all the entities
-const entities = [User, Subscription, Google, Linkedin, Youtube];
 
 @Module({
   imports: [
@@ -52,7 +42,7 @@ const entities = [User, Subscription, Google, Linkedin, Youtube];
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities,
+      entities: ['**/*.entity.js'],
       synchronize: true,
     }),
   ],
