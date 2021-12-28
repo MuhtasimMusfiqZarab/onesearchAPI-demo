@@ -1,7 +1,7 @@
 const { MigrationInterface, QueryRunner } = require("typeorm");
 
-module.exports = class PostRefactoring1640681332209 {
-    name = 'PostRefactoring1640681332209'
+module.exports = class initialSchema1640682115560 {
+    name = 'initialSchema1640682115560'
 
     async up(queryRunner) {
         await queryRunner.query("CREATE TABLE `google` (`id` varchar(36) NOT NULL, `created_at` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), `createdBy` varchar(36) NULL, `updated_at` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), `updatedBy` varchar(36) NULL, `query_parameter` varchar(255) NULL, `company` varchar(255) NULL, `rating` float NULL, `category` varchar(255) NULL, `address` varchar(255) NULL, `phone` varchar(255) NULL, `website` varchar(255) NULL, `street` varchar(255) NULL, `city` varchar(255) NULL, `postcode` varchar(255) NULL, `country` varchar(255) NULL, `claim_status` varchar(255) NULL, `total_reviews` varchar(255) NULL, `review_data` json NULL, `gmaps_url` varchar(255) NULL, `timestamp` date NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB");
