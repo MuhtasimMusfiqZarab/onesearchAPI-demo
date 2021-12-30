@@ -1,5 +1,4 @@
 var dbConfig = {
-  synchronize: false,
   migrations: ['migration/*.js'],
   cli: {
     migrationsDir: 'migration',
@@ -16,6 +15,7 @@ switch (process.env.NODE_ENV) {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: ['**/*.entity.js'],
+      synchronize: true,
     });
     break;
 
@@ -28,6 +28,7 @@ switch (process.env.NODE_ENV) {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: ['**/*.entity.js'],
+      synchronize: false,
     });
     break;
 
@@ -40,6 +41,7 @@ switch (process.env.NODE_ENV) {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: ['**/*.entity.js'],
+      synchronize: false,
     });
     break;
 }

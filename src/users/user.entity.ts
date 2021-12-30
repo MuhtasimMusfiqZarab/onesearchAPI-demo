@@ -1,6 +1,8 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
 import { ExtendedBaseEntity } from '../config/_base.entity';
 import { UserAccessRole } from './user.enum';
+
+import Profile from 'src/profile/profile.entity';
 
 @Entity()
 export default class User extends ExtendedBaseEntity {
@@ -34,4 +36,8 @@ export default class User extends ExtendedBaseEntity {
 
   @Column({ type: 'varchar', length: 10, default: 'en' })
   language: string;
+
+  @OneToOne(() => Profile)
+  @JoinColumn()
+  profile: Profile;
 }

@@ -14,6 +14,7 @@ import { UsersModule } from './users/users.module';
 import { StripeModule } from './stripe/stripe.module';
 import { LinkedinModule } from './linkedin/linkedin.module';
 import { GoogleModule } from './google/google.module';
+import { ProfileModule } from './profile/profile.module';
 
 //all the modules
 const modules = [
@@ -37,6 +38,7 @@ const modules = [
     }),
     //get configuration data from ormconfig.js
     TypeOrmModule.forRoot(),
+    ProfileModule,
   ],
 })
 export class AppModule {}
