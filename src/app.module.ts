@@ -26,6 +26,8 @@ const modules = [
   SubscriptionsModule,
   LinkedinModule,
   GoogleModule,
+  ProfileModule,
+  PaymentModule,
 ];
 
 @Module({
@@ -39,8 +41,6 @@ const modules = [
     }),
     //get configuration data from ormconfig.js
     TypeOrmModule.forRoot(),
-    ProfileModule,
-    PaymentModule,
   ],
 })
 export class AppModule {}
