@@ -1,8 +1,9 @@
-import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
 import { ExtendedBaseEntity } from '../config/_base.entity';
 import { UserAccessRole } from './user.enum';
 
 import Profile from 'src/profile/profile.entity';
+import Payment from 'src/payment/payment.entity';
 
 @Entity()
 export default class User extends ExtendedBaseEntity {
@@ -40,4 +41,10 @@ export default class User extends ExtendedBaseEntity {
   @OneToOne(() => Profile)
   @JoinColumn()
   profile: Profile;
+
+  @OneToMany(
+    () => Payment,
+    payment => payment.user,
+  )
+  payments: Payment[];
 }

@@ -14,5 +14,5 @@ export default class Profile extends ExtendedBaseEntity {
   city: string;
 
   @Column({ type: 'int' })
-  totalCredits: number;
+  availableCredits: number;
 }
