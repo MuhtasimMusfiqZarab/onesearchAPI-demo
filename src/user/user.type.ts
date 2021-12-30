@@ -2,6 +2,8 @@ import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 import { ExtendedBaseEntity } from '../config/_base.entity';
 import { AuthProvider, UserAccessRole } from './user.enum';
 
+import { ProfileType } from 'src/profile/profile.type';
+
 @ObjectType()
 export class UserType extends ExtendedBaseEntity {
   @Field({ nullable: true })
@@ -22,14 +24,17 @@ export class UserType extends ExtendedBaseEntity {
   @Field(() => AuthProvider, { nullable: true })
   authProvider: string;
 
-  @Field()
+  @Field({ nullable: true })
   isActive: boolean;
 
   @Field(() => UserAccessRole)
   accessRole: UserAccessRole;
 
-  @Field()
+  @Field({ nullable: true })
   language: string;
+
+  @Field({ nullable: true })
+  profile: ProfileType;
 }
 
 @ObjectType()

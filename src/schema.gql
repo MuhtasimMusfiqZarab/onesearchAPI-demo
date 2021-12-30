@@ -73,6 +73,18 @@ type Mutation {
   createUser(input: RegistrationInput!): UserType!
 }
 
+type ProfileType {
+  availableCredits: Float
+  city: String
+  country: String
+  createdAt: DateTime!
+  createdBy: String!
+  id: ID!
+  phoneNumber: String
+  updatedAt: DateTime!
+  updatedBy: String!
+}
+
 type Query {
   channel(id: String!): YoutubeBasicType
   currentUser: UserType!
@@ -108,9 +120,10 @@ type UserType {
   email: String
   firstName: String
   id: ID!
-  isActive: Boolean!
-  language: String!
+  isActive: Boolean
+  language: String
   lastName: String
+  profile: ProfileType
   token: String
   updatedAt: DateTime!
   updatedBy: String!

@@ -97,6 +97,7 @@ export class UserService {
         // order: { ...defaultOrder },
         skip: offset,
         take: limit,
+        relations: ['profile', 'youtube'],
       });
 
       if (!users) {

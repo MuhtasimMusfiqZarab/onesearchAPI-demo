@@ -4,15 +4,15 @@ import { ExtendedBaseEntity } from '../config/_base.entity';
 
 @Entity()
 export default class Profile extends ExtendedBaseEntity {
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   phoneNumber: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   country: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   city: string;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', nullable: true })
   availableCredits: number;
 }
