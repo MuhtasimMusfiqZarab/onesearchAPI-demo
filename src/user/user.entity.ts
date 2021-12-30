@@ -1,9 +1,18 @@
-import { Entity, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  OneToOne,
+  JoinColumn,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 import { ExtendedBaseEntity } from '../config/_base.entity';
 import { UserAccessRole } from './user.enum';
 
 import Profile from 'src/profile/profile.entity';
 import Payment from 'src/payment/payment.entity';
+import Youtube from 'src/youtube/youtube.entity';
 
 @Entity()
 export default class User extends ExtendedBaseEntity {
@@ -47,4 +56,8 @@ export default class User extends ExtendedBaseEntity {
     payment => payment.user,
   )
   payments: Payment[];
+
+  @ManyToMany(() => Youtube)
+  @JoinTable()
+  youtube: Youtube[];
 }

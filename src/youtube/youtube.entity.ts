@@ -2,7 +2,7 @@ import { Entity, PrimaryColumn, Column } from 'typeorm';
 import { ExtendedBaseEntity } from '../config/_base.entity';
 
 @Entity()
-export class Youtube extends ExtendedBaseEntity {
+export default class Youtube extends ExtendedBaseEntity {
   @Column({ type: 'varchar', nullable: true })
   socialblade_category: string;
 
