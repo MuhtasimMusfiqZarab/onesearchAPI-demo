@@ -7,7 +7,7 @@ import { JwtStrategy } from './strategy/jwt-strategy';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 
-import { UsersModule } from '../users/users.module';
+import { UsersModule } from '../user/user.module';
 
 @Module({
   imports: [

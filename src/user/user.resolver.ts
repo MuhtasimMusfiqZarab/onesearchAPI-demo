@@ -2,7 +2,7 @@ import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Args, Query } from '@nestjs/graphql';
 import { UserType } from './user.type';
 import { RegistrationInput, GetUsersInput } from './user.input';
-import { UserService } from './users.service';
+import { UserService } from './user.service';
 import { GqlAuthGuard } from '../shared/guards/gql-auth.guard';
 import { AdminGuard } from '../shared/guards/user.guard';
 import { CurrentUser } from '../shared/decorators/current-user.decorator';

@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 
 import { Logger } from '@nestjs/common';
 
-import { UserService } from '../users/users.service';
+import { UserService } from '../user/user.service';
 
 //most of the user validation should be done in this service with the help of user service
 @Injectable()

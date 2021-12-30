@@ -5,7 +5,7 @@ import { YoutubeResolver } from './youtube.resolver';
 import { YoutubeRepository } from './youtube.repository';
 
 import { AuthModule } from '../auth/auth.module';
-import { UsersModule } from '../users/users.module';
+import { UsersModule } from '../user/user.module';
 
 @Module({
   imports: [
