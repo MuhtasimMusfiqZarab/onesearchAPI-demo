@@ -28,7 +28,7 @@ switch (process.env.NODE_ENV) {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: ['**/*.entity.js'],
-      synchronize: false,
+      synchronize: true,
     });
     break;
 
@@ -41,7 +41,7 @@ switch (process.env.NODE_ENV) {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: ['**/*.entity.js'],
-      synchronize: false,
+      synchronize: true,
     });
     break;
 }
