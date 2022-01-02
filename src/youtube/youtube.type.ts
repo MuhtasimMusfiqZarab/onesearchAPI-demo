@@ -43,7 +43,7 @@ export class YoutubeType extends ExtendedBaseEntity {
   others: string;
 
   @Field({ nullable: true })
-  joined: Date;
+  joined: string;
 
   @Field({ nullable: true })
   views: number;

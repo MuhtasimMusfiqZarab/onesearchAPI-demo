@@ -37,8 +37,8 @@ export class UserType extends ExtendedBaseEntity {
   @Field({ nullable: true })
   profile: ProfileType;
 
-  // @Field({ nullable: true })
-  // youtube: YoutubeType;
+  @Field(() => [YoutubeType], { nullable: true })
+  youtube: YoutubeType[];
 }
 
 @ObjectType()

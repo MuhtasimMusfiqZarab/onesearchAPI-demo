@@ -127,6 +127,7 @@ type UserType {
   token: String
   updatedAt: DateTime!
   updatedBy: String!
+  youtube: [YoutubeType!]
 }
 
 type YoutubeBasicType {
@@ -147,7 +148,7 @@ type YoutubeType {
   facebook: String
   id: ID!
   instagram: String
-  joined: DateTime
+  joined: String
   location: String
   others: String
   pinterest: String
