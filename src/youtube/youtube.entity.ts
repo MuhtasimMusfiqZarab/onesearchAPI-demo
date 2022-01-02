@@ -51,8 +51,8 @@ export default class Youtube extends ExtendedBaseEntity {
   @Column({ type: 'varchar', nullable: true })
   joined: string;
 
-  @Column({ type: 'varchar', nullable: true })
-  views: string;
+  @Column({ type: 'bigint', nullable: true })
+  views: number;
 
   @Column({ type: 'tinyint', width: 1, nullable: true, default: null })
   socialblade_similar_scraped: string;

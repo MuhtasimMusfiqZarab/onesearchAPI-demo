@@ -3,6 +3,7 @@ import { ExtendedBaseEntity } from '../config/_base.entity';
 import { AuthProvider, UserAccessRole } from './user.enum';
 
 import { ProfileType } from 'src/profile/profile.type';
+import { YoutubeType } from 'src/youtube/youtube.type';
 
 @ObjectType()
 export class UserType extends ExtendedBaseEntity {
@@ -35,6 +36,9 @@ export class UserType extends ExtendedBaseEntity {
 
   @Field({ nullable: true })
   profile: ProfileType;
+
+  // @Field({ nullable: true })
+  // youtube: YoutubeType;
 }
 
 @ObjectType()

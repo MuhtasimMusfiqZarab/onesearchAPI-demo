@@ -30,7 +30,7 @@ export class YoutubeService {
   async getChannelById(id: string): Promise<Youtube> {
     const found = await this.youtubeRepository.findOne({ id });
     if (!found) {
-      throw new NotFoundException(`User with id ${id} not found!`);
+      throw new NotFoundException(`youtube channel with id ${id} not found!`);
     }
     return found;
   }

@@ -138,10 +138,26 @@ type YoutubeBasicType {
 }
 
 type YoutubeType {
-  channel_url: String!
+  bio_email: String
+  channel_name: String
+  channel_url: String
   createdAt: DateTime!
   createdBy: String!
+  description: String
+  facebook: String
   id: ID!
+  instagram: String
+  joined: DateTime
+  location: String
+  others: String
+  pinterest: String
+  socialblade_category: String
+  socialblade_similar_scraped: String
+  subscribers: Float
+  tiktok: String
+  timestamp: DateTime
+  twitter: String
   updatedAt: DateTime!
   updatedBy: String!
+  views: Float
 }
