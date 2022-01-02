@@ -6,7 +6,7 @@ import { GetAllUsersType } from './user.type';
 
 import { isValidString } from '../utils/validation';
 import { ILike } from 'typeorm';
-import { defaultOrder } from '../utils/query';
+import { UserType } from './user.type';
 
 import { UserRepository } from './user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -20,7 +20,7 @@ export class UserService {
   ) {}
 
   // find the user(used for current user decorator)
-  async findOne(id: string): Promise<User> {
+  async findOne(id: string): Promise<UserType> {
     //find the t
     const found = await this.userRepository.findOne({
       where: { id },
@@ -33,7 +33,7 @@ export class UserService {
   }
 
   //create user using google login
-  async createUser(input: RegistrationInput): Promise<User> {
+  async createUser(input: RegistrationInput): Promise<UserType> {
     const {
       firstName,
       lastName,
