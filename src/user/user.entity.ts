@@ -54,6 +54,9 @@ export default class User extends ExtendedBaseEntity {
   @OneToMany(
     () => Payment,
     payment => payment.user,
+    {
+      nullable: true,
+    },
   )
   payments: Payment[];
 

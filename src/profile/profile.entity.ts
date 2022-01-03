@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne } from 'typeorm';
+import { Entity, Column } from 'typeorm';
 
 import { ExtendedBaseEntity } from '../config/_base.entity';
 

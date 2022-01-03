@@ -89,6 +89,15 @@ type Mutation {
   createUser(input: RegistrationInput!): UserType!
 }
 
+type PaymentType {
+  amount: Float!
+  createdAt: DateTime!
+  createdBy: String!
+  id: ID!
+  updatedAt: DateTime!
+  updatedBy: String!
+}
+
 type ProfileType {
   availableCredits: Float
   city: String
@@ -139,6 +148,7 @@ type UserType {
   isActive: Boolean
   language: String
   lastName: String
+  payments: [PaymentType!]
   profile: ProfileType
   token: String
   updatedAt: DateTime!
