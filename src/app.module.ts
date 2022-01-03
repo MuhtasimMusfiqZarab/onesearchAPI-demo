@@ -11,7 +11,6 @@ import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 import { YoutubeModule } from './youtube/youtube.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './user/user.module';
-import { StripeModule } from './stripe/stripe.module';
 import { LinkedinModule } from './linkedin/linkedin.module';
 import { GoogleModule } from './google/google.module';
 import { ProfileModule } from './profile/profile.module';
@@ -22,7 +21,6 @@ const modules = [
   YoutubeModule,
   AuthModule,
   UsersModule,
-  StripeModule,
   SubscriptionsModule,
   LinkedinModule,
   GoogleModule,
