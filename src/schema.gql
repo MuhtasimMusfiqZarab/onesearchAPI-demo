@@ -12,7 +12,23 @@ input BulkLinkedinInput {
 }
 
 input BulkYoutubeInput {
+  bio_email: String
+  channel_name: String
   channel_url: String!
+  description: String
+  facebook: String
+  instagram: String
+  joined: String
+  location: String
+  others: String
+  pinterest: String
+  socialblade_category: String
+  socialblade_similar_scraped: String
+  subscribers: Float
+  tiktok: String
+  timestamp: DateTime
+  twitter: String
+  views: Float
 }
 
 type CategoriesType {
