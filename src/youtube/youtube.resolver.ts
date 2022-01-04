@@ -49,13 +49,13 @@ export class YoutubeResolver {
 
   @UseGuards(AuthGuard)
   @Query(() => CategoriesType, { nullable: true })
-  async getAllCategories(): Promise<CategoriesType> {
+  async getAllCategories(): Promise<CategoriesType | null> {
     return await this.youtubeService.getChannelCategories();
   }
 
   @UseGuards(AuthGuard)
   @Query(() => LocationsType, { nullable: true })
-  async getChannelCountries(): Promise<LocationsType> {
+  async getChannelCountries(): Promise<LocationsType | null> {
     return await this.youtubeService.getChannelCountries();
   }
 }
