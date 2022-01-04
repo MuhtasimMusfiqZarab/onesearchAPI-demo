@@ -40,7 +40,7 @@ export class YoutubeResolver {
   }
   //get all channels
   @UseGuards(AuthGuard)
-  @Query(() => ChannelsType)
+  @Query(() => ChannelsType, { nullable: true })
   async getAllChannels(
     @Args('data') data: GetChannelsInput,
   ): Promise<ChannelsType> {
@@ -48,13 +48,13 @@ export class YoutubeResolver {
   }
 
   @UseGuards(AuthGuard)
-  @Query(() => CategoriesType)
+  @Query(() => CategoriesType, { nullable: true })
   async getAllCategories(): Promise<CategoriesType> {
     return await this.youtubeService.getChannelCategories();
   }
 
   @UseGuards(AuthGuard)
-  @Query(() => LocationsType)
+  @Query(() => LocationsType, { nullable: true })
   async getChannelCountries(): Promise<LocationsType> {
     return await this.youtubeService.getChannelCountries();
   }

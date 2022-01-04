@@ -6,7 +6,7 @@ export class YoutubeType extends ExtendedBaseEntity {
   @Field({ nullable: true })
   socialblade_category: string;
 
-  @Field({ nullable: true })
+  @Field()
   channel_url: string;
 
   @Field({ nullable: true })
@@ -54,45 +54,45 @@ export class YoutubeType extends ExtendedBaseEntity {
 
 @ObjectType()
 export class CategoriesType {
-  @Field(() => [String])
+  @Field(() => [String], { nullable: true })
   categories: string[];
 
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   totalCount: number;
 }
 
 @ObjectType()
 export class YoutubeBasicType {
-  @Field(() => Int)
-  id: number;
+  @Field(() => ID)
+  id: string;
 
-  @Field()
+  @Field({ nullable: true })
   channel_name: string;
 
-  @Field()
+  @Field({ nullable: true })
   joined: string;
 
-  @Field()
+  @Field({ nullable: true })
   views: string;
 
-  @Field()
-  subscribers: string;
+  @Field({ nullable: true })
+  subscribers: number;
 }
 
 @ObjectType()
 export class ChannelsType {
-  @Field(() => [YoutubeBasicType])
+  @Field(() => [YoutubeBasicType], { nullable: true })
   channels: YoutubeBasicType[];
 
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   totalCount: number;
 }
 
 @ObjectType()
 export class LocationsType {
-  @Field(() => [String])
+  @Field(() => [String], { nullable: true })
   locations: string[];
 
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   totalCount: number;
 }

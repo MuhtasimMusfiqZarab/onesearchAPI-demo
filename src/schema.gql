@@ -32,13 +32,13 @@ input BulkYoutubeInput {
 }
 
 type CategoriesType {
-  categories: [String!]!
-  totalCount: Int!
+  categories: [String!]
+  totalCount: Int
 }
 
 type ChannelsType {
-  channels: [YoutubeBasicType!]!
-  totalCount: Int!
+  channels: [YoutubeBasicType!]
+  totalCount: Int
 }
 
 """
@@ -79,8 +79,8 @@ type LinkedinType {
 }
 
 type LocationsType {
-  locations: [String!]!
-  totalCount: Int!
+  locations: [String!]
+  totalCount: Int
 }
 
 type Mutation {
@@ -113,10 +113,10 @@ type ProfileType {
 type Query {
   channel(id: String!): YoutubeBasicType
   currentUser: UserType!
-  getAllCategories: CategoriesType!
-  getAllChannels(data: GetChannelsInput!): ChannelsType!
+  getAllCategories: CategoriesType
+  getAllChannels(data: GetChannelsInput!): ChannelsType
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
-  getChannelCountries: LocationsType!
+  getChannelCountries: LocationsType
 }
 
 input RegistrationInput {
@@ -157,17 +157,17 @@ type UserType {
 }
 
 type YoutubeBasicType {
-  channel_name: String!
-  id: Int!
-  joined: String!
-  subscribers: String!
-  views: String!
+  channel_name: String
+  id: ID!
+  joined: String
+  subscribers: Float
+  views: String
 }
 
 type YoutubeType {
   bio_email: String
   channel_name: String
-  channel_url: String
+  channel_url: String!
   createdAt: DateTime!
   createdBy: String!
   description: String
