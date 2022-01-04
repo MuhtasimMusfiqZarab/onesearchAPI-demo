@@ -79,7 +79,7 @@ export class YoutubeService {
   }
 
   //get all categories
-  async getChannelCategories(): Promise<CategoriesType> {
+  async getChannelCategories(): Promise<CategoriesType | null> {
     const categories = await this.youtubeRepository
       .createQueryBuilder()
       .select('socialblade_category')
@@ -90,19 +90,35 @@ export class YoutubeService {
       category => category.socialblade_category,
     );
 
-    return { categories: categoryNames, totalCount: categoryNames.length };
+    return {
+      categories: categoryNames.filter(x => x !== null),
+      totalCount: categoryNames.length,
+    };
   }
 
   //get all categories
-  async getChannelCountries(): Promise<LocationsType> {
-    const locations = await this.youtubeRepository
+  async getChannelCountries(): Promise<LocationsType | null> {
+    const locations: any = await this.youtubeRepository
       .createQueryBuilder()
       .select('location')
       .distinct(true)
       .getRawMany();
 
-    const locationNames = locations.map(location => location.location);
+    let locationNames = [];
 
-    return { locations: locationNames, totalCount: locationNames.length };
+    // console.log('This is it', locations.length);
+
+    locationNames = locations.map(location => {
+      if (location.location !== null || location.location !== undefined) {
+        return location.location;
+      } else {
+        return;
+      }
+    });
+
+    return {
+      locations: locationNames.filter(x => x !== null),
+      totalCount: locationNames.length,
+    };
   }
 }
