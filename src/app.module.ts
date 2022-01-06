@@ -15,6 +15,7 @@ import { LinkedinModule } from './linkedin/linkedin.module';
 import { GoogleModule } from './google/google.module';
 import { ProfileModule } from './profile/profile.module';
 import { PaymentModule } from './payment/payment.module';
+import { YoutubeLocationModule } from './youtube-location/youtube-location.module';
 
 //all the modules
 const modules = [
@@ -39,6 +40,7 @@ const modules = [
     }),
     //get configuration data from ormconfig.js
     TypeOrmModule.forRoot(),
+    YoutubeLocationModule,
   ],
 })
 export class AppModule {}
