@@ -1,5 +1,7 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
 import { ExtendedBaseEntity } from '../config/_base.entity';
+
+import YoutubeLocation from 'src/youtube-location/youtube-location.entity';
 
 @Entity()
 export default class Youtube extends ExtendedBaseEntity {
@@ -18,8 +20,14 @@ export default class Youtube extends ExtendedBaseEntity {
   @Column({ type: 'bigint', nullable: true })
   subscribers: number;
 
-  @Column({ type: 'varchar', nullable: true })
-  location: string;
+  // @Column({ type: 'varchar', nullable: true })
+  // location: string;
+
+  @ManyToOne(
+    () => YoutubeLocation,
+    youtubeLocation => youtubeLocation.channels,
+  )
+  location: YoutubeLocation;
 
   @Column({ type: 'varchar', nullable: true })
   channel_name: string;

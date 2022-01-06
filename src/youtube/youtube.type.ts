@@ -1,6 +1,8 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 import { ExtendedBaseEntity } from '../config/_base.entity';
 
+import { YoutubeLocation } from 'src/youtube-location/youtube-location.type';
+
 @ObjectType()
 export class YoutubeType extends ExtendedBaseEntity {
   @Field({ nullable: true })
@@ -11,10 +13,12 @@ export class YoutubeType extends ExtendedBaseEntity {
 
   @Field({ nullable: true })
   bio_email: string;
+
   @Field({ nullable: true })
   subscribers: number;
-  @Field({ nullable: true })
-  location: string;
+
+  @Field(() => YoutubeLocation, { nullable: true })
+  location: YoutubeLocation;
 
   @Field({ nullable: true })
   channel_name: string;
@@ -90,8 +94,8 @@ export class ChannelsType {
 
 @ObjectType()
 export class LocationsType {
-  @Field(() => [String], { nullable: true })
-  locations: string[];
+  @Field(() => [YoutubeLocation], { nullable: true })
+  locations: YoutubeLocation[];
 
   @Field(() => Int, { nullable: true })
   totalCount: number;
