@@ -35,7 +35,7 @@ const modules = [
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
-      playground: true,
+      playground: false,
     }),
     //get configuration data from ormconfig.js
     TypeOrmModule.forRoot(),
