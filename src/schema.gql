@@ -12,7 +12,7 @@ input BulkLinkedinInput {
 }
 
 input BulkYoutubeInput {
-  bio_email: String
+  bio_email: [String!]
   channel_name: String
   channel_url: String!
   description: String
@@ -23,12 +23,11 @@ input BulkYoutubeInput {
   others: String
   pinterest: String
   socialblade_category: String
-  socialblade_similar_scraped: String
   subscribers: Float
   tiktok: String
   timestamp: DateTime
   twitter: String
-  views: Float
+  views: String
 }
 
 type CategoriesType {
@@ -165,7 +164,7 @@ type YoutubeBasicType {
 }
 
 type YoutubeType {
-  bio_email: String
+  bio_email: [String!]
   channel_name: String
   channel_url: String!
   createdAt: DateTime!
@@ -179,12 +178,11 @@ type YoutubeType {
   others: String
   pinterest: String
   socialblade_category: String
-  socialblade_similar_scraped: String
   subscribers: Float
   tiktok: String
   timestamp: DateTime
   twitter: String
   updatedAt: DateTime!
   updatedBy: String!
-  views: Float
+  views: String
 }

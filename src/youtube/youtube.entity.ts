@@ -12,8 +12,8 @@ export default class Youtube extends ExtendedBaseEntity {
   })
   channel_url: string;
 
-  @Column({ type: 'varchar', nullable: true })
-  bio_email: string;
+  @Column({ type: 'json', nullable: true })
+  bio_email: string[];
 
   @Column({ type: 'bigint', nullable: true })
   subscribers: number;
@@ -27,7 +27,7 @@ export default class Youtube extends ExtendedBaseEntity {
   @Column({ type: 'date', nullable: true })
   timestamp: Date;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ type: 'text', nullable: true })
   description: string;
 
   @Column({ type: 'varchar', nullable: true })
@@ -51,9 +51,6 @@ export default class Youtube extends ExtendedBaseEntity {
   @Column({ type: 'varchar', nullable: true })
   joined: string;
 
-  @Column({ type: 'bigint', nullable: true })
-  views: number;
-
-  @Column({ type: 'tinyint', width: 1, nullable: true, default: null })
-  socialblade_similar_scraped: string;
+  @Column({ type: 'varchar', nullable: true })
+  views: string;
 }

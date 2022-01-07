@@ -9,15 +9,18 @@ export class YoutubeType extends ExtendedBaseEntity {
   @Field()
   channel_url: string;
 
-  @Field({ nullable: true })
-  bio_email: string;
+  @Field(() => [String], { nullable: true })
+  bio_email: string[];
+
   @Field({ nullable: true })
   subscribers: number;
+
   @Field({ nullable: true })
   location: string;
 
   @Field({ nullable: true })
   channel_name: string;
+
   @Field({ nullable: true })
   timestamp: Date;
 
@@ -46,10 +49,7 @@ export class YoutubeType extends ExtendedBaseEntity {
   joined: string;
 
   @Field({ nullable: true })
-  views: number;
-
-  @Field({ nullable: true })
-  socialblade_similar_scraped: string;
+  views: string;
 }
 
 @ObjectType()

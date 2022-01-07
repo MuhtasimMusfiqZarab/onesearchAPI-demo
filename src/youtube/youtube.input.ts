@@ -9,10 +9,12 @@ export class BulkYoutubeInput {
   @Field({ nullable: true })
   socialblade_category: string;
 
-  @Field({ nullable: true })
-  bio_email: string;
+  @Field(() => [String], { nullable: true })
+  bio_email: string[];
+
   @Field({ nullable: true })
   subscribers: number;
+
   @Field({ nullable: true })
   location: string;
 
@@ -47,10 +49,7 @@ export class BulkYoutubeInput {
   joined: string;
 
   @Field({ nullable: true })
-  views: number;
-
-  @Field({ nullable: true })
-  socialblade_similar_scraped: string;
+  views: string;
 }
 
 @InputType()
