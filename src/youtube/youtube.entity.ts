@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, Timestamp } from 'typeorm';
 import { ExtendedBaseEntity } from '../config/_base.entity';
 
 @Entity()
@@ -24,8 +24,8 @@ export default class Youtube extends ExtendedBaseEntity {
   @Column({ type: 'varchar', nullable: true })
   channel_name: string;
 
-  @Column({ type: 'date', nullable: true })
-  timestamp: Date;
+  @Column({ type: 'timestamp', nullable: true })
+  timestamp: Timestamp;
 
   @Column({ type: 'text', nullable: true })
   description: string;
