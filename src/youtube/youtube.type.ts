@@ -21,7 +21,7 @@ export class YoutubeType extends ExtendedBaseEntity {
   @Field({ nullable: true })
   channel_name: string;
 
-  @Field({ nullable: true })
+  @Field(() => Date, { nullable: true })
   timestamp: Date;
 
   @Field({ nullable: true })
