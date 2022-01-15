@@ -157,8 +157,11 @@ type UserType {
 
 type YoutubeBasicType {
   channel_name: String
+  description: String
   id: ID!
   joined: String
+  location: String
+  socialblade_category: String
   subscribers: Float
   views: String
 }

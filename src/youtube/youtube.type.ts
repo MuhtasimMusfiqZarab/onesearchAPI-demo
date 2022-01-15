@@ -77,6 +77,15 @@ export class YoutubeBasicType {
 
   @Field({ nullable: true })
   subscribers: number;
+
+  @Field({ nullable: true })
+  socialblade_category: string;
+
+  @Field({ nullable: true })
+  location: string;
+
+  @Field({ nullable: true })
+  description: string;
 }
 
 @ObjectType()
