@@ -84,8 +84,8 @@ export class YoutubeBasicType {
   @Field({ nullable: true })
   location: string;
 
-  @Field({ nullable: true })
-  description: string;
+  // @Field({ nullable: true })
+  // description: string;
 }
 
 @ObjectType()
