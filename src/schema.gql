@@ -72,7 +72,6 @@ type LinkedinType {
   firstName: String
   id: ID!
   lastName: String
-  refId: String
   updatedAt: DateTime!
   updatedBy: String!
 }
