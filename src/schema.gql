@@ -66,14 +66,19 @@ input GetUsersInput {
   searchText: String
 }
 
-type LinkedinType {
+type LinkedinBasicType {
+  company: String
   createdAt: DateTime!
   createdBy: String!
   firstName: String
+  fullName: String
   id: ID!
   lastName: String
+  location: String
+  title: String
   updatedAt: DateTime!
   updatedBy: String!
+  url: String
 }
 
 type LocationsType {
@@ -82,7 +87,7 @@ type LocationsType {
 }
 
 type Mutation {
-  addLinkedinLeads(input: [BulkLinkedinInput!]!): [LinkedinType!]!
+  addLinkedinLeads(input: [BulkLinkedinInput!]!): [LinkedinBasicType!]!
   addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
   createUser(input: RegistrationInput!): UserType!
 }

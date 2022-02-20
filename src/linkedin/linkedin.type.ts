@@ -2,10 +2,37 @@ import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 import { ExtendedBaseEntity } from '../config/_base.entity';
 
 @ObjectType()
-export class LinkedinType extends ExtendedBaseEntity {
+export class LinkedinBasicType extends ExtendedBaseEntity {
+  @Field(() => ID)
+  id: string;
+
   @Field({ nullable: true })
   firstName: string;
 
   @Field({ nullable: true })
   lastName: string;
+
+  @Field({ nullable: true })
+  fullName: string;
+
+  @Field({ nullable: true })
+  title: string;
+
+  @Field({ nullable: true })
+  company: string;
+
+  @Field({ nullable: true })
+  location: string;
+
+  @Field({ nullable: true })
+  url: string;
+}
+
+@ObjectType()
+export class LinkedinAdvancedType extends ExtendedBaseEntity {
+  @Field(() => ID)
+  id: string;
+
+  @Field({ nullable: true })
+  url: string;
 }
