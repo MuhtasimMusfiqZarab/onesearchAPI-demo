@@ -35,7 +35,7 @@ export class LinkedinService {
         query = [{ ...query, channel_name: ILike(`%${searchText}%`) }];
       }
 
-      const [channels, totalCount] = await this.linkedinRepository.findAndCount(
+      const [profiles, totalCount] = await this.linkedinRepository.findAndCount(
         {
           where: query,
           order: { ...defaultOrder },
@@ -44,11 +44,11 @@ export class LinkedinService {
         },
       );
 
-      if (!channels) {
+      if (!profiles) {
         throw new NotFoundException(`No Profile was found@!`);
       }
 
-      return { channels, totalCount };
+      return { profiles, totalCount };
     } catch (error) {
       throw new Error(error);
     }

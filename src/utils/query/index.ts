@@ -4,5 +4,5 @@ export enum Sort {
 }
 
 export const defaultOrder: any = {
-  subscribers: Sort.DESC,
+  location: Sort.DESC,
 };
