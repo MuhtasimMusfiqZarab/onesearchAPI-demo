@@ -3,9 +3,6 @@ import { ExtendedBaseEntity } from '../config/_base.entity';
 
 @ObjectType()
 export class LinkedinBasicType extends ExtendedBaseEntity {
-  @Field(() => ID)
-  id: string;
-
   @Field({ nullable: true })
   firstName: string;
 
