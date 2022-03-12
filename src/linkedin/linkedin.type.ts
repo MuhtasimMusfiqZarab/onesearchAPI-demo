@@ -23,9 +23,6 @@ export class LinkedinBasicType extends ExtendedBaseEntity {
 
   @Field({ nullable: true })
   location: string;
-
-  @Field({ nullable: true })
-  url: string;
 }
 
 @ObjectType()
@@ -33,6 +30,6 @@ export class LinkedinAdvancedType extends ExtendedBaseEntity {
   @Field(() => ID)
   id: string;
 
-  @Field({ nullable: true })
+  @Field()
   url: string;
 }

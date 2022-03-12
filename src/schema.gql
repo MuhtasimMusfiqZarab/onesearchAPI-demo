@@ -7,8 +7,13 @@ enum AuthProvider {
 }
 
 input BulkLinkedinInput {
-  firstName: String!
-  lastName: String!
+  company: String
+  firstName: String
+  fullName: String
+  lastName: String
+  location: String
+  title: String
+  url: String!
 }
 
 input BulkYoutubeInput {
@@ -78,7 +83,6 @@ type LinkedinBasicType {
   title: String
   updatedAt: DateTime!
   updatedBy: String!
-  url: String
 }
 
 type LocationsType {
