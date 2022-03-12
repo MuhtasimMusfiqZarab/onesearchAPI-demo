@@ -33,3 +33,12 @@ export class LinkedinAdvancedType extends ExtendedBaseEntity {
   @Field()
   url: string;
 }
+
+@ObjectType()
+export class LinkedinProfileType {
+  @Field(() => [LinkedinBasicType], { nullable: true })
+  profiles: LinkedinBasicType[];
+
+  @Field(() => Int, { nullable: true })
+  totalCount: number;
+}

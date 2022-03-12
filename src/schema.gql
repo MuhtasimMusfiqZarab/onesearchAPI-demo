@@ -64,6 +64,15 @@ input GetChannelsInput {
   subscribers: String
 }
 
+input GetLinkedinProfileInput {
+  company: String
+  limit: Float!
+  location: String
+  offset: Float!
+  searchText: String
+  title: String
+}
+
 input GetUsersInput {
   limit: Float!
   location: String
@@ -83,6 +92,11 @@ type LinkedinBasicType {
   title: String
   updatedAt: DateTime!
   updatedBy: String!
+}
+
+type LinkedinProfileType {
+  profiles: [LinkedinBasicType!]
+  totalCount: Int
 }
 
 type LocationsType {
@@ -124,6 +138,7 @@ type Query {
   getAllChannels(data: GetChannelsInput!): ChannelsType
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
   getChannelCountries: LocationsType
+  getLinkedinProfiles(data: GetLinkedinProfileInput!): LinkedinProfileType
 }
 
 input RegistrationInput {
