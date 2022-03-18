@@ -32,7 +32,7 @@ export class LinkedinService {
       if (location) query = { ...query, location };
 
       if (isValidString(searchText)) {
-        query = [{ ...query, channel_name: ILike(`%${searchText}%`) }];
+        query = [{ ...query, fullName: ILike(`%${searchText}%`) }];
       }
 
       const [profiles, totalCount] = await this.linkedinRepository.findAndCount(

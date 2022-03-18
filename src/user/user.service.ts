@@ -89,7 +89,7 @@ export class UserService {
       if (location) query = { ...query, location };
 
       if (isValidString(searchText)) {
-        query = [{ ...query, channel_name: ILike(`%${searchText}%`) }];
+        query = [{ ...query, firstName: ILike(`%${searchText}%`) }];
       }
 
       const [users, totalCount] = await this.userRepository.findAndCount({
