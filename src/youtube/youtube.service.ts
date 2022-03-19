@@ -7,7 +7,12 @@ import Youtube from './youtube.entity';
 import { ILike } from 'typeorm';
 
 import { GetChannelsInput } from './youtube.input';
-import { CategoriesType, LocationsType } from './youtube.type';
+import {
+  CategoriesType,
+  LocationsType,
+  ChannelsType,
+  YoutubeBasicType,
+} from './youtube.type';
 
 import { isValidString } from '../utils/validation';
 import { defaultOrder } from '../utils/query';
@@ -27,7 +32,7 @@ export class YoutubeService {
     }
   }
 
-  async getChannelById(id: string): Promise<Youtube> {
+  async getChannelById(id: string): Promise<YoutubeBasicType | null> {
     const found = await this.youtubeRepository.findOne({ id });
     if (!found) {
       throw new NotFoundException(`youtube channel with id ${id} not found!`);
@@ -41,7 +46,7 @@ export class YoutubeService {
    * @return YoutubeType
    */
 
-  async getAllChannels(data: GetChannelsInput): Promise<any> {
+  async getAllChannels(data: GetChannelsInput): Promise<ChannelsType | null> {
     const {
       socialblade_category,
       location,

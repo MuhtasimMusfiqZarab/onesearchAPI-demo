@@ -185,6 +185,7 @@ type YoutubeBasicType {
   location: String
   socialblade_category: String
   subscribers: Float
+  updatedAt: DateTime
   views: String
 }
 
