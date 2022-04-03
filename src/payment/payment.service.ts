@@ -11,7 +11,7 @@ export class PaymentService {
     try {
       const session = await stripe.checkout.sessions.create({
         // customer_email: req.user.email,
-        payment_method_types: ['card'],
+        // payment_method_types: ['card'],
         mode: 'payment',
         line_items: req.body.items.map(item => {
           const storeItem = storeItems.get(item.id);
@@ -27,7 +27,7 @@ export class PaymentService {
           };
         }),
         success_url: `${process.env.CLIENT_SERVER_URL}/dashboard?session_id={CHECKOUT_SESSION_ID}',`,
-        cancel_url: `${process.env.CLIENT_SERVER_URL}/login`,
+        cancel_url: `${process.env.CLIENT_SERVER_URL}/login?session_id={CHECKOUT_SESSION_ID}`,
       });
       return res.json({ url: session.url });
     } catch (e) {
