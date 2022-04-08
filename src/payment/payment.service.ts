@@ -10,8 +10,8 @@ export class PaymentService {
   async processPayment(req, res) {
     try {
       const session = await stripe.checkout.sessions.create({
-        // customer_email: req.user.email,
-        // payment_method_types: ['card'],
+        customer_email: req.user.email,
+        payment_method_types: ['card'],
         mode: 'payment',
         line_items: req.body.items.map(item => {
           const storeItem = storeItems.get(item.id);
