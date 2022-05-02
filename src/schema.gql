@@ -16,6 +16,13 @@ input BulkLinkedinInput {
   url: String!
 }
 
+input BulkRestaurantInput {
+  dayName: String!
+  endTime: String!
+  name: String!
+  startTime: String!
+}
+
 input BulkYoutubeInput {
   bio_email: [String!]
   channel_name: String
@@ -106,6 +113,7 @@ type LocationsType {
 
 type Mutation {
   addLinkedinLeads(input: [BulkLinkedinInput!]!): [LinkedinBasicType!]!
+  addRestaurants(input: [BulkRestaurantInput!]!): [RestaurantType!]!
   addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
   createUser(input: RegistrationInput!): UserType!
 }
@@ -148,6 +156,18 @@ input RegistrationInput {
   firstName: String!
   lastName: String!
   token: String!
+}
+
+type RestaurantType {
+  createdAt: DateTime!
+  createdBy: String!
+  dayName: String
+  endTime: String
+  id: ID!
+  name: String!
+  startTime: String
+  updatedAt: DateTime!
+  updatedBy: String!
 }
 
 enum UserAccessRole {

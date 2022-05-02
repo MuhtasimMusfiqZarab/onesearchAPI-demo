@@ -17,5 +17,8 @@ export default class Availability extends ExtendedBaseEntity {
     () => Restaurant,
     restaurant => restaurant.availabilities,
   )
-  Restaurant: Restaurant;
+  restaurant: Restaurant;
+
+  @Column({ type: 'varchar', length: 36, nullable: true })
+  restaurantId: string;
 }

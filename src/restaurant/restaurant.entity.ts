@@ -10,7 +10,7 @@ export default class Restaurant extends ExtendedBaseEntity {
 
   @OneToMany(
     () => Availability,
-    availability => availability.Restaurant,
+    availability => availability.restaurant,
     {
       nullable: true,
     },
