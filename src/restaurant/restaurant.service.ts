@@ -22,7 +22,7 @@ export class RestaurantService {
       const saved: any = await this.restaurantRepository.save(restaurant);
 
       const object = {
-        restaurantId: saved[0].id,
+        restaurant: saved[0],
         ...input[0],
       };
 
@@ -33,7 +33,9 @@ export class RestaurantService {
     }
   }
 
-  async getAllRestaurants(data: GetRestaurantsInput): Promise<any | null> {
+  async getAllRestaurants(
+    data: GetRestaurantsInput,
+  ): Promise<RestaurantsType | null> {
     const { time, searchText, offset, limit } = data;
 
     try {
@@ -53,7 +55,7 @@ export class RestaurantService {
         take: limit,
       });
 
-      console.log('Result', restaurants);
+      console.log('Result', restaurants[0].availabilities);
 
       if (!restaurants) {
         throw new NotFoundException(`No Restaurant found@!`);

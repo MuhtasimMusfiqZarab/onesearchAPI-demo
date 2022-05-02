@@ -1,22 +1,18 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 import { ExtendedBaseEntity } from '../config/_base.entity';
+import Availability from 'src/availability/availability.entity';
+import { AvailabilityType } from 'src/availability/availability.type';
 
 @ObjectType()
 export class RestaurantType extends ExtendedBaseEntity {
   @Field(() => ID)
   id: string;
 
-  @Field({})
+  @Field()
   name: string;
 
-  @Field({ nullable: true })
-  dayName: string;
-
-  @Field({ nullable: true })
-  startTime: string;
-
-  @Field({ nullable: true })
-  endTime: string;
+  @Field(() => [AvailabilityType])
+  availabilities: AvailabilityType[];
 }
 
 @ObjectType()

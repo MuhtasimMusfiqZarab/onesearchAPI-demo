@@ -6,6 +6,17 @@ enum AuthProvider {
   Google
 }
 
+type AvailabilityType {
+  createdAt: DateTime!
+  createdBy: String!
+  dayName: String
+  endTime: String
+  id: ID!
+  startTime: String
+  updatedAt: DateTime!
+  updatedBy: String!
+}
+
 input BulkLinkedinInput {
   company: String
   firstName: String
@@ -172,13 +183,11 @@ type RestaurantsType {
 }
 
 type RestaurantType {
+  availabilities: [AvailabilityType!]!
   createdAt: DateTime!
   createdBy: String!
-  dayName: String
-  endTime: String
   id: ID!
   name: String!
-  startTime: String
   updatedAt: DateTime!
   updatedBy: String!
 }
