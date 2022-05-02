@@ -1,8 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-
+import { ILike } from 'typeorm';
 import { RestaurantRepository } from './restaurant.repository';
 import { AvailabilityService } from 'src/availability/availability.service';
+import { GetRestaurantsInput } from './restaurant.input';
+import { RestaurantsType } from './restaurant.type';
+import { isValidString } from 'src/utils/validation';
 
 @Injectable()
 export class RestaurantService {
@@ -25,6 +28,38 @@ export class RestaurantService {
 
       const save = await this.availabilityService.addAvailability(object);
       return await this.restaurantRepository.save(restaurant);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async getAllRestaurants(data: GetRestaurantsInput): Promise<any | null> {
+    const { time, searchText, offset, limit } = data;
+
+    try {
+      let query: any = {};
+
+      if (isValidString(searchText)) {
+        query = [{ ...query, name: ILike(`%${searchText}%`) }];
+      }
+
+      const [
+        restaurants,
+        totalCount,
+      ] = await this.restaurantRepository.findAndCount({
+        where: query,
+        relations: ['availabilities'],
+        skip: offset,
+        take: limit,
+      });
+
+      console.log('Result', restaurants);
+
+      if (!restaurants) {
+        throw new NotFoundException(`No Restaurant found@!`);
+      }
+
+      return { restaurants, totalCount };
     } catch (error) {
       throw new Error(error);
     }

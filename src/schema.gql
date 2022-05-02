@@ -80,6 +80,13 @@ input GetLinkedinProfileInput {
   title: String
 }
 
+input GetRestaurantsInput {
+  limit: Float!
+  offset: Float!
+  searchText: String
+  time: String
+}
+
 input GetUsersInput {
   limit: Float!
   location: String
@@ -144,6 +151,7 @@ type Query {
   currentUser: UserType!
   getAllCategories: CategoriesType
   getAllChannels(data: GetChannelsInput!): ChannelsType
+  getAllRestaurants(data: GetRestaurantsInput!): RestaurantsType
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
   getChannelCountries: LocationsType
   getLinkedinProfiles(data: GetLinkedinProfileInput!): LinkedinProfileType
@@ -156,6 +164,11 @@ input RegistrationInput {
   firstName: String!
   lastName: String!
   token: String!
+}
+
+type RestaurantsType {
+  restaurants: [RestaurantType!]
+  totalCount: Int
 }
 
 type RestaurantType {

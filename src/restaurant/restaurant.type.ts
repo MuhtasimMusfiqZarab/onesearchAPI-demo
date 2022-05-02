@@ -18,3 +18,12 @@ export class RestaurantType extends ExtendedBaseEntity {
   @Field({ nullable: true })
   endTime: string;
 }
+
+@ObjectType()
+export class RestaurantsType {
+  @Field(() => [RestaurantType], { nullable: true })
+  restaurants: RestaurantType[];
+
+  @Field(() => Int, { nullable: true })
+  totalCount: number;
+}

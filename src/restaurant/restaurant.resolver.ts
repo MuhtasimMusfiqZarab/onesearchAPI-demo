@@ -1,8 +1,8 @@
 import { Args, Query, Resolver, Int, Mutation } from '@nestjs/graphql';
-import { RestaurantType } from './restaurant.type';
+import { RestaurantType, RestaurantsType } from './restaurant.type';
 import { RestaurantService } from './restaurant.service';
 
-import { BulkRestaurantInput } from './restaurant.input';
+import { BulkRestaurantInput, GetRestaurantsInput } from './restaurant.input';
 
 @Resolver(() => RestaurantType)
 export class RestaurantResolver {
@@ -15,5 +15,13 @@ export class RestaurantResolver {
     input: BulkRestaurantInput[],
   ): Promise<RestaurantType[]> {
     return this.restaurantService.addRestaurants(input);
+  }
+
+  //get all the restaurants with specific search field
+  @Query(() => RestaurantsType, { nullable: true })
+  async getAllRestaurants(
+    @Args('data') data: GetRestaurantsInput,
+  ): Promise<RestaurantsType> {
+    return await this.restaurantService.getAllRestaurants(data);
   }
 }

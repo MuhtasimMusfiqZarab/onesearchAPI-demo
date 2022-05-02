@@ -1,6 +1,5 @@
 import { Entity, Column, OneToMany } from 'typeorm';
 import { ExtendedBaseEntity } from '../config/_base.entity';
-
 import Availability from 'src/availability/availability.entity';
 
 @Entity()

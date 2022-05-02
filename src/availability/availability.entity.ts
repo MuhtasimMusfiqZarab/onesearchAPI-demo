@@ -16,6 +16,7 @@ export default class Availability extends ExtendedBaseEntity {
   @ManyToOne(
     () => Restaurant,
     restaurant => restaurant.availabilities,
+    { eager: true },
   )
   restaurant: Restaurant;
 
