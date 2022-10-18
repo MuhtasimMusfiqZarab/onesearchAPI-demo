@@ -55,8 +55,6 @@ export class RestaurantService {
         take: limit,
       });
 
-      console.log('Result', restaurants[0].availabilities);
-
       if (!restaurants) {
         throw new NotFoundException(`No Restaurant found@!`);
       }

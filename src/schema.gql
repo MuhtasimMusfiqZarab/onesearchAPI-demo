@@ -2,10 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-enum AuthProvider {
-  Google
-}
-
 type AvailabilityType {
   createdAt: DateTime!
   createdBy: String!
@@ -17,16 +13,6 @@ type AvailabilityType {
   updatedBy: String!
 }
 
-input BulkLinkedinInput {
-  company: String
-  firstName: String
-  fullName: String
-  lastName: String
-  location: String
-  title: String
-  url: String!
-}
-
 input BulkRestaurantInput {
   dayName: String!
   endTime: String!
@@ -34,62 +20,10 @@ input BulkRestaurantInput {
   startTime: String!
 }
 
-input BulkYoutubeInput {
-  bio_email: [String!]
-  channel_name: String
-  channel_url: String!
-  description: String
-  facebook: String
-  instagram: String
-  joined: String
-  location: String
-  others: String
-  pinterest: String
-  socialblade_category: String
-  subscribers: Float
-  tiktok: String
-  timestamp: DateTime
-  twitter: String
-  views: String
-}
-
-type CategoriesType {
-  categories: [String!]
-  totalCount: Int
-}
-
-type ChannelsType {
-  channels: [YoutubeBasicType!]
-  totalCount: Int
-}
-
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
-
-type GetAllUsersType {
-  totalCount: Int!
-  users: [UserType!]!
-}
-
-input GetChannelsInput {
-  limit: Float!
-  location: String
-  offset: Float!
-  searchText: String
-  socialblade_category: String
-  subscribers: String
-}
-
-input GetLinkedinProfileInput {
-  company: String
-  limit: Float!
-  location: String
-  offset: Float!
-  searchText: String
-  title: String
-}
 
 input GetRestaurantsInput {
   limit: Float!
@@ -98,83 +32,12 @@ input GetRestaurantsInput {
   time: String
 }
 
-input GetUsersInput {
-  limit: Float!
-  location: String
-  offset: Float!
-  searchText: String
-}
-
-type LinkedinBasicType {
-  company: String
-  createdAt: DateTime!
-  createdBy: String!
-  firstName: String
-  fullName: String
-  id: ID!
-  lastName: String
-  location: String
-  title: String
-  updatedAt: DateTime!
-  updatedBy: String!
-}
-
-type LinkedinProfileType {
-  profiles: [LinkedinBasicType!]
-  totalCount: Int
-}
-
-type LocationsType {
-  locations: [String!]
-  totalCount: Int
-}
-
 type Mutation {
-  addLinkedinLeads(input: [BulkLinkedinInput!]!): [LinkedinBasicType!]!
   addRestaurants(input: [BulkRestaurantInput!]!): [RestaurantType!]!
-  addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
-  createUser(input: RegistrationInput!): UserType!
-}
-
-type PaymentType {
-  amount: Float!
-  createdAt: DateTime!
-  createdBy: String!
-  id: ID!
-  updatedAt: DateTime!
-  updatedBy: String!
-}
-
-type ProfileType {
-  availableCredits: Float
-  city: String
-  country: String
-  createdAt: DateTime!
-  createdBy: String!
-  id: ID!
-  phoneNumber: String
-  updatedAt: DateTime!
-  updatedBy: String!
 }
 
 type Query {
-  channel(id: String!): YoutubeBasicType
-  currentUser: UserType!
-  getAllCategories: CategoriesType
-  getAllChannels(data: GetChannelsInput!): ChannelsType
   getAllRestaurants(data: GetRestaurantsInput!): RestaurantsType
-  getAllUsers(data: GetUsersInput!): GetAllUsersType!
-  getChannelCountries: LocationsType
-  getLinkedinProfiles(data: GetLinkedinProfileInput!): LinkedinProfileType
-}
-
-input RegistrationInput {
-  authProvider: AuthProvider
-  avatarLink: String!
-  email: String!
-  firstName: String!
-  lastName: String!
-  token: String!
 }
 
 type RestaurantsType {
@@ -190,67 +53,4 @@ type RestaurantType {
   name: String!
   updatedAt: DateTime!
   updatedBy: String!
-}
-
-enum UserAccessRole {
-  Admin
-  Demo
-  Developer
-  Pro
-  Support
-}
-
-type UserType {
-  accessRole: UserAccessRole!
-  authProvider: AuthProvider
-  avatarLink: String
-  createdAt: DateTime!
-  createdBy: String!
-  email: String
-  firstName: String
-  id: ID!
-  isActive: Boolean
-  language: String
-  lastName: String
-  payments: [PaymentType!]
-  profile: ProfileType
-  token: String
-  updatedAt: DateTime!
-  updatedBy: String!
-  youtube: [YoutubeType!]
-}
-
-type YoutubeBasicType {
-  channel_name: String
-  id: ID!
-  joined: String
-  location: String
-  socialblade_category: String
-  subscribers: Float
-  updatedAt: DateTime
-  views: String
-}
-
-type YoutubeType {
-  bio_email: [String!]
-  channel_name: String
-  channel_url: String!
-  createdAt: DateTime!
-  createdBy: String!
-  description: String
-  facebook: String
-  id: ID!
-  instagram: String
-  joined: String
-  location: String
-  others: String
-  pinterest: String
-  socialblade_category: String
-  subscribers: Float
-  tiktok: String
-  timestamp: DateTime
-  twitter: String
-  updatedAt: DateTime!
-  updatedBy: String!
-  views: String
 }
