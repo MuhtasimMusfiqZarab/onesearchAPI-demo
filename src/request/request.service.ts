@@ -45,14 +45,7 @@ export class RequestService {
    */
 
   async getAllRequests(data: GetChannelsInput): Promise<ChannelsType | null> {
-    const {
-      socialblade_category,
-      location,
-      searchText,
-      subscribers,
-      offset,
-      limit,
-    } = data;
+    const { socialblade_category, location, searchText, offset, limit } = data;
 
     try {
       let query: any = {};
