@@ -17,6 +17,7 @@ import { ProfileModule } from './profile/profile.module';
 import { PaymentModule } from './payment/payment.module';
 import { RestaurantModule } from './restaurant/restaurant.module';
 import { AvailabilityModule } from './availability/availability.module';
+import { RequestModule } from './request/request.module';
 
 //all the modules
 const modules = [
@@ -43,6 +44,7 @@ const modules = [
     TypeOrmModule.forRoot(),
     RestaurantModule,
     AvailabilityModule,
+    RequestModule,
   ],
 })
 export class AppModule {}
