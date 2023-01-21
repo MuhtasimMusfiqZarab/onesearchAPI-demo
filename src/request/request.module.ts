@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { RequestService } from './request.service';
 import { RequestResolver } from './request.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { YoutubeRepository } from './request.repository';
+import { RequestRepository } from './request.repository';
 
 import { AuthModule } from '../auth/auth.module';
 import { UsersModule } from '../user/user.module';
@@ -11,7 +11,7 @@ import { UsersModule } from '../user/user.module';
   imports: [
     AuthModule,
     UsersModule,
-    TypeOrmModule.forFeature([YoutubeRepository]),
+    TypeOrmModule.forFeature([RequestRepository]),
   ],
   providers: [RequestService, RequestResolver],
 })

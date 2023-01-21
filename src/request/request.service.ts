@@ -1,16 +1,11 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { YoutubeRepository } from './request.repository';
+import { RequestRepository } from './request.repository';
 import { ILike } from 'typeorm';
 
-import { GetChannelsInput } from './request.input';
-import {
-  CategoriesType,
-  LocationsType,
-  ChannelsType,
-  YoutubeBasicType,
-} from './request.type';
+import { GetRequestInput } from './request.input';
+import { RequestType } from './request.type';
 
 import { isValidString } from '../utils/validation';
 import { defaultOrder } from '../utils/query';
@@ -18,8 +13,8 @@ import { defaultOrder } from '../utils/query';
 @Injectable()
 export class RequestService {
   constructor(
-    @InjectRepository(YoutubeRepository)
-    private youtubeRepository: YoutubeRepository,
+    @InjectRepository(RequestRepository)
+    private youtubeRepository: RequestRepository,
   ) {}
 
   async addRequest(input: any): Promise<any> {
@@ -30,12 +25,12 @@ export class RequestService {
     }
   }
 
-  async getRequestById(id: string): Promise<YoutubeBasicType | null> {
+  async getRequestById(id: string): Promise<RequestRepository | null> {
     const found = await this.youtubeRepository.findOne({ id });
     if (!found) {
       throw new NotFoundException(`youtube channel with id ${id} not found!`);
     }
-    return found;
+    return null;
   }
 
   /**
@@ -44,77 +39,77 @@ export class RequestService {
    * @return YoutubeType
    */
 
-  async getAllRequests(data: GetChannelsInput): Promise<ChannelsType | null> {
-    const { socialblade_category, location, searchText, offset, limit } = data;
+  // async getAllRequests(data: GetRequestInput): Promise<RequestType[] | null> {
+  //   const { socialblade_category, location, searchText, offset, limit } = data;
 
-    try {
-      let query: any = {};
+  //   try {
+  //     let query: any = {};
 
-      if (socialblade_category) query = { ...query, socialblade_category };
-      if (location) query = { ...query, location };
+  //     if (socialblade_category) query = { ...query, socialblade_category };
+  //     if (location) query = { ...query, location };
 
-      if (isValidString(searchText)) {
-        query = [{ ...query, channel_name: ILike(`%${searchText}%`) }];
-      }
+  //     if (isValidString(searchText)) {
+  //       query = [{ ...query, channel_name: ILike(`%${searchText}%`) }];
+  //     }
 
-      const [channels, totalCount] = await this.youtubeRepository.findAndCount({
-        where: query,
-        order: { ...defaultOrder },
-        skip: offset,
-        take: limit,
-      });
+  //     const [channels, totalCount] = await this.youtubeRepository.findAndCount({
+  //       where: query,
+  //       order: { ...defaultOrder },
+  //       skip: offset,
+  //       take: limit,
+  //     });
 
-      if (!channels) {
-        throw new NotFoundException(`No Channel found@!`);
-      }
+  //     if (!channels) {
+  //       throw new NotFoundException(`No Channel found@!`);
+  //     }
 
-      return { channels, totalCount };
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
+  //     return[ { socialblade_category, totalCount }];
+  //   } catch (error) {
+  //     throw new Error(error);
+  //   }
+  // }
 
-  //get all categories
-  async getRequestCategories(): Promise<CategoriesType | null> {
-    const categories = await this.youtubeRepository
-      .createQueryBuilder()
-      .select('socialblade_category')
-      .distinct(true)
-      .getRawMany();
+  // //get all categories
+  // async getRequestCategories(): Promise<CategoriesType | null> {
+  //   const categories = await this.youtubeRepository
+  //     .createQueryBuilder()
+  //     .select('socialblade_category')
+  //     .distinct(true)
+  //     .getRawMany();
 
-    const categoryNames = categories.map(
-      category => category.socialblade_category,
-    );
+  //   const categoryNames = categories.map(
+  //     category => category.socialblade_category,
+  //   );
 
-    return {
-      categories: categoryNames.filter(x => x !== null),
-      totalCount: categoryNames.length,
-    };
-  }
+  //   return {
+  //     categories: categoryNames.filter(x => x !== null),
+  //     totalCount: categoryNames.length,
+  //   };
+  // }
 
-  //get all categories
-  async getRequestType(): Promise<LocationsType | null> {
-    const locations: any = await this.youtubeRepository
-      .createQueryBuilder()
-      .select('location')
-      .distinct(true)
-      .getRawMany();
+  // //get all categories
+  // async getRequestType(): Promise<LocationsType | null> {
+  //   const locations: any = await this.youtubeRepository
+  //     .createQueryBuilder()
+  //     .select('location')
+  //     .distinct(true)
+  //     .getRawMany();
 
-    let locationNames = [];
+  //   let locationNames = [];
 
-    // console.log('This is it', locations.length);
+  //   // console.log('This is it', locations.length);
 
-    locationNames = locations.map(location => {
-      if (location.location !== null || location.location !== undefined) {
-        return location.location;
-      } else {
-        return;
-      }
-    });
+  //   locationNames = locations.map(location => {
+  //     if (location.location !== null || location.location !== undefined) {
+  //       return location.location;
+  //     } else {
+  //       return;
+  //     }
+  //   });
 
-    return {
-      locations: locationNames.filter(x => x !== null),
-      totalCount: locationNames.length,
-    };
-  }
+  //   return {
+  //     locations: locationNames.filter(x => x !== null),
+  //     totalCount: locationNames.length,
+  //   };
+  // }
 }

@@ -1,45 +1,44 @@
 import { Args, Query, Resolver, Mutation } from '@nestjs/graphql';
 import { NotFoundException } from '@nestjs/common';
 import { RequestService } from './request.service';
-import { ChannelsType, YoutubeBasicType } from './request.type';
+import { RequestType } from './request.type';
 
 import { AuthGuard, AdminGuard } from 'src/shared/guards/user.guard';
 import { UseGuards } from '@nestjs/common';
-import { BulkYoutubeInput, GetChannelsInput } from './request.input';
-import { YoutubeType } from './request.type';
+import { GetRequestInput } from './request.input';
 
 @Resolver()
 export class RequestResolver {
-  constructor(private readonly youtubeService: RequestService) {}
+  constructor(private readonly requestService: RequestService) {}
 
   //add new lead
-  @Mutation(() => [YoutubeType])
+  @Mutation(() => RequestType)
   @UseGuards(AdminGuard)
   async addRequest(
-    @Args('input', { type: () => [BulkYoutubeInput], nullable: false })
-    input: BulkYoutubeInput[],
-  ): Promise<YoutubeType[]> {
-    return this.youtubeService.addRequest(input);
+    @Args('input', { type: () => [GetRequestInput], nullable: false })
+    input: GetRequestInput[],
+  ): Promise<RequestType> {
+    return this.requestService.addRequest(input);
   }
 
   //get specific user
   @UseGuards(AuthGuard)
-  @Query(() => YoutubeBasicType, { nullable: true })
+  @Query(() => RequestType, { nullable: true })
   async getRequest(
     @Args('id', { type: () => String }) id: string,
-  ): Promise<YoutubeBasicType | null> {
-    const channel = await this.youtubeService.getRequestById(id);
+  ): Promise<RequestType | null> {
+    const channel = await this.requestService.getRequestById(id);
     if (!channel) {
       throw new NotFoundException(id);
     }
-    return channel;
+    return null;
   }
-  //get all channels
-  @UseGuards(AuthGuard)
-  @Query(() => ChannelsType, { nullable: true })
-  async getAllRequests(
-    @Args('data') data: GetChannelsInput,
-  ): Promise<ChannelsType> {
-    return await this.youtubeService.getAllRequests(data);
-  }
+  // //get all channels
+  // @UseGuards(AuthGuard)
+  // @Query(() => RequestType, { nullable: true })
+  // async getAllRequests(
+  //   @Args('data') data: GetRequestInput,
+  // ): Promise<RequestType> {
+  //   return await this.requestService.getAllRequests(data);
+  // }
 }
