@@ -6,17 +6,6 @@ enum AuthProvider {
   Google
 }
 
-type AvailabilityType {
-  createdAt: DateTime!
-  createdBy: String!
-  dayName: String
-  endTime: String
-  id: ID!
-  startTime: String
-  updatedAt: DateTime!
-  updatedBy: String!
-}
-
 input BulkLinkedinInput {
   company: String
   firstName: String
@@ -25,13 +14,6 @@ input BulkLinkedinInput {
   location: String
   title: String
   url: String!
-}
-
-input BulkRestaurantInput {
-  dayName: String!
-  endTime: String!
-  name: String!
-  startTime: String!
 }
 
 input BulkYoutubeInput {
@@ -91,11 +73,13 @@ input GetLinkedinProfileInput {
   title: String
 }
 
-input GetRestaurantsInput {
+input GetRequestInput {
+  description: String
   limit: Float!
+  location: String
   offset: Float!
   searchText: String
-  time: String
+  socialblade_category: String
 }
 
 input GetUsersInput {
@@ -131,7 +115,7 @@ type LocationsType {
 
 type Mutation {
   addLinkedinLeads(input: [BulkLinkedinInput!]!): [LinkedinBasicType!]!
-  addRestaurants(input: [BulkRestaurantInput!]!): [RestaurantType!]!
+  addRequest(input: [GetRequestInput!]!): RequestType!
   addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
   createUser(input: RegistrationInput!): UserType!
 }
@@ -162,10 +146,10 @@ type Query {
   currentUser: UserType!
   getAllCategories: CategoriesType
   getAllChannels(data: GetChannelsInput!): ChannelsType
-  getAllRestaurants(data: GetRestaurantsInput!): RestaurantsType
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
   getChannelCountries: LocationsType
   getLinkedinProfiles(data: GetLinkedinProfileInput!): LinkedinProfileType
+  getRequest(id: String!): RequestType
 }
 
 input RegistrationInput {
@@ -177,17 +161,13 @@ input RegistrationInput {
   token: String!
 }
 
-type RestaurantsType {
-  restaurants: [RestaurantType!]
-  totalCount: Int
-}
-
-type RestaurantType {
-  availabilities: [AvailabilityType!]!
+type RequestType {
   createdAt: DateTime!
   createdBy: String!
+  description: String
   id: ID!
-  name: String!
+  location: String
+  socialblade_category: String
   updatedAt: DateTime!
   updatedBy: String!
 }

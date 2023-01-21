@@ -29,6 +29,7 @@ const modules = [
   GoogleModule,
   ProfileModule,
   PaymentModule,
+  RequestModule,
 ];
 
 @Module({
@@ -42,9 +43,6 @@ const modules = [
     }),
     //get configuration data from ormconfig.js
     TypeOrmModule.forRoot(),
-    RestaurantModule,
-    AvailabilityModule,
-    RequestModule,
   ],
 })
 export class AppModule {}
