@@ -175,9 +175,10 @@ type RequestType {
 enum UserAccessRole {
   Admin
   Demo
-  Developer
-  Pro
-  Support
+  Gold
+  Provider
+  Silver
+  VIP
 }
 
 type UserType {
