@@ -5,7 +5,11 @@ import { Injectable } from '@nestjs/common';
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_PRIVATE_KEY);
 
-const storeItems = new Map([[1, { priceCents: 100, name: 'Support Us' }]]);
+const storeItems = new Map([
+  [1, { priceCents: 100 * 25, name: 'Silver' }],
+  [2, { priceCents: 100 * 50, name: 'Gold' }],
+  [3, { priceCents: 100 * 100, name: 'Platinum' }],
+]);
 
 @Injectable()
 export class PaymentService {

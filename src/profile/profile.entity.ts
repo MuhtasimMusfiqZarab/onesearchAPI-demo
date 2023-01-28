@@ -13,6 +13,9 @@ export default class Profile extends ExtendedBaseEntity {
   @Column({ type: 'varchar', nullable: true })
   city: string;
 
+  @Column({ type: 'varchar', nullable: true })
+  review: string;
+
   @Column({ type: 'int', nullable: true })
   availableCredits: number;
 }
