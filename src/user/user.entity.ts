@@ -47,6 +47,21 @@ export default class User extends ExtendedBaseEntity {
   @Column({ type: 'varchar', length: 10, default: 'en' })
   language: string;
 
+  @Column({ type: 'varchar', nullable: true })
+  phoneNumber: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  country: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  city: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  review: string;
+
+  @Column({ type: 'int', nullable: true, default: 10 })
+  availableCredits: number;
+
   @OneToOne(() => Profile)
   @JoinColumn()
   profile: Profile;
