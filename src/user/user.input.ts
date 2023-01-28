@@ -42,3 +42,13 @@ export class GetUsersInput {
   @Field()
   limit: number;
 }
+
+@InputType()
+export class AddReviewInput {
+  @Field({ nullable: true })
+  reviewText: string;
+
+  @IsNotEmpty()
+  @Field()
+  rating: number;
+}

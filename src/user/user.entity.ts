@@ -57,7 +57,10 @@ export default class User extends ExtendedBaseEntity {
   city: string;
 
   @Column({ type: 'varchar', nullable: true })
-  review: string;
+  reviewText: string;
+
+  @Column({ type: 'int', nullable: true })
+  rating: number;
 
   @Column({ type: 'int', nullable: true, default: 10 })
   availableCredits: number;

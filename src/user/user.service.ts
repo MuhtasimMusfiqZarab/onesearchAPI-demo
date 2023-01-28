@@ -3,36 +3,29 @@ import User from './user.entity';
 import { RegistrationInput, GetUsersInput } from './user.input';
 import { UserAccessRole } from './user.enum';
 import { GetAllUsersType } from './user.type';
-
 import { isValidString } from '../utils/validation';
 import { ILike } from 'typeorm';
 import { UserType } from './user.type';
-
 import { UserRepository } from './user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UserService {
-  // inject the user repository
   constructor(
     @InjectRepository(UserRepository)
     private userRepository: UserRepository,
   ) {}
 
-  // find the user(used for current user decorator)
   async findOne(id: string): Promise<UserType> {
-    //find the t
     const found = await this.userRepository.findOne({
       where: { id },
     });
     if (!found) {
-      //we throw an error without a catch block because nest js lets us do that without a catch block
       throw new NotFoundException(`User with id ${id} not found!`);
     }
     return found;
   }
 
-  //create user using google login
   async createUser(input: RegistrationInput): Promise<UserType> {
     const {
       firstName,
@@ -49,7 +42,6 @@ export class UserService {
 
       const user = await User.findOne({ where: queryArgs });
 
-      //if user already exists
       if (user) {
         return user;
       } else {
@@ -57,7 +49,6 @@ export class UserService {
 
         let accessRole: UserAccessRole = UserAccessRole.Demo;
 
-        // default admin email for first login
         if (email === process.env.DEFAULT_ADMIN_EMAIL) {
           accessRole = UserAccessRole.Admin;
         }
