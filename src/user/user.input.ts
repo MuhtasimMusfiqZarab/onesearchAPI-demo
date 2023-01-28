@@ -45,6 +45,9 @@ export class GetUsersInput {
 
 @InputType()
 export class AddReviewInput {
+  @Field()
+  id: string;
+
   @Field({ nullable: true })
   reviewText: string;
 

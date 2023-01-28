@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input AddReviewInput {
+  id: String!
+  rating: Float!
+  reviewText: String
+}
+
 enum AuthProvider {
   Google
 }
@@ -116,6 +122,7 @@ type LocationsType {
 type Mutation {
   addLinkedinLeads(input: [BulkLinkedinInput!]!): [LinkedinBasicType!]!
   addRequest(input: [GetRequestInput!]!): RequestType!
+  addUserReview(input: AddReviewInput!): UserType!
   addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
   createUser(input: RegistrationInput!): UserType!
 }
@@ -195,6 +202,8 @@ type UserType {
   lastName: String
   payments: [PaymentType!]
   profile: ProfileType
+  rating: Float
+  reviewText: String
   token: String
   updatedAt: DateTime!
   updatedBy: String!

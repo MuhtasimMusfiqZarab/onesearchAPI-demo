@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import User from './user.entity';
-import { RegistrationInput, GetUsersInput } from './user.input';
+import { RegistrationInput, GetUsersInput, AddReviewInput } from './user.input';
 import { UserAccessRole } from './user.enum';
 import { GetAllUsersType } from './user.type';
 import { isValidString } from '../utils/validation';
@@ -99,5 +99,23 @@ export class UserService {
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  async addUserReview(input: AddReviewInput): Promise<any> {
+    const { id, reviewText, rating } = input;
+
+    const found = await this.userRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ reviewText: reviewText, rating: rating })
+      .where('id = :id', { id })
+      .execute();
+
+    if (!found) {
+      throw new NotFoundException(`User with id ${id} not found!`);
+    }
+    return await this.userRepository.findOne({
+      where: { id },
+    });
   }
 }

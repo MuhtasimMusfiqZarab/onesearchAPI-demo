@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Args, Query } from '@nestjs/graphql';
 import { UserType } from './user.type';
-import { RegistrationInput, GetUsersInput } from './user.input';
+import { RegistrationInput, GetUsersInput, AddReviewInput } from './user.input';
 import { UserService } from './user.service';
 import { GqlAuthGuard } from '../shared/guards/gql-auth.guard';
 import { AdminGuard } from '../shared/guards/user.guard';
@@ -33,5 +34,12 @@ export default class UserResolver {
     @Args('data') data: GetUsersInput,
   ): Promise<GetAllUsersType> {
     return await this.userService.getAllUsers(data);
+  }
+
+  @Mutation(() => UserType)
+  async addUserReview(
+    @Args('input', { type: () => AddReviewInput }) input: AddReviewInput,
+  ): Promise<UserType> {
+    return this.userService.addUserReview(input);
   }
 }
