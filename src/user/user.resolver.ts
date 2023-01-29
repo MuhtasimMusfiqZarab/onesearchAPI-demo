@@ -5,7 +5,7 @@ import { UserType } from './user.type';
 import { RegistrationInput, GetUsersInput, AddReviewInput } from './user.input';
 import { UserService } from './user.service';
 import { GqlAuthGuard } from '../shared/guards/gql-auth.guard';
-import { AdminGuard } from '../shared/guards/user.guard';
+import { AdminGuard, AuthGuard } from '../shared/guards/user.guard';
 import { CurrentUser } from '../shared/decorators/current-user.decorator';
 import { GetAllUsersType } from './user.type';
 
@@ -34,6 +34,14 @@ export default class UserResolver {
     @Args('data') data: GetUsersInput,
   ): Promise<GetAllUsersType> {
     return await this.userService.getAllUsers(data);
+  }
+
+  @Query(() => GetAllUsersType)
+  @UseGuards(AuthGuard)
+  async getAllUserReviews(
+    @Args('data') data: GetUsersInput,
+  ): Promise<GetAllUsersType> {
+    return await this.userService.getAllUserReviews(data);
   }
 
   @Mutation(() => UserType)

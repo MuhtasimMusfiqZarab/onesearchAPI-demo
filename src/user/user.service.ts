@@ -101,6 +101,41 @@ export class UserService {
     }
   }
 
+  async getAllUserReviews(data: GetUsersInput): Promise<GetAllUsersType> {
+    const { location, searchText, offset, limit } = data;
+
+    try {
+      let query: any = {};
+
+      if (location) query = { ...query, location };
+
+      if (isValidString(searchText)) {
+        query = [{ ...query, firstName: ILike(`%${searchText}%`) }];
+      }
+
+      const [users, totalCount] = await this.userRepository.findAndCount({
+        where: query,
+        // order: { ...defaultOrder },
+        skip: offset,
+        take: limit,
+        relations: ['profile', 'youtube'],
+      });
+
+      if (!users) {
+        throw new NotFoundException(`No user found@!`);
+      }
+
+      const userWithReviews = users.filter(user => user.reviewText !== null);
+
+      console.log('Here', userWithReviews);
+      console.log('This many', userWithReviews.length);
+
+      return { users, totalCount };
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   async addUserReview(input: AddReviewInput): Promise<any> {
     const { id, reviewText, rating } = input;
 

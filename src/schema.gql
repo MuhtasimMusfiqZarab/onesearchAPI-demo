@@ -153,6 +153,7 @@ type Query {
   currentUser: UserType!
   getAllCategories: CategoriesType
   getAllChannels(data: GetChannelsInput!): ChannelsType
+  getAllUserReviews(data: GetUsersInput!): GetAllUsersType!
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
   getChannelCountries: LocationsType
   getLinkedinProfiles(data: GetLinkedinProfileInput!): LinkedinProfileType
