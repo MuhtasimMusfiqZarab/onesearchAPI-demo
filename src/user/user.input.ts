@@ -44,6 +44,18 @@ export class GetUsersInput {
 }
 
 @InputType()
+export class GetUserReviewInput {
+  @IsNotEmpty()
+  @Field()
+  offset: number;
+
+  @IsNotEmpty()
+  @Max(10)
+  @Field()
+  limit: number;
+}
+
+@InputType()
 export class AddReviewInput {
   @Field()
   id: string;

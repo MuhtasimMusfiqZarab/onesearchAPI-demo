@@ -1,6 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import User from './user.entity';
-import { RegistrationInput, GetUsersInput, AddReviewInput } from './user.input';
+import {
+  RegistrationInput,
+  GetUsersInput,
+  AddReviewInput,
+  GetUserReviewInput,
+} from './user.input';
 import { UserAccessRole } from './user.enum';
 import { GetAllUsersType, GetAllUserReviewsType } from './user.type';
 import { isValidString } from '../utils/validation';
@@ -102,20 +107,16 @@ export class UserService {
     }
   }
 
-  async getAllUserReviews(data: GetUsersInput): Promise<GetAllUserReviewsType> {
-    const { location, searchText, offset, limit } = data;
+  async getAllUserReviews(
+    data: GetUserReviewInput,
+  ): Promise<GetAllUserReviewsType> {
+    const { offset, limit } = data;
 
     try {
-      let query: any = {};
-
-      if (location) query = { ...query, location };
-
-      if (isValidString(searchText)) {
-        query = [{ ...query, firstName: ILike(`%${searchText}%`) }];
-      }
-
       const [users, totalCount] = await this.userRepository.findAndCount({
-        where: query,
+        where: {
+          reviewText: Not(IsNull()),
+        },
         // order: { ...defaultOrder },
         skip: offset,
         take: limit,

@@ -36,18 +36,18 @@ export default class UserResolver {
     return await this.userService.getAllUsers(data);
   }
 
+  @Mutation(() => UserType)
+  async addUserReview(
+    @Args('input', { type: () => AddReviewInput }) input: AddReviewInput,
+  ): Promise<UserType> {
+    return this.userService.addUserReview(input);
+  }
+
   @Query(() => GetAllUserReviewsType)
   @UseGuards(AuthGuard)
   async getAllUserReviews(
     @Args('data') data: GetUsersInput,
   ): Promise<GetAllUserReviewsType> {
     return await this.userService.getAllUserReviews(data);
-  }
-
-  @Mutation(() => UserType)
-  async addUserReview(
-    @Args('input', { type: () => AddReviewInput }) input: AddReviewInput,
-  ): Promise<UserType> {
-    return this.userService.addUserReview(input);
   }
 }

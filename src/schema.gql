@@ -58,7 +58,7 @@ scalar DateTime
 
 type GetAllUserReviewsType {
   totalCount: Int!
-  users: [UserType!]!
+  users: [UserReviewType!]!
 }
 
 type GetAllUsersType {
@@ -192,6 +192,18 @@ enum UserAccessRole {
   Provider
   Silver
   VIP
+}
+
+type UserReviewType {
+  createdAt: DateTime!
+  createdBy: String!
+  firstName: String
+  id: ID!
+  lastName: String
+  rating: Float
+  reviewText: String
+  updatedAt: DateTime!
+  updatedBy: String!
 }
 
 type UserType {

@@ -51,6 +51,21 @@ export class UserType extends ExtendedBaseEntity {
 }
 
 @ObjectType()
+export class UserReviewType extends ExtendedBaseEntity {
+  @Field({ nullable: true })
+  firstName: string;
+
+  @Field({ nullable: true })
+  lastName: string;
+
+  @Field({ nullable: true })
+  reviewText: string;
+
+  @Field({ nullable: true })
+  rating: number;
+}
+
+@ObjectType()
 export class GetAllUsersType {
   @Field(() => [UserType])
   users: UserType[];
@@ -61,8 +76,8 @@ export class GetAllUsersType {
 
 @ObjectType()
 export class GetAllUserReviewsType {
-  @Field(() => [UserType])
-  users: UserType[];
+  @Field(() => [UserReviewType])
+  users: UserReviewType[];
 
   @Field(() => Int)
   totalCount: number;
