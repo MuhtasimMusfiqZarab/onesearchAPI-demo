@@ -58,3 +58,12 @@ export class GetAllUsersType {
   @Field(() => Int)
   totalCount: number;
 }
+
+@ObjectType()
+export class GetAllUserReviewsType {
+  @Field(() => [UserType])
+  users: UserType[];
+
+  @Field(() => Int)
+  totalCount: number;
+}

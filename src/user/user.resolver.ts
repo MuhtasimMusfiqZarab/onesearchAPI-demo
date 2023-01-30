@@ -7,7 +7,7 @@ import { UserService } from './user.service';
 import { GqlAuthGuard } from '../shared/guards/gql-auth.guard';
 import { AdminGuard, AuthGuard } from '../shared/guards/user.guard';
 import { CurrentUser } from '../shared/decorators/current-user.decorator';
-import { GetAllUsersType } from './user.type';
+import { GetAllUsersType, GetAllUserReviewsType } from './user.type';
 
 @Resolver(() => UserType)
 export default class UserResolver {
@@ -36,11 +36,11 @@ export default class UserResolver {
     return await this.userService.getAllUsers(data);
   }
 
-  @Query(() => GetAllUsersType)
+  @Query(() => GetAllUserReviewsType)
   @UseGuards(AuthGuard)
   async getAllUserReviews(
     @Args('data') data: GetUsersInput,
-  ): Promise<GetAllUsersType> {
+  ): Promise<GetAllUserReviewsType> {
     return await this.userService.getAllUserReviews(data);
   }
 

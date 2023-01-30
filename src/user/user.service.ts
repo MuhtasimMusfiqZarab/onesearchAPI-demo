@@ -2,12 +2,13 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import User from './user.entity';
 import { RegistrationInput, GetUsersInput, AddReviewInput } from './user.input';
 import { UserAccessRole } from './user.enum';
-import { GetAllUsersType } from './user.type';
+import { GetAllUsersType, GetAllUserReviewsType } from './user.type';
 import { isValidString } from '../utils/validation';
 import { ILike } from 'typeorm';
 import { UserType } from './user.type';
 import { UserRepository } from './user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
+import { IsNull, Not } from 'typeorm';
 
 @Injectable()
 export class UserService {
@@ -101,7 +102,7 @@ export class UserService {
     }
   }
 
-  async getAllUserReviews(data: GetUsersInput): Promise<GetAllUsersType> {
+  async getAllUserReviews(data: GetUsersInput): Promise<GetAllUserReviewsType> {
     const { location, searchText, offset, limit } = data;
 
     try {
@@ -125,17 +126,13 @@ export class UserService {
         throw new NotFoundException(`No user found@!`);
       }
 
-      const userWithReviews = users.filter(user => user.reviewText !== null);
-
-      console.log('Here', userWithReviews);
-      console.log('This many', userWithReviews.length);
-
       return { users, totalCount };
     } catch (error) {
       throw new Error(error);
     }
   }
 
+  //-------------------------------------------------------------
   async addUserReview(input: AddReviewInput): Promise<any> {
     const { id, reviewText, rating } = input;
 
