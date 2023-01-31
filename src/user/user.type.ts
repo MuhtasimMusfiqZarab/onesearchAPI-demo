@@ -40,6 +40,9 @@ export class UserType extends ExtendedBaseEntity {
   @Field({ nullable: true })
   rating: number;
 
+  @Field({ nullable: true, defaultValue: 0 })
+  availableCredits: number;
+
   @Field({ nullable: true })
   profile: ProfileType;
 

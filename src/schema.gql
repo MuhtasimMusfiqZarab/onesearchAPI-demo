@@ -93,6 +93,11 @@ input GetRequestInput {
   socialblade_category: String
 }
 
+input GetUserReviewInput {
+  limit: Float!
+  offset: Float!
+}
+
 input GetUsersInput {
   limit: Float!
   location: String
@@ -158,7 +163,7 @@ type Query {
   currentUser: UserType!
   getAllCategories: CategoriesType
   getAllChannels(data: GetChannelsInput!): ChannelsType
-  getAllUserReviews(data: GetUsersInput!): GetAllUserReviewsType!
+  getAllUserReviews(data: GetUserReviewInput!): GetAllUserReviewsType!
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
   getChannelCountries: LocationsType
   getLinkedinProfiles(data: GetLinkedinProfileInput!): LinkedinProfileType
@@ -209,6 +214,7 @@ type UserReviewType {
 type UserType {
   accessRole: UserAccessRole!
   authProvider: AuthProvider
+  availableCredits: Float
   avatarLink: String
   createdAt: DateTime!
   createdBy: String!

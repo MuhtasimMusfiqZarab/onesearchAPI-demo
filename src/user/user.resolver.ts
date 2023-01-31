@@ -2,7 +2,12 @@
 import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Args, Query } from '@nestjs/graphql';
 import { UserType } from './user.type';
-import { RegistrationInput, GetUsersInput, AddReviewInput } from './user.input';
+import {
+  RegistrationInput,
+  GetUsersInput,
+  AddReviewInput,
+  GetUserReviewInput,
+} from './user.input';
 import { UserService } from './user.service';
 import { GqlAuthGuard } from '../shared/guards/gql-auth.guard';
 import { AdminGuard, AuthGuard } from '../shared/guards/user.guard';
@@ -46,7 +51,7 @@ export default class UserResolver {
   @Query(() => GetAllUserReviewsType)
   @UseGuards(AuthGuard)
   async getAllUserReviews(
-    @Args('data') data: GetUsersInput,
+    @Args('data') data: GetUserReviewInput,
   ): Promise<GetAllUserReviewsType> {
     return await this.userService.getAllUserReviews(data);
   }
