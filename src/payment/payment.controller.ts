@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Controller, Get, Req, UseGuards, Post, Res } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 
@@ -11,5 +12,11 @@ export class PaymentController {
   @Post()
   async processPayment(@Req() req, @Res() res) {
     return this.paymentService.processPayment(req, res);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('/process')
+  async processPaymentForUser(@Req() req, @Res() res) {
+    return this.paymentService.processPaymentForUser(req, res);
   }
 }

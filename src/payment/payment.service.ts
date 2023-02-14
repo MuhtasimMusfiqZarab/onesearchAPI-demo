@@ -35,13 +35,27 @@ export class PaymentService {
             quantity: item.quantity,
           };
         }),
-        success_url: `${process.env.CLIENT_SERVER_URL}/dashboard?session_id={CHECKOUT_SESSION_ID}',`,
-        cancel_url: `${process.env.CLIENT_SERVER_URL}/login?session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${process.env.CLIENT_SERVER_URL}?session_id={CHECKOUT_SESSION_ID}',`,
+        cancel_url: `${process.env.CLIENT_SERVER_URL}?session_id={CHECKOUT_SESSION_ID}`,
       });
-      // await this.userService.buyCredits(req.user);
-      console.log('This is req.user', req.user);
-      //increase the amount of credits
       return res.json({ url: session.url });
+    } catch (e) {
+      return res.status(500).json({ error: e.message });
+    }
+  }
+
+  async processPaymentForUser(req, res) {
+    try {
+      const session = await stripe.checkout.sessions.retrieve(
+        req.body.payments[0].session_Id,
+      );
+
+      if (session.status === 'complete') {
+        console.log('This is the user', req.user.userId);
+        await this.userService.buyCredits(req.user.userId);
+      }
+
+      return res.json({ session });
     } catch (e) {
       return res.status(500).json({ error: e.message });
     }
