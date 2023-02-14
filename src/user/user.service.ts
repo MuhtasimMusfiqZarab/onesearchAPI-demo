@@ -32,6 +32,19 @@ export class UserService {
     return found;
   }
 
+  async buyCredits(id: string): Promise<any> {
+    const found = await this.userRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ availableCredits: 1000 })
+      .where('id = :id', { id })
+      .execute();
+    if (!found) {
+      throw new NotFoundException(`User with id ${id} not found!`);
+    }
+    return found;
+  }
+
   async createUser(input: RegistrationInput): Promise<UserType> {
     const {
       firstName,

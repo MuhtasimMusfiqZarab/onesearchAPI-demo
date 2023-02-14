@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Injectable } from '@nestjs/common';
+import { UserService } from '../user/user.service';
 
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_PRIVATE_KEY);
@@ -13,6 +14,8 @@ const storeItems = new Map([
 
 @Injectable()
 export class PaymentService {
+  constructor(private userService: UserService) {}
+
   async processPayment(req, res) {
     try {
       const session = await stripe.checkout.sessions.create({
@@ -35,6 +38,9 @@ export class PaymentService {
         success_url: `${process.env.CLIENT_SERVER_URL}/dashboard?session_id={CHECKOUT_SESSION_ID}',`,
         cancel_url: `${process.env.CLIENT_SERVER_URL}/login?session_id={CHECKOUT_SESSION_ID}`,
       });
+      // await this.userService.buyCredits(req.user);
+      console.log('This is req.user', req.user);
+      //increase the amount of credits
       return res.json({ url: session.url });
     } catch (e) {
       return res.status(500).json({ error: e.message });
