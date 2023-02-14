@@ -51,7 +51,6 @@ export class PaymentService {
       );
 
       if (session.status === 'complete') {
-        console.log('This is the user', req.user.userId);
         await this.userService.buyCredits(req.user.userId);
       }
 

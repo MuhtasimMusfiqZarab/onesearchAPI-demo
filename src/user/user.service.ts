@@ -33,10 +33,12 @@ export class UserService {
   }
 
   async buyCredits(id: string): Promise<any> {
+    const current = await this.userRepository.findOne({ id });
+
     const found = await this.userRepository
       .createQueryBuilder()
       .update(User)
-      .set({ availableCredits: 1000 })
+      .set({ availableCredits: current.availableCredits + 1000 })
       .where('id = :id', { id })
       .execute();
     if (!found) {
