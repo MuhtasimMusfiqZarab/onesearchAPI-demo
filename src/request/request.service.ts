@@ -4,8 +4,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { RequestRepository } from './request.repository';
 import { ILike } from 'typeorm';
 
-import { AddRequestInput } from './request.input';
-import { RequestType } from './request.type';
+import { GetRequestInput } from './request.input';
+import { RequestsType, RequestType } from './request.type';
 
 import { isValidString } from '../utils/validation';
 import { defaultOrder } from '../utils/query';
@@ -19,55 +19,56 @@ export class RequestService {
 
   async addRequest(input: any): Promise<RequestType> {
     try {
-      return await this.requestRepository.save(input);
+      const saved = await this.requestRepository.save(input);
+      return saved;
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  async getRequestById(id: string): Promise<RequestRepository | null> {
+  async getRequestById(id: string): Promise<RequestType | null> {
     const found = await this.requestRepository.findOne({ id });
     if (!found) {
       throw new NotFoundException(`youtube channel with id ${id} not found!`);
     }
-    return null;
+    return found;
   }
 
   /**
-   * @Query getAllChannels
-   * @param  data GetChannelsInput
+   * @Query getAllrequests
+   * @param  data GetrequestsInput
    * @return YoutubeType
    */
 
-  // async getAllRequests(data: GetRequestInput): Promise<RequestType[] | null> {
-  //   const { socialblade_category, location, searchText, offset, limit } = data;
+  async getAllRequests(data: GetRequestInput): Promise<RequestsType | null> {
+    const { category, location, searchText, offset, limit } = data;
 
-  //   try {
-  //     let query: any = {};
+    try {
+      let query: any = {};
 
-  //     if (socialblade_category) query = { ...query, socialblade_category };
-  //     if (location) query = { ...query, location };
+      if (category) query = { ...query, category };
+      if (location) query = { ...query, location };
 
-  //     if (isValidString(searchText)) {
-  //       query = [{ ...query, channel_name: ILike(`%${searchText}%`) }];
-  //     }
+      if (isValidString(searchText)) {
+        query = [{ ...query, channel_name: ILike(`%${searchText}%`) }];
+      }
 
-  //     const [channels, totalCount] = await this.requestRepository.findAndCount({
-  //       where: query,
-  //       order: { ...defaultOrder },
-  //       skip: offset,
-  //       take: limit,
-  //     });
+      const [requests, totalCount] = await this.requestRepository.findAndCount({
+        where: query,
+        order: { ...defaultOrder },
+        skip: offset,
+        take: limit,
+      });
 
-  //     if (!channels) {
-  //       throw new NotFoundException(`No Channel found@!`);
-  //     }
+      if (!requests) {
+        throw new NotFoundException(`No Channel found@!`);
+      }
 
-  //     return[ { socialblade_category, totalCount }];
-  //   } catch (error) {
-  //     throw new Error(error);
-  //   }
-  // }
+      return { requests, totalCount };
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   // //get all categories
   // async getRequestCategories(): Promise<CategoriesType | null> {

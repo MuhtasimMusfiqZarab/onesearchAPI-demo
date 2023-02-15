@@ -1,7 +1,7 @@
 import { Args, Query, Resolver, Mutation } from '@nestjs/graphql';
 import { NotFoundException } from '@nestjs/common';
 import { RequestService } from './request.service';
-import { RequestType } from './request.type';
+import { RequestType, RequestsType } from './request.type';
 
 import { AuthGuard, AdminGuard } from 'src/shared/guards/user.guard';
 import { UseGuards } from '@nestjs/common';
@@ -34,11 +34,11 @@ export class RequestResolver {
     return null;
   }
   // //get all channels
-  // @UseGuards(AuthGuard)
-  // @Query(() => RequestType, { nullable: true })
-  // async getAllRequests(
-  //   @Args('data') data: GetRequestInput,
-  // ): Promise<RequestType> {
-  //   return await this.requestService.getAllRequests(data);
-  // }
+  @UseGuards(AuthGuard)
+  @Query(() => RequestsType, { nullable: true })
+  async getAllRequests(
+    @Args('data') data: GetRequestInput,
+  ): Promise<RequestsType | null> {
+    return await this.requestService.getAllRequests(data);
+  }
 }

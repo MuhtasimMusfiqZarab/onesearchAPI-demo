@@ -12,3 +12,12 @@ export class RequestType extends ExtendedBaseEntity {
   @Field({ nullable: true })
   description: string;
 }
+
+@ObjectType()
+export class RequestsType {
+  @Field(() => [RequestType], { nullable: true })
+  requests: RequestType[];
+
+  @Field(() => Int, { nullable: true })
+  totalCount: number;
+}

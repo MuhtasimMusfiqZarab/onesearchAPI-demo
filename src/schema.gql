@@ -90,6 +90,15 @@ input GetLinkedinProfileInput {
   title: String
 }
 
+input GetRequestInput {
+  category: String
+  description: String
+  limit: Float!
+  location: String
+  offset: Float!
+  searchText: String
+}
+
 input GetUserReviewInput {
   limit: Float!
   offset: Float!
@@ -160,6 +169,7 @@ type Query {
   currentUser: UserType!
   getAllCategories: CategoriesType
   getAllChannels(data: GetChannelsInput!): ChannelsType
+  getAllRequests(data: GetRequestInput!): RequestsType
   getAllUserReviews(data: GetUserReviewInput!): GetAllUserReviewsType!
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
   getChannelCountries: LocationsType
@@ -174,6 +184,11 @@ input RegistrationInput {
   firstName: String!
   lastName: String!
   token: String!
+}
+
+type RequestsType {
+  requests: [RequestType!]
+  totalCount: Int
 }
 
 type RequestType {
