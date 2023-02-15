@@ -2,9 +2,21 @@ import { Field, InputType } from '@nestjs/graphql';
 import { IsNotEmpty, Max } from 'class-validator';
 
 @InputType()
+export class AddRequestInput {
+  @Field({ nullable: true })
+  category: string;
+
+  @Field({ nullable: true })
+  location: string;
+
+  @Field({ nullable: true })
+  description: string;
+}
+
+@InputType()
 export class GetRequestInput {
   @Field({ nullable: true })
-  socialblade_category: string;
+  category: string;
 
   @Field({ nullable: true })
   location: string;

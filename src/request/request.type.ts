@@ -4,7 +4,7 @@ import { ExtendedBaseEntity } from '../config/_base.entity';
 @ObjectType()
 export class RequestType extends ExtendedBaseEntity {
   @Field({ nullable: true })
-  socialblade_category: string;
+  category: string;
 
   @Field({ nullable: true })
   location: string;

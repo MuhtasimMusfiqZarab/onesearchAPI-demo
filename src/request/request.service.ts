@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { RequestRepository } from './request.repository';
 import { ILike } from 'typeorm';
 
-import { GetRequestInput } from './request.input';
+import { AddRequestInput } from './request.input';
 import { RequestType } from './request.type';
 
 import { isValidString } from '../utils/validation';
@@ -14,19 +14,19 @@ import { defaultOrder } from '../utils/query';
 export class RequestService {
   constructor(
     @InjectRepository(RequestRepository)
-    private youtubeRepository: RequestRepository,
+    private requestRepository: RequestRepository,
   ) {}
 
-  async addRequest(input: any): Promise<any> {
+  async addRequest(input: any): Promise<RequestType> {
     try {
-      return await this.youtubeRepository.save(input);
+      return await this.requestRepository.save(input);
     } catch (error) {
       throw new Error(error);
     }
   }
 
   async getRequestById(id: string): Promise<RequestRepository | null> {
-    const found = await this.youtubeRepository.findOne({ id });
+    const found = await this.requestRepository.findOne({ id });
     if (!found) {
       throw new NotFoundException(`youtube channel with id ${id} not found!`);
     }
@@ -52,7 +52,7 @@ export class RequestService {
   //       query = [{ ...query, channel_name: ILike(`%${searchText}%`) }];
   //     }
 
-  //     const [channels, totalCount] = await this.youtubeRepository.findAndCount({
+  //     const [channels, totalCount] = await this.requestRepository.findAndCount({
   //       where: query,
   //       order: { ...defaultOrder },
   //       skip: offset,
@@ -71,7 +71,7 @@ export class RequestService {
 
   // //get all categories
   // async getRequestCategories(): Promise<CategoriesType | null> {
-  //   const categories = await this.youtubeRepository
+  //   const categories = await this.requestRepository
   //     .createQueryBuilder()
   //     .select('socialblade_category')
   //     .distinct(true)
@@ -89,7 +89,7 @@ export class RequestService {
 
   // //get all categories
   // async getRequestType(): Promise<LocationsType | null> {
-  //   const locations: any = await this.youtubeRepository
+  //   const locations: any = await this.requestRepository
   //     .createQueryBuilder()
   //     .select('location')
   //     .distinct(true)

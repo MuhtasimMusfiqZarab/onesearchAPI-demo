@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input AddRequestInput {
+  category: String
+  description: String
+  location: String
+}
+
 input AddReviewInput {
   id: String!
   rating: Float!
@@ -84,15 +90,6 @@ input GetLinkedinProfileInput {
   title: String
 }
 
-input GetRequestInput {
-  description: String
-  limit: Float!
-  location: String
-  offset: Float!
-  searchText: String
-  socialblade_category: String
-}
-
 input GetUserReviewInput {
   limit: Float!
   offset: Float!
@@ -131,7 +128,7 @@ type LocationsType {
 
 type Mutation {
   addLinkedinLeads(input: [BulkLinkedinInput!]!): [LinkedinBasicType!]!
-  addRequest(input: [GetRequestInput!]!): RequestType!
+  addRequest(input: [AddRequestInput!]!): RequestType!
   addUserReview(input: AddReviewInput!): UserType!
   addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
   createUser(input: RegistrationInput!): UserType!
@@ -180,12 +177,12 @@ input RegistrationInput {
 }
 
 type RequestType {
+  category: String
   createdAt: DateTime!
   createdBy: String!
   description: String
   id: ID!
   location: String
-  socialblade_category: String
   updatedAt: DateTime!
   updatedBy: String!
 }

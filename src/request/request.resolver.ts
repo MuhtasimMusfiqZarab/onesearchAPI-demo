@@ -5,7 +5,7 @@ import { RequestType } from './request.type';
 
 import { AuthGuard, AdminGuard } from 'src/shared/guards/user.guard';
 import { UseGuards } from '@nestjs/common';
-import { GetRequestInput } from './request.input';
+import { GetRequestInput, AddRequestInput } from './request.input';
 
 @Resolver()
 export class RequestResolver {
@@ -15,8 +15,8 @@ export class RequestResolver {
   @Mutation(() => RequestType)
   @UseGuards(AdminGuard)
   async addRequest(
-    @Args('input', { type: () => [GetRequestInput], nullable: false })
-    input: GetRequestInput[],
+    @Args('input', { type: () => [AddRequestInput], nullable: false })
+    input: AddRequestInput[],
   ): Promise<RequestType> {
     return this.requestService.addRequest(input);
   }
