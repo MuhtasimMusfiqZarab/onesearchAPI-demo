@@ -92,11 +92,14 @@ input GetLinkedinProfileInput {
 
 input GetRequestInput {
   category: String
+  datasize: Float
   description: String
   limit: Float!
   location: String
   offset: Float!
+  platform: String
   searchText: String
+  status: String
 }
 
 input GetUserReviewInput {
@@ -195,9 +198,12 @@ type RequestType {
   category: String
   createdAt: DateTime!
   createdBy: String!
+  datasize: Float
   description: String
   id: ID!
   location: String
+  platform: String
+  status: String
   updatedAt: DateTime!
   updatedBy: String!
 }

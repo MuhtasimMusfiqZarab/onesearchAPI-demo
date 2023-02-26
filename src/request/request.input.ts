@@ -16,6 +16,9 @@ export class AddRequestInput {
 @InputType()
 export class GetRequestInput {
   @Field({ nullable: true })
+  platform: string;
+
+  @Field({ nullable: true })
   category: string;
 
   @Field({ nullable: true })
@@ -23,6 +26,12 @@ export class GetRequestInput {
 
   @Field({ nullable: true })
   searchText: string;
+
+  @Field({ nullable: true })
+  datasize: number;
+
+  @Field({ nullable: true })
+  status: string;
 
   @Field({ nullable: true })
   description: string;

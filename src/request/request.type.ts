@@ -4,10 +4,19 @@ import { ExtendedBaseEntity } from '../config/_base.entity';
 @ObjectType()
 export class RequestType extends ExtendedBaseEntity {
   @Field({ nullable: true })
+  platform: string;
+
+  @Field({ nullable: true })
   category: string;
 
   @Field({ nullable: true })
   location: string;
+
+  @Field({ nullable: true })
+  datasize: number;
+
+  @Field({ nullable: true })
+  status: string;
 
   @Field({ nullable: true })
   description: string;
