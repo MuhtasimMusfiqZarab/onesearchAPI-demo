@@ -108,6 +108,7 @@ input GetUserReviewInput {
 }
 
 input GetUsersInput {
+  accessRole: String
   limit: Float!
   location: String
   offset: Float!
@@ -211,10 +212,8 @@ type RequestType {
 enum UserAccessRole {
   Admin
   Demo
-  Gold
+  Pro
   Provider
-  Silver
-  VIP
 }
 
 type UserReviewType {

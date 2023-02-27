@@ -93,12 +93,13 @@ export class UserService {
   }
 
   async getAllUsers(data: GetUsersInput): Promise<GetAllUsersType> {
-    const { location, searchText, offset, limit } = data;
+    const { location, searchText, offset, limit, accessRole } = data;
 
     try {
       let query: any = {};
 
       if (location) query = { ...query, location };
+      if (accessRole) query = { ...query, accessRole };
 
       if (isValidString(searchText)) {
         query = [{ ...query, firstName: ILike(`%${searchText}%`) }];

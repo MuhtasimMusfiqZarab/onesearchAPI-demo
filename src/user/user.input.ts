@@ -33,6 +33,9 @@ export class GetUsersInput {
   @Field({ nullable: true })
   searchText: string;
 
+  @Field({ nullable: true })
+  accessRole: string;
+
   @IsNotEmpty()
   @Field()
   offset: number;
