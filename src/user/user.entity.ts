@@ -12,6 +12,7 @@ import { UserAccessRole } from './user.enum';
 
 import Profile from 'src/profile/profile.entity';
 import Payment from 'src/payment/payment.entity';
+import Request from 'src/request/request.entity';
 import Youtube from 'src/youtube/youtube.entity';
 
 @Entity()
@@ -77,6 +78,15 @@ export default class User extends ExtendedBaseEntity {
     },
   )
   payments: Payment[];
+
+  @OneToMany(
+    () => Request,
+    request => request.user,
+    {
+      nullable: true,
+    },
+  )
+  requests: Request[];
 
   @ManyToMany(() => Youtube)
   @JoinTable()

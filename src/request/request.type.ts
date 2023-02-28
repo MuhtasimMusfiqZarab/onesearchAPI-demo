@@ -1,8 +1,12 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 import { ExtendedBaseEntity } from '../config/_base.entity';
+import User from 'src/user/user.entity';
 
 @ObjectType()
 export class RequestType extends ExtendedBaseEntity {
+  @Field()
+  userId: string;
+
   @Field({ nullable: true })
   platform: string;
 

@@ -1,7 +1,9 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, ManyToOne } from 'typeorm';
 import { ExtendedBaseEntity } from '../config/_base.entity';
 
 import { RequestStatusEnum } from './request.enum';
+
+import User from 'src/user/user.entity';
 
 @Entity()
 export default class Request extends ExtendedBaseEntity {
@@ -26,4 +28,13 @@ export default class Request extends ExtendedBaseEntity {
 
   @Column({ type: 'text', nullable: true })
   description: string;
+
+  @ManyToOne(
+    () => User,
+    user => user.requests,
+  )
+  user: User;
+
+  @Column({ type: 'text', nullable: true })
+  userId: string;
 }
