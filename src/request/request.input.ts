@@ -19,7 +19,7 @@ export class AddRequestInput {
   description: string;
 
   @Field({ nullable: true })
-  datasize: number;
+  datasize: string;
 }
 
 @InputType()
@@ -37,7 +37,7 @@ export class GetRequestInput {
   searchText: string;
 
   @Field({ nullable: true })
-  datasize: number;
+  datasize: string;
 
   @Field({ nullable: true })
   status: string;

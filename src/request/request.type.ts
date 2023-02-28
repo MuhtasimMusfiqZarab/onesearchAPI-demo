@@ -13,7 +13,7 @@ export class RequestType extends ExtendedBaseEntity {
   location: string;
 
   @Field({ nullable: true })
-  datasize: number;
+  datasize: string;
 
   @Field({ nullable: true })
   status: string;

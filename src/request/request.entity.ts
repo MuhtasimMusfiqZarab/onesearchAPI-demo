@@ -9,13 +9,13 @@ export default class Request extends ExtendedBaseEntity {
   platform: string;
 
   @Column({ type: 'varchar', nullable: true })
+  location: string;
+
+  @Column({ type: 'varchar', nullable: true })
   category: string;
 
   @Column({ type: 'varchar', nullable: true })
-  location: string;
-
-  @Column({ type: 'int', nullable: true })
-  datasize: number;
+  datasize: string;
 
   @Column({
     type: 'enum',

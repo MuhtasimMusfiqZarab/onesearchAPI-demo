@@ -4,7 +4,7 @@
 
 input AddRequestInput {
   category: String
-  datasize: Float
+  datasize: String
   description: String
   location: String
   platform: String
@@ -95,7 +95,7 @@ input GetLinkedinProfileInput {
 
 input GetRequestInput {
   category: String
-  datasize: Float
+  datasize: String
   description: String
   limit: Float!
   location: String
@@ -202,7 +202,7 @@ type RequestType {
   category: String
   createdAt: DateTime!
   createdBy: String!
-  datasize: Float
+  datasize: String
   description: String
   id: ID!
   location: String
