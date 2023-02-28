@@ -4,8 +4,11 @@
 
 input AddRequestInput {
   category: String
+  datasize: Float
   description: String
   location: String
+  platform: String
+  userId: String!
 }
 
 input AddReviewInput {

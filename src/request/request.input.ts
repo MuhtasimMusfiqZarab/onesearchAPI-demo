@@ -3,6 +3,12 @@ import { IsNotEmpty, Max } from 'class-validator';
 
 @InputType()
 export class AddRequestInput {
+  @Field()
+  userId: string;
+
+  @Field({ nullable: true })
+  platform: string;
+
   @Field({ nullable: true })
   category: string;
 
@@ -11,6 +17,9 @@ export class AddRequestInput {
 
   @Field({ nullable: true })
   description: string;
+
+  @Field({ nullable: true })
+  datasize: number;
 }
 
 @InputType()
