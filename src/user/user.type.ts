@@ -4,6 +4,7 @@ import { AuthProvider, UserAccessRole } from './user.enum';
 import { ProfileType } from 'src/profile/profile.type';
 import { YoutubeType } from 'src/youtube/youtube.type';
 import { PaymentType } from 'src/payment/payment.type';
+import { RequestType } from 'src/request/request.type';
 
 @ObjectType()
 export class UserType extends ExtendedBaseEntity {
@@ -51,6 +52,9 @@ export class UserType extends ExtendedBaseEntity {
 
   @Field(() => [PaymentType], { nullable: true })
   payments: PaymentType[];
+
+  @Field(() => [RequestType], { nullable: true })
+  requests: RequestType[];
 }
 
 @ObjectType()

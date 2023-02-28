@@ -248,6 +248,7 @@ type UserType {
   payments: [PaymentType!]
   profile: ProfileType
   rating: Float
+  requests: [RequestType!]
   reviewText: String
   token: String
   updatedAt: DateTime!
