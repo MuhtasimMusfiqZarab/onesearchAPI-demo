@@ -81,7 +81,7 @@ export default class User extends ExtendedBaseEntity {
 
   @OneToMany(
     () => Request,
-    request => request.user,
+    request => request.userId,
     {
       nullable: true,
     },

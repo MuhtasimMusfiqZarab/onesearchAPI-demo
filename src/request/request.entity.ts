@@ -35,6 +35,6 @@ export default class Request extends ExtendedBaseEntity {
   )
   user: User;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   userId: string;
 }
