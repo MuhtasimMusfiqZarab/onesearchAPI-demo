@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { LinkedinRepository } from './linkedin.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { GetLinkedinProfileInput } from './linkedin.input';
+import { LinkedinBasicType, LinkedinProfileType } from './linkedin.type';
 
 import { isValidString } from '../utils/validation';
 import { ILike } from 'typeorm';
@@ -52,5 +53,13 @@ export class LinkedinService {
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  async getLinkedinProfileById(id: string): Promise<LinkedinBasicType | null> {
+    const found = await this.linkedinRepository.findOne({ id });
+    if (!found) {
+      throw new NotFoundException(`Linkedin Profile with id ${id} not found!`);
+    }
+    return found;
   }
 }

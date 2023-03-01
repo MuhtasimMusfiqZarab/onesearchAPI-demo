@@ -180,6 +180,7 @@ type Query {
   getAllUserReviews(data: GetUserReviewInput!): GetAllUserReviewsType!
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
   getChannelCountries: LocationsType
+  getLinkedinProfile(id: String!): LinkedinBasicType
   getLinkedinProfiles(data: GetLinkedinProfileInput!): LinkedinProfileType
   getRequest(id: String!): RequestType
 }
