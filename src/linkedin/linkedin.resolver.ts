@@ -52,7 +52,7 @@ export class LinkedinResolver {
   //get companies
   @UseGuards(AuthGuard)
   @Query(() => CompaniesType, { nullable: true })
-  async getLinkedinCategories(): Promise<CompaniesType | null> {
+  async getLinkedinCompanies(): Promise<CompaniesType | null> {
     return await this.linkedinService.getLinkedinCompanies();
   }
 
