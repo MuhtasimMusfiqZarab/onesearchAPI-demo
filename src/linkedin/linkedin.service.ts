@@ -2,7 +2,12 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { LinkedinRepository } from './linkedin.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { GetLinkedinProfileInput } from './linkedin.input';
-import { LinkedinBasicType, LinkedinProfileType } from './linkedin.type';
+import {
+  LinkedinBasicType,
+  CompaniesType,
+  LocationsType,
+  TitleType,
+} from './linkedin.type';
 
 import { isValidString } from '../utils/validation';
 import { ILike } from 'typeorm';
@@ -61,5 +66,61 @@ export class LinkedinService {
       throw new NotFoundException(`Linkedin Profile with id ${id} not found!`);
     }
     return found;
+  }
+
+  //get countries
+  async getLinkedinLocations(): Promise<LocationsType | null> {
+    const locations: any = await this.linkedinRepository
+      .createQueryBuilder()
+      .select('location')
+      .distinct(true)
+      .getRawMany();
+
+    let locationNames = [];
+
+    // console.log('This is it', locations.length);
+
+    locationNames = locations.map(location => {
+      if (location.location !== null || location.location !== undefined) {
+        return location.location;
+      } else {
+        return;
+      }
+    });
+
+    return {
+      locations: locationNames.filter(x => x !== null),
+      totalCount: locationNames.length,
+    };
+  }
+
+  async getLinkedinCompanies(): Promise<CompaniesType | null> {
+    const companies = await this.linkedinRepository
+      .createQueryBuilder()
+      .select('company')
+      .distinct(true)
+      .getRawMany();
+
+    const jobTitles = companies.map(category => category.company);
+
+    return {
+      companies: jobTitles.filter(x => x !== null),
+      totalCount: jobTitles.length,
+    };
+  }
+
+  async getLinkedinTitles(): Promise<TitleType | null> {
+    const titles = await this.linkedinRepository
+      .createQueryBuilder()
+      .select('title')
+      .distinct(true)
+      .getRawMany();
+
+    const jobTitles = titles.map(category => category.title);
+
+    return {
+      titles: jobTitles.filter(x => x !== null),
+      totalCount: jobTitles.length,
+    };
   }
 }

@@ -39,3 +39,30 @@ export class LinkedinProfileType {
   @Field(() => Int, { nullable: true })
   totalCount: number;
 }
+
+@ObjectType()
+export class LocationsType {
+  @Field(() => [String], { nullable: true })
+  locations: string[];
+
+  @Field(() => Int, { nullable: true })
+  totalCount: number;
+}
+
+@ObjectType()
+export class CompaniesType {
+  @Field(() => [String], { nullable: true })
+  companies: string[];
+
+  @Field(() => Int, { nullable: true })
+  totalCount: number;
+}
+
+@ObjectType()
+export class TitleType {
+  @Field(() => [String], { nullable: true })
+  titles: string[];
+
+  @Field(() => Int, { nullable: true })
+  totalCount: number;
+}

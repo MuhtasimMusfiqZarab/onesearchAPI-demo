@@ -53,15 +53,6 @@ export class YoutubeType extends ExtendedBaseEntity {
 }
 
 @ObjectType()
-export class CategoriesType {
-  @Field(() => [String], { nullable: true })
-  categories: string[];
-
-  @Field(() => Int, { nullable: true })
-  totalCount: number;
-}
-
-@ObjectType()
 export class YoutubeBasicType {
   @Field(() => ID)
   id: string;
@@ -101,6 +92,15 @@ export class ChannelsType {
 export class LocationsType {
   @Field(() => [String], { nullable: true })
   locations: string[];
+
+  @Field(() => Int, { nullable: true })
+  totalCount: number;
+}
+
+@ObjectType()
+export class CategoriesType {
+  @Field(() => [String], { nullable: true })
+  categories: string[];
 
   @Field(() => Int, { nullable: true })
   totalCount: number;
