@@ -132,8 +132,23 @@ type LinkedinBasicType {
   updatedBy: String!
 }
 
+type LinkedinCompaniesType {
+  companies: [String!]
+  totalCount: Int
+}
+
+type LinkedinLocationsType {
+  locations: [String!]
+  totalCount: Int
+}
+
 type LinkedinProfileType {
   profiles: [LinkedinBasicType!]
+  totalCount: Int
+}
+
+type LinkedinTitleType {
+  titles: [String!]
   totalCount: Int
 }
 
@@ -180,8 +195,11 @@ type Query {
   getAllUserReviews(data: GetUserReviewInput!): GetAllUserReviewsType!
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
   getChannelCountries: LocationsType
+  getLinkedinCompanies: LinkedinCompaniesType
+  getLinkedinLocations: LinkedinLocationsType
   getLinkedinProfile(id: String!): LinkedinBasicType
   getLinkedinProfiles(data: GetLinkedinProfileInput!): LinkedinProfileType
+  getLinkedinTitles: LinkedinTitleType
   getRequest(id: String!): RequestType
 }
 

@@ -41,7 +41,7 @@ export class LinkedinProfileType {
 }
 
 @ObjectType()
-export class LocationsType {
+export class LinkedinLocationsType {
   @Field(() => [String], { nullable: true })
   locations: string[];
 
@@ -50,7 +50,7 @@ export class LocationsType {
 }
 
 @ObjectType()
-export class CompaniesType {
+export class LinkedinCompaniesType {
   @Field(() => [String], { nullable: true })
   companies: string[];
 
@@ -59,7 +59,7 @@ export class CompaniesType {
 }
 
 @ObjectType()
-export class TitleType {
+export class LinkedinTitleType {
   @Field(() => [String], { nullable: true })
   titles: string[];
 

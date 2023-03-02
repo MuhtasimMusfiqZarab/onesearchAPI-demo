@@ -5,9 +5,9 @@ import { UseGuards } from '@nestjs/common';
 import {
   LinkedinBasicType,
   LinkedinProfileType,
-  CompaniesType,
-  LocationsType,
-  TitleType,
+  LinkedinCompaniesType,
+  LinkedinLocationsType,
+  LinkedinTitleType,
 } from './linkedin.type';
 
 import { LinkedinService } from './linkedin.service';
@@ -51,22 +51,22 @@ export class LinkedinResolver {
 
   //get companies
   @UseGuards(AuthGuard)
-  @Query(() => CompaniesType, { nullable: true })
-  async getLinkedinCompanies(): Promise<CompaniesType | null> {
+  @Query(() => LinkedinCompaniesType, { nullable: true })
+  async getLinkedinCompanies(): Promise<LinkedinCompaniesType | null> {
     return await this.linkedinService.getLinkedinCompanies();
   }
 
   //location
   @UseGuards(AuthGuard)
-  @Query(() => LocationsType, { nullable: true })
-  async getLinkedinLocations(): Promise<LocationsType | null> {
+  @Query(() => LinkedinLocationsType, { nullable: true })
+  async getLinkedinLocations(): Promise<LinkedinLocationsType | null> {
     return await this.linkedinService.getLinkedinLocations();
   }
 
   //job title
   @UseGuards(AuthGuard)
-  @Query(() => TitleType, { nullable: true })
-  async getLinkedinTitles(): Promise<TitleType | null> {
+  @Query(() => LinkedinTitleType, { nullable: true })
+  async getLinkedinTitles(): Promise<LinkedinTitleType | null> {
     return await this.linkedinService.getLinkedinTitles();
   }
 }

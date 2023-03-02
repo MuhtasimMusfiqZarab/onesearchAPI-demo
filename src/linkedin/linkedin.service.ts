@@ -4,9 +4,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { GetLinkedinProfileInput } from './linkedin.input';
 import {
   LinkedinBasicType,
-  CompaniesType,
-  LocationsType,
-  TitleType,
+  LinkedinCompaniesType,
+  LinkedinLocationsType,
+  LinkedinTitleType,
 } from './linkedin.type';
 
 import { isValidString } from '../utils/validation';
@@ -69,7 +69,7 @@ export class LinkedinService {
   }
 
   //get countries
-  async getLinkedinLocations(): Promise<LocationsType | null> {
+  async getLinkedinLocations(): Promise<LinkedinLocationsType | null> {
     const locations: any = await this.linkedinRepository
       .createQueryBuilder()
       .select('location')
@@ -94,7 +94,7 @@ export class LinkedinService {
     };
   }
 
-  async getLinkedinCompanies(): Promise<CompaniesType | null> {
+  async getLinkedinCompanies(): Promise<LinkedinCompaniesType | null> {
     const companies = await this.linkedinRepository
       .createQueryBuilder()
       .select('company')
@@ -109,7 +109,7 @@ export class LinkedinService {
     };
   }
 
-  async getLinkedinTitles(): Promise<TitleType | null> {
+  async getLinkedinTitles(): Promise<LinkedinTitleType | null> {
     const titles = await this.linkedinRepository
       .createQueryBuilder()
       .select('title')
