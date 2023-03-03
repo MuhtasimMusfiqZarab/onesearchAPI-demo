@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { ExtendedBaseEntity } from '../config/_base.entity';
 
 import { RequestStatusEnum } from './request.enum';

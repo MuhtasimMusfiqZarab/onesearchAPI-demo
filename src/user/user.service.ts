@@ -25,6 +25,7 @@ export class UserService {
   async findOne(id: string): Promise<UserType> {
     const found = await this.userRepository.findOne({
       where: { id },
+      relations: ['requests'],
     });
     if (!found) {
       throw new NotFoundException(`User with id ${id} not found!`);
@@ -110,7 +111,7 @@ export class UserService {
         // order: { ...defaultOrder },
         skip: offset,
         take: limit,
-        relations: ['profile', 'youtube'],
+        relations: ['profile', 'youtube', 'requests'],
       });
 
       if (!users) {
