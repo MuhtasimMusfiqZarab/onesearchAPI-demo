@@ -20,6 +20,7 @@ export class LinkedinService {
     private linkedinRepository: LinkedinRepository,
   ) {}
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async addLinkedinLeads(input: any): Promise<any> {
     try {
       return await this.linkedinRepository.save(input);

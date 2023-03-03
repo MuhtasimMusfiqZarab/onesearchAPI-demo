@@ -21,6 +21,25 @@ enum AuthProvider {
   Google
 }
 
+input BulkGoogleInput {
+  category: String
+  city: String
+  claim_status: String
+  company: String
+  country: String
+  gmaps_url: String
+  latitude: String
+  longitude: String
+  phone: String
+  postcode: String
+  rating: String
+  review_data: String
+  state: String
+  timestamp: DateTime
+  total_reviews: String
+  website: String
+}
+
 input BulkLinkedinInput {
   company: String
   firstName: String
@@ -118,6 +137,20 @@ input GetUsersInput {
   searchText: String
 }
 
+type GoogleBasicType {
+  category: String
+  claim_status: String
+  company: String
+  country: String
+  createdAt: DateTime!
+  createdBy: String!
+  id: ID!
+  rating: String
+  total_reviews: String
+  updatedAt: DateTime!
+  updatedBy: String!
+}
+
 type LinkedinBasicType {
   company: String
   createdAt: DateTime!
@@ -158,6 +191,7 @@ type LocationsType {
 }
 
 type Mutation {
+  addGoogleLeads(input: [BulkGoogleInput!]!): [GoogleBasicType!]!
   addLinkedinLeads(input: [BulkLinkedinInput!]!): [LinkedinBasicType!]!
   addRequest(input: [AddRequestInput!]!): RequestType!
   addUserReview(input: AddReviewInput!): UserType!

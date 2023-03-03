@@ -2,7 +2,7 @@ import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 import { ExtendedBaseEntity } from '../config/_base.entity';
 
 @ObjectType()
-export class GoogleBasicType {
+export class GoogleBasicType extends ExtendedBaseEntity {
   @Field(() => ID)
   id: string;
 
