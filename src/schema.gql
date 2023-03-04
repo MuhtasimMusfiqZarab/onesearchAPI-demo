@@ -122,8 +122,6 @@ input GetLinkedinProfileInput {
 
 input GetRequestInput {
   category: String
-  datasize: String
-  description: String
   limit: Float!
   location: String
   offset: Float!

@@ -34,16 +34,10 @@ export class GetRequestInput {
   location: string;
 
   @Field({ nullable: true })
-  searchText: string;
-
-  @Field({ nullable: true })
-  datasize: string;
-
-  @Field({ nullable: true })
   status: string;
 
   @Field({ nullable: true })
-  description: string;
+  searchText: string;
 
   @IsNotEmpty()
   @Field()

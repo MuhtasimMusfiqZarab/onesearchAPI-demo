@@ -41,13 +41,23 @@ export class RequestService {
    */
 
   async getAllRequests(data: GetRequestInput): Promise<RequestsType | null> {
-    const { category, location, searchText, offset, limit } = data;
+    const {
+      category,
+      location,
+      platform,
+      status,
+      searchText,
+      offset,
+      limit,
+    } = data;
 
     try {
       let query: any = {};
 
       if (category) query = { ...query, category };
       if (location) query = { ...query, location };
+      if (platform) query = { ...query, platform };
+      if (status) query = { ...query, status };
 
       if (isValidString(searchText)) {
         query = [{ ...query, channel_name: ILike(`%${searchText}%`) }];
