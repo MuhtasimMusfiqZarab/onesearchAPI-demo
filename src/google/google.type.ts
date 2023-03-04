@@ -69,3 +69,21 @@ export class GoogleProfilesType {
   @Field(() => Int, { nullable: true })
   totalCount: number;
 }
+
+@ObjectType()
+export class GoogleCategoriesType {
+  @Field(() => [String], { nullable: true })
+  categories: string[];
+
+  @Field(() => Int, { nullable: true })
+  totalCount: number;
+}
+
+@ObjectType()
+export class GoogleCountriesType {
+  @Field(() => [String], { nullable: true })
+  countries: string[];
+
+  @Field(() => Int, { nullable: true })
+  totalCount: number;
+}

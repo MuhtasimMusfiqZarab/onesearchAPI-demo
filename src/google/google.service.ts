@@ -6,7 +6,12 @@ import { isValidString } from '../utils/validation';
 import { ILike } from 'typeorm';
 import { defaultOrder } from '../utils/query';
 
-import { GoogleBasicType, GoogleProfilesType } from './google.type';
+import {
+  GoogleBasicType,
+  GoogleProfilesType,
+  GoogleCategoriesType,
+  GoogleCountriesType,
+} from './google.type';
 
 import { BulkGoogleInput, GetGoogleInput } from './google.input';
 
@@ -65,5 +70,57 @@ export class GoogleService {
       throw new NotFoundException(`Google Profile with id ${id} not found!`);
     }
     return found;
+  }
+
+  //get categories
+  async getGoogleCategories(): Promise<GoogleCategoriesType | null> {
+    const categories: any = await this.googleRepository
+      .createQueryBuilder()
+      .select('category')
+      .distinct(true)
+      .getRawMany();
+
+    let categoryNames = [];
+
+    // console.log('This is it', locations.length);
+
+    categoryNames = categories.map(item => {
+      if (item.category !== null || item.category !== undefined) {
+        return item.category;
+      } else {
+        return;
+      }
+    });
+
+    return {
+      categories: categoryNames.filter(x => x !== null),
+      totalCount: categoryNames.length,
+    };
+  }
+
+  //get countries
+  async getGoogleCountries(): Promise<GoogleCountriesType | null> {
+    const countries: any = await this.googleRepository
+      .createQueryBuilder()
+      .select('country')
+      .distinct(true)
+      .getRawMany();
+
+    let countryNames = [];
+
+    // console.log('This is it', locations.length);
+
+    countryNames = countries.map(item => {
+      if (item.country !== null || item.country !== undefined) {
+        return item.country;
+      } else {
+        return;
+      }
+    });
+
+    return {
+      countries: countryNames.filter(x => x !== null),
+      totalCount: countryNames.length,
+    };
   }
 }

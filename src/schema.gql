@@ -159,6 +159,16 @@ type GoogleBasicType {
   updatedBy: String!
 }
 
+type GoogleCategoriesType {
+  categories: [String!]
+  totalCount: Int
+}
+
+type GoogleCountriesType {
+  countries: [String!]
+  totalCount: Int
+}
+
 type GoogleProfilesType {
   profiles: [GoogleBasicType!]
   totalCount: Int
@@ -243,6 +253,8 @@ type Query {
   getAllUserReviews(data: GetUserReviewInput!): GetAllUserReviewsType!
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
   getChannelCountries: LocationsType
+  getGoogleCategories: GoogleCategoriesType
+  getGoogleCountries: GoogleCountriesType
   getGoogleProfile(id: String!): GoogleBasicType
   getLinkedinCompanies: LinkedinCompaniesType
   getLinkedinLocations: LinkedinLocationsType

@@ -4,7 +4,12 @@ import { AdminGuard, AuthGuard } from '../shared/guards/user.guard';
 import { UseGuards } from '@nestjs/common';
 
 import { GoogleService } from './google.service';
-import { GoogleBasicType, GoogleProfilesType } from './google.type';
+import {
+  GoogleBasicType,
+  GoogleProfilesType,
+  GoogleCategoriesType,
+  GoogleCountriesType,
+} from './google.type';
 
 import { BulkGoogleInput, GetGoogleInput } from './google.input';
 
@@ -31,6 +36,7 @@ export class GoogleResolver {
     return await this.googleService.getAllGoogleProfiles(data);
   }
 
+  //individual google profile
   @UseGuards(AuthGuard)
   @Query(() => GoogleBasicType, { nullable: true })
   async getGoogleProfile(
@@ -41,5 +47,18 @@ export class GoogleResolver {
       throw new NotFoundException(id);
     }
     return profile;
+  }
+
+  @UseGuards(AuthGuard)
+  @Query(() => GoogleCategoriesType, { nullable: true })
+  async getGoogleCategories(): Promise<GoogleCategoriesType | null> {
+    return await this.googleService.getGoogleCategories();
+  }
+
+  //location
+  @UseGuards(AuthGuard)
+  @Query(() => GoogleCountriesType, { nullable: true })
+  async getGoogleCountries(): Promise<GoogleCountriesType | null> {
+    return await this.googleService.getGoogleCountries();
   }
 }
