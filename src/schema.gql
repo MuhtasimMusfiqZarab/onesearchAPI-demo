@@ -103,6 +103,15 @@ input GetChannelsInput {
   subscribers: String
 }
 
+input GetGoogleInput {
+  category: String
+  country: String
+  limit: Float!
+  offset: Float!
+  rating: String
+  searchText: String
+}
+
 input GetLinkedinProfileInput {
   company: String
   limit: Float!
@@ -149,6 +158,11 @@ type GoogleBasicType {
   total_reviews: String
   updatedAt: DateTime!
   updatedBy: String!
+}
+
+type GoogleProfilesType {
+  profiles: [GoogleBasicType!]
+  totalCount: Int
 }
 
 type LinkedinBasicType {
@@ -225,10 +239,12 @@ type Query {
   currentUser: UserType!
   getAllCategories: CategoriesType
   getAllChannels(data: GetChannelsInput!): ChannelsType
+  getAllGoogleProfiles(data: GetGoogleInput!): GoogleProfilesType
   getAllRequests(data: GetRequestInput!): RequestsType
   getAllUserReviews(data: GetUserReviewInput!): GetAllUserReviewsType!
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
   getChannelCountries: LocationsType
+  getGoogleProfile(id: String!): GoogleBasicType
   getLinkedinCompanies: LinkedinCompaniesType
   getLinkedinLocations: LinkedinLocationsType
   getLinkedinProfile(id: String!): LinkedinBasicType

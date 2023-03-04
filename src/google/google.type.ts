@@ -62,7 +62,7 @@ export class GoogleAdvancedType extends ExtendedBaseEntity {
 }
 
 @ObjectType()
-export class GoogleType {
+export class GoogleProfilesType {
   @Field(() => [GoogleBasicType], { nullable: true })
   profiles: GoogleBasicType[];
 
