@@ -108,7 +108,6 @@ input GetGoogleInput {
   country: String
   limit: Float!
   offset: Float!
-  rating: String
   searchText: String
 }
 

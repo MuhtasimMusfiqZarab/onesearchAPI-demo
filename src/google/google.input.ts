@@ -55,9 +55,6 @@ export class BulkGoogleInput {
 @InputType()
 export class GetGoogleInput {
   @Field({ nullable: true })
-  rating: string;
-
-  @Field({ nullable: true })
   category: string;
 
   @Field({ nullable: true })

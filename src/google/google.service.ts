@@ -44,7 +44,7 @@ export class GoogleService {
 
       const [profiles, totalCount] = await this.googleRepository.findAndCount({
         where: query,
-        order: { ...defaultOrder },
+        // order: { ...defaultOrder },
         skip: offset,
         take: limit,
       });
