@@ -5,7 +5,14 @@ import { RequestRepository } from './request.repository';
 import { ILike } from 'typeorm';
 
 import { GetRequestInput } from './request.input';
-import { RequestsType, RequestType } from './request.type';
+import {
+  RequestType,
+  RequestsType,
+  RequestCategoriesType,
+  RequestCountriesType,
+  RequestPlatformsType,
+  RequestStatusType,
+} from './request.type';
 
 import { isValidString } from '../utils/validation';
 import { defaultOrder } from '../utils/query';
@@ -81,46 +88,95 @@ export class RequestService {
   }
 
   // //get all categories
-  // async getRequestCategories(): Promise<CategoriesType | null> {
-  //   const categories = await this.requestRepository
-  //     .createQueryBuilder()
-  //     .select('socialblade_category')
-  //     .distinct(true)
-  //     .getRawMany();
+  async getRequestCategories(): Promise<RequestCategoriesType | null> {
+    const categories = await this.requestRepository
+      .createQueryBuilder()
+      .select('category')
+      .distinct(true)
+      .getRawMany();
 
-  //   const categoryNames = categories.map(
-  //     category => category.socialblade_category,
-  //   );
+    const categoryNames = categories.map(category => category.category);
 
-  //   return {
-  //     categories: categoryNames.filter(x => x !== null),
-  //     totalCount: categoryNames.length,
-  //   };
-  // }
+    return {
+      categories: categoryNames.filter(x => x !== null),
+      totalCount: categoryNames.length,
+    };
+  }
 
-  // //get all categories
-  // async getRequestType(): Promise<LocationsType | null> {
-  //   const locations: any = await this.requestRepository
-  //     .createQueryBuilder()
-  //     .select('location')
-  //     .distinct(true)
-  //     .getRawMany();
+  //get all countries
+  async getRequestCountries(): Promise<RequestCountriesType | null> {
+    const locations: any = await this.requestRepository
+      .createQueryBuilder()
+      .select('country')
+      .distinct(true)
+      .getRawMany();
 
-  //   let locationNames = [];
+    let locationNames = [];
 
-  //   // console.log('This is it', locations.length);
+    // console.log('This is it', locations.length);
 
-  //   locationNames = locations.map(location => {
-  //     if (location.location !== null || location.location !== undefined) {
-  //       return location.location;
-  //     } else {
-  //       return;
-  //     }
-  //   });
+    locationNames = locations.map(location => {
+      if (location.country !== null || location.country !== undefined) {
+        return location.country;
+      } else {
+        return;
+      }
+    });
 
-  //   return {
-  //     locations: locationNames.filter(x => x !== null),
-  //     totalCount: locationNames.length,
-  //   };
-  // }
+    return {
+      countries: locationNames.filter(x => x !== null),
+      totalCount: locationNames.length,
+    };
+  }
+
+  //get all countries
+  async getRequestPlatforms(): Promise<RequestPlatformsType | null> {
+    const locations: any = await this.requestRepository
+      .createQueryBuilder()
+      .select('platform')
+      .distinct(true)
+      .getRawMany();
+
+    let locationNames = [];
+
+    // console.log('This is it', locations.length);
+
+    locationNames = locations.map(location => {
+      if (location.platform !== null || location.platform !== undefined) {
+        return location.platform;
+      } else {
+        return;
+      }
+    });
+
+    return {
+      platforms: locationNames.filter(x => x !== null),
+      totalCount: locationNames.length,
+    };
+  }
+  //get all countries
+  async getRequestStatuses(): Promise<RequestStatusType | null> {
+    const locations: any = await this.requestRepository
+      .createQueryBuilder()
+      .select('platform')
+      .distinct(true)
+      .getRawMany();
+
+    let locationNames = [];
+
+    // console.log('This is it', locations.length);
+
+    locationNames = locations.map(location => {
+      if (location.status !== null || location.status !== undefined) {
+        return location.status;
+      } else {
+        return;
+      }
+    });
+
+    return {
+      statuses: locationNames.filter(x => x !== null),
+      totalCount: locationNames.length,
+    };
+  }
 }

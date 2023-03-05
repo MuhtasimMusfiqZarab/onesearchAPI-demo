@@ -34,3 +34,39 @@ export class RequestsType {
   @Field(() => Int, { nullable: true })
   totalCount: number;
 }
+
+@ObjectType()
+export class RequestStatusType {
+  @Field(() => [String], { nullable: true })
+  statuses: string[];
+
+  @Field(() => Int, { nullable: true })
+  totalCount: number;
+}
+
+@ObjectType()
+export class RequestCountriesType {
+  @Field(() => [String], { nullable: true })
+  countries: string[];
+
+  @Field(() => Int, { nullable: true })
+  totalCount: number;
+}
+
+@ObjectType()
+export class RequestPlatformsType {
+  @Field(() => [String], { nullable: true })
+  platforms: string[];
+
+  @Field(() => Int, { nullable: true })
+  totalCount: number;
+}
+
+@ObjectType()
+export class RequestCategoriesType {
+  @Field(() => [String], { nullable: true })
+  categories: string[];
+
+  @Field(() => Int, { nullable: true })
+  totalCount: number;
+}

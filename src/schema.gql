@@ -260,6 +260,10 @@ type Query {
   getLinkedinProfiles(data: GetLinkedinProfileInput!): LinkedinProfileType
   getLinkedinTitles: LinkedinTitleType
   getRequest(id: String!): RequestType
+  getRequestCategories: RequestCategoriesType
+  getRequestCountries: RequestCountriesType
+  getRequestPlatforms: RequestPlatformsType
+  getRequestStatuses: RequestStatusType
 }
 
 input RegistrationInput {
@@ -269,6 +273,26 @@ input RegistrationInput {
   firstName: String!
   lastName: String!
   token: String!
+}
+
+type RequestCategoriesType {
+  categories: [String!]
+  totalCount: Int
+}
+
+type RequestCountriesType {
+  countries: [String!]
+  totalCount: Int
+}
+
+type RequestPlatformsType {
+  platforms: [String!]
+  totalCount: Int
+}
+
+type RequestStatusType {
+  statuses: [String!]
+  totalCount: Int
 }
 
 type RequestsType {

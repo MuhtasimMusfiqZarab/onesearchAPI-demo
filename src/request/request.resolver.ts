@@ -1,7 +1,14 @@
 import { Args, Query, Resolver, Mutation } from '@nestjs/graphql';
 import { NotFoundException } from '@nestjs/common';
 import { RequestService } from './request.service';
-import { RequestType, RequestsType } from './request.type';
+import {
+  RequestType,
+  RequestsType,
+  RequestCategoriesType,
+  RequestCountriesType,
+  RequestPlatformsType,
+  RequestStatusType,
+} from './request.type';
 
 import { AuthGuard, AdminGuard } from 'src/shared/guards/user.guard';
 import { UseGuards } from '@nestjs/common';
@@ -40,5 +47,28 @@ export class RequestResolver {
     @Args('data') data: GetRequestInput,
   ): Promise<RequestsType | null> {
     return await this.requestService.getAllRequests(data);
+  }
+
+  @UseGuards(AuthGuard)
+  @Query(() => RequestCategoriesType, { nullable: true })
+  async getRequestCategories(): Promise<RequestCategoriesType | null> {
+    return await this.requestService.getRequestCategories();
+  }
+  @UseGuards(AuthGuard)
+  @Query(() => RequestCountriesType, { nullable: true })
+  async getRequestCountries(): Promise<RequestCountriesType | null> {
+    return await this.requestService.getRequestCountries();
+  }
+
+  @UseGuards(AuthGuard)
+  @Query(() => RequestPlatformsType, { nullable: true })
+  async getRequestPlatforms(): Promise<RequestPlatformsType | null> {
+    return await this.requestService.getRequestPlatforms();
+  }
+
+  @UseGuards(AuthGuard)
+  @Query(() => RequestStatusType, { nullable: true })
+  async getRequestStatuses(): Promise<RequestStatusType | null> {
+    return await this.requestService.getRequestStatuses();
   }
 }
