@@ -216,6 +216,7 @@ type Mutation {
   addLinkedinLeads(input: [BulkLinkedinInput!]!): [LinkedinBasicType!]!
   addRequest(input: [AddRequestInput!]!): RequestType!
   addUserReview(input: AddReviewInput!): UserType!
+  addUserYoutube(input: AddReviewInput!): UserType!
   addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
   createUser(input: RegistrationInput!): UserType!
 }

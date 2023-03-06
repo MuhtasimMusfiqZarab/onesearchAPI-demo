@@ -67,7 +67,7 @@ export class RequestService {
       if (status) query = { ...query, status };
 
       if (isValidString(searchText)) {
-        query = [{ ...query, channel_name: ILike(`%${searchText}%`) }];
+        query = [{ ...query, country: ILike(`%${searchText}%`) }];
       }
 
       const [requests, totalCount] = await this.requestRepository.findAndCount({
@@ -112,8 +112,6 @@ export class RequestService {
       .getRawMany();
 
     let locationNames = [];
-
-    // console.log('This is it', locations.length);
 
     locationNames = locations.map(location => {
       if (location.country !== null || location.country !== undefined) {

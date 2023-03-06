@@ -55,4 +55,12 @@ export default class UserResolver {
   ): Promise<GetAllUserReviewsType> {
     return await this.userService.getAllUserReviews(data);
   }
+
+  //add user youtube table
+  @Mutation(() => UserType)
+  async addUserYoutube(
+    @Args('input', { type: () => AddReviewInput }) input: AddReviewInput,
+  ): Promise<UserType> {
+    return this.userService.addUserReview(input);
+  }
 }

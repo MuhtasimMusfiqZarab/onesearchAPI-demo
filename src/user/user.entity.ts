@@ -63,7 +63,7 @@ export default class User extends ExtendedBaseEntity {
   @Column({ type: 'int', nullable: true })
   rating: number;
 
-  @Column({ type: 'int', nullable: true, default: 10 })
+  @Column({ type: 'int', nullable: true })
   availableCredits: number;
 
   @OneToOne(() => Profile)
