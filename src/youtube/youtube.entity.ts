@@ -1,5 +1,7 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToMany, JoinTable } from 'typeorm';
 import { ExtendedBaseEntity } from '../config/_base.entity';
+
+import User from '../user/user.entity';
 
 @Entity()
 export default class Youtube extends ExtendedBaseEntity {
@@ -53,4 +55,11 @@ export default class Youtube extends ExtendedBaseEntity {
 
   @Column({ type: 'varchar', nullable: true })
   views: string;
+
+  @ManyToMany(
+    () => User,
+    user => user.youtube,
+  )
+  @JoinTable()
+  users: User[];
 }

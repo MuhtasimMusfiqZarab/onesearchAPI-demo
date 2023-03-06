@@ -88,7 +88,10 @@ export default class User extends ExtendedBaseEntity {
   )
   requests: Request[];
 
-  @ManyToMany(() => Youtube)
+  @ManyToMany(
+    () => Youtube,
+    youtube => youtube.users,
+  )
   @JoinTable()
   youtube: Youtube[];
 }
