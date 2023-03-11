@@ -249,6 +249,7 @@ type Query {
   getAllChannels(data: GetChannelsInput!): ChannelsType
   getAllGoogleProfiles(data: GetGoogleInput!): GoogleProfilesType
   getAllRequests(data: GetRequestInput!): RequestsType
+  getAllRequestsOfUser(data: GetRequestInput!): RequestsType
   getAllUserReviews(data: GetUserReviewInput!): GetAllUserReviewsType!
   getAllUsers(data: GetUsersInput!): GetAllUsersType!
   getChannelCountries: LocationsType

@@ -14,6 +14,9 @@ import { AuthGuard, AdminGuard } from 'src/shared/guards/user.guard';
 import { UseGuards } from '@nestjs/common';
 import { GetRequestInput, AddRequestInput } from './request.input';
 
+import { GqlAuthGuard } from '../shared/guards/gql-auth.guard';
+import { CurrentUser } from '../shared/decorators/current-user.decorator';
+
 @Resolver()
 export class RequestResolver {
   constructor(private readonly requestService: RequestService) {}
@@ -41,12 +44,23 @@ export class RequestResolver {
     return null;
   }
   // //get all channels
-  @UseGuards(AuthGuard)
+  @UseGuards(AdminGuard)
   @Query(() => RequestsType, { nullable: true })
   async getAllRequests(
     @Args('data') data: GetRequestInput,
   ): Promise<RequestsType | null> {
     return await this.requestService.getAllRequests(data);
+  }
+
+  // //get all channels
+  @UseGuards(GqlAuthGuard)
+  @Query(() => RequestsType, { nullable: true })
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  async getAllRequestsOfUser(
+    @CurrentUser() user: any,
+    @Args('data') data: GetRequestInput,
+  ): Promise<RequestsType | null> {
+    return await this.requestService.getAllRequestsOfUser(data, user.id);
   }
 
   @UseGuards(AuthGuard)

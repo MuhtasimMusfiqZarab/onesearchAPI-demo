@@ -17,11 +17,14 @@ import {
 import { isValidString } from '../utils/validation';
 import { defaultOrder } from '../utils/query';
 
+import { UserService } from 'src/user/user.service';
+
 @Injectable()
 export class RequestService {
   constructor(
     @InjectRepository(RequestRepository)
     private requestRepository: RequestRepository,
+    private userService: UserService,
   ) {}
 
   async addRequest(input: any): Promise<RequestType> {
@@ -66,6 +69,49 @@ export class RequestService {
       if (platform) query = { ...query, platform };
       if (status) query = { ...query, status };
 
+      if (isValidString(searchText)) {
+        query = [{ ...query, country: ILike(`%${searchText}%`) }];
+      }
+
+      const [requests, totalCount] = await this.requestRepository.findAndCount({
+        where: query,
+        order: { ...defaultOrder },
+        skip: offset,
+        take: limit,
+      });
+
+      if (!requests) {
+        throw new NotFoundException(`No Channel found@!`);
+      }
+
+      return { requests, totalCount };
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async getAllRequestsOfUser(
+    data: GetRequestInput,
+    userId: string,
+  ): Promise<RequestsType | null> {
+    const {
+      category,
+      location,
+      platform,
+      status,
+      searchText,
+      offset,
+      limit,
+    } = data;
+
+    try {
+      let query: any = {};
+
+      if (category) query = { ...query, category };
+      if (location) query = { ...query, location };
+      if (platform) query = { ...query, platform };
+      if (status) query = { ...query, status };
+      if (userId) query = { ...query, userId };
       if (isValidString(searchText)) {
         query = [{ ...query, country: ILike(`%${searchText}%`) }];
       }
