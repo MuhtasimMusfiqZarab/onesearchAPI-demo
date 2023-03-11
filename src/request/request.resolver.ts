@@ -60,7 +60,7 @@ export class RequestResolver {
     @CurrentUser() user: any,
     @Args('data') data: GetRequestInput,
   ): Promise<RequestsType | null> {
-    return await this.requestService.getAllRequestsOfUser(data, user.id);
+    return await this.requestService.getAllRequestsOfUser(data, user);
   }
 
   @UseGuards(AuthGuard)

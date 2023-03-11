@@ -92,7 +92,7 @@ export class RequestService {
 
   async getAllRequestsOfUser(
     data: GetRequestInput,
-    userId: string,
+    user: any,
   ): Promise<RequestsType | null> {
     const {
       category,
@@ -107,13 +107,13 @@ export class RequestService {
     try {
       let query: any = {};
 
-      console.log('This is the userId', userId);
+      const id = user?.userId;
 
       if (category) query = { ...query, category };
       if (location) query = { ...query, location };
       if (platform) query = { ...query, platform };
       if (status) query = { ...query, status };
-      if (userId) query = { ...query, userId };
+      if (id) query = { ...query, userId: id };
       if (isValidString(searchText)) {
         query = [{ ...query, country: ILike(`%${searchText}%`) }];
       }
