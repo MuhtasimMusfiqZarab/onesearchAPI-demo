@@ -107,6 +107,8 @@ export class RequestService {
     try {
       let query: any = {};
 
+      console.log('This is the userId', userId);
+
       if (category) query = { ...query, category };
       if (location) query = { ...query, location };
       if (platform) query = { ...query, platform };
@@ -153,7 +155,7 @@ export class RequestService {
   async getRequestCountries(): Promise<RequestCountriesType | null> {
     const locations: any = await this.requestRepository
       .createQueryBuilder()
-      .select('country')
+      .select('location')
       .distinct(true)
       .getRawMany();
 

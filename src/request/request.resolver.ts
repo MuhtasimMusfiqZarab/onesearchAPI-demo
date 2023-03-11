@@ -23,7 +23,7 @@ export class RequestResolver {
 
   //add new lead
   @Mutation(() => RequestType)
-  @UseGuards(AdminGuard)
+  @UseGuards(AuthGuard)
   async addRequest(
     @Args('input', { type: () => [AddRequestInput], nullable: false })
     input: AddRequestInput[],
