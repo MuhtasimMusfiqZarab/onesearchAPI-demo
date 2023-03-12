@@ -363,7 +363,6 @@ type UserType {
 
 input UserYoutubeInput {
   userId: String!
-  youtubeChannelUrl: String
   youtubeId: String
 }
 
