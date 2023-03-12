@@ -8,7 +8,7 @@ export default class Youtube extends ExtendedBaseEntity {
   @Column({ type: 'varchar', nullable: true })
   socialblade_category: string;
 
-  @PrimaryColumn({
+  @Column({
     type: 'varchar',
     length: 100,
   })

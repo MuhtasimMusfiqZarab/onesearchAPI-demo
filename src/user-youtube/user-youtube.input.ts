@@ -8,4 +8,7 @@ export class UserYoutubeInput {
 
   @Field({ nullable: true })
   youtubeId: string;
+
+  @Field({ nullable: true })
+  youtubeChannelUrl: string;
 }
