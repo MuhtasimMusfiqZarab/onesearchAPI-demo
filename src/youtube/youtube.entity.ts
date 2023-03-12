@@ -60,6 +60,5 @@ export default class Youtube extends ExtendedBaseEntity {
     () => User,
     user => user.youtube,
   )
-  @JoinTable()
   users: User[];
 }

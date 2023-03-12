@@ -92,6 +92,6 @@ export default class User extends ExtendedBaseEntity {
     () => Youtube,
     youtube => youtube.users,
   )
-  @JoinTable()
+  @JoinTable({ name: 'user_youtube' })
   youtube: Youtube[];
 }
