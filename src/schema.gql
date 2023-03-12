@@ -219,6 +219,7 @@ type Mutation {
   addUserYoutube(input: AddReviewInput!): UserType!
   addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
   createUser(input: RegistrationInput!): UserType!
+  unlockYoutubeLead(input: [UserYoutubeInput!]!): [UserYoutubeType!]!
 }
 
 type PaymentType {
@@ -358,6 +359,21 @@ type UserType {
   updatedAt: DateTime!
   updatedBy: String!
   youtube: [YoutubeType!]
+}
+
+input UserYoutubeInput {
+  userId: String!
+  youtubeId: String
+}
+
+type UserYoutubeType {
+  createdAt: DateTime!
+  createdBy: String!
+  id: ID!
+  updatedAt: DateTime!
+  updatedBy: String!
+  userId: String
+  youtubeId: String
 }
 
 type YoutubeBasicType {

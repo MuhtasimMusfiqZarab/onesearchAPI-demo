@@ -16,6 +16,7 @@ import { GoogleModule } from './google/google.module';
 import { ProfileModule } from './profile/profile.module';
 import { PaymentModule } from './payment/payment.module';
 import { RequestModule } from './request/request.module';
+import { UserYoutubeModule } from './user-youtube/user-youtube.module';
 
 //all the modules
 const modules = [
@@ -41,6 +42,7 @@ const modules = [
     }),
     //get configuration data from ormconfig.js
     TypeOrmModule.forRoot(),
+    UserYoutubeModule,
   ],
 })
 export class AppModule {}
