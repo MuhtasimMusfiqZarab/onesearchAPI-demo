@@ -13,9 +13,17 @@ import {
 import { LinkedinService } from './linkedin.service';
 import { BulkLinkedinInput, GetLinkedinProfileInput } from './linkedin.input';
 
+import { UserLinkedinType } from './linkedin.type';
+import { UserLinkedinInput } from './linkedin.input';
+
+import { UserService } from 'src/user/user.service';
+
 @Resolver(() => LinkedinBasicType)
 export class LinkedinResolver {
-  constructor(private readonly linkedinService: LinkedinService) {}
+  constructor(
+    private readonly linkedinService: LinkedinService,
+    private readonly userService: UserService,
+  ) {}
 
   //add new lead
   @Mutation(() => [LinkedinBasicType])
@@ -68,5 +76,24 @@ export class LinkedinResolver {
   @Query(() => LinkedinTitleType, { nullable: true })
   async getLinkedinTitles(): Promise<LinkedinTitleType | null> {
     return await this.linkedinService.getLinkedinTitles();
+  }
+
+  //unlockLinkedin
+  @Mutation(() => UserLinkedinType)
+  @UseGuards(AuthGuard)
+  async unlockLinkedinLead(
+    @Args('input', { type: () => UserLinkedinInput, nullable: false })
+    input: UserLinkedinInput,
+  ): Promise<any> {
+    // return this.userYoutubeService.unlockYoutubeLead(input);
+    const { userId, linkedinId } = input;
+    const user = await this.userService.findOne(userId);
+    const linkedin = await this.linkedinService.findOne(linkedinId);
+
+    // await user.linkedin.push(linkedin);
+    // await linkedin.users.push(user);
+
+    await user.save();
+    await linkedin.save();
   }
 }

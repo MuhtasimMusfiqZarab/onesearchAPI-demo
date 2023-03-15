@@ -184,6 +184,7 @@ type LinkedinBasicType {
   title: String
   updatedAt: DateTime!
   updatedBy: String!
+  users: [UserType!]
 }
 
 type LinkedinCompaniesType {
@@ -219,6 +220,7 @@ type Mutation {
   addUserYoutube(input: AddReviewInput!): UserType!
   addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
   createUser(input: RegistrationInput!): UserType!
+  unlockLinkedinLead(input: UserLinkedinInput!): UserLinkedinType!
   unlockYoutubeLead(input: [UserYoutubeInput!]!): [UserYoutubeType!]!
 }
 
@@ -325,6 +327,16 @@ enum UserAccessRole {
   Provider
 }
 
+input UserLinkedinInput {
+  linkedinId: String
+  userId: String!
+}
+
+type UserLinkedinType {
+  linkedinId: String
+  userId: String
+}
+
 type UserReviewType {
   createdAt: DateTime!
   createdBy: String!
@@ -350,6 +362,7 @@ type UserType {
   isActive: Boolean
   language: String
   lastName: String
+  linkedin: [LinkedinBasicType!]
   payments: [PaymentType!]
   profile: ProfileType
   rating: Float
@@ -367,11 +380,6 @@ input UserYoutubeInput {
 }
 
 type UserYoutubeType {
-  createdAt: DateTime!
-  createdBy: String!
-  id: ID!
-  updatedAt: DateTime!
-  updatedBy: String!
   userId: String
   youtubeId: String
 }

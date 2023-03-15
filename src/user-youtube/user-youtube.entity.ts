@@ -1,4 +1,7 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
+
+import User from 'src/user/user.entity';
+import Youtube from 'src/youtube/youtube.entity';
 
 @Entity('user_youtube')
 export default class User_Youtube {

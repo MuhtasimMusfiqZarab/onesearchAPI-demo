@@ -48,3 +48,12 @@ export class GetLinkedinProfileInput {
   @Field()
   limit: number;
 }
+
+@InputType()
+export class UserLinkedinInput {
+  @Field()
+  userId: string;
+
+  @Field({ nullable: true })
+  linkedinId: string;
+}

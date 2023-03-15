@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, ManyToMany } from 'typeorm';
 import { ExtendedBaseEntity } from '../config/_base.entity';
 
 import User from '../user/user.entity';

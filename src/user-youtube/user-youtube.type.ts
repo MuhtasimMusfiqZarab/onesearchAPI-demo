@@ -1,8 +1,7 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { ExtendedBaseEntity } from '../config/_base.entity';
 
 @ObjectType()
-export class UserYoutubeType extends ExtendedBaseEntity {
+export class UserYoutubeType {
   @Field({ nullable: true })
   userId: string;
 

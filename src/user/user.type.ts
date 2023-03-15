@@ -6,6 +6,8 @@ import { YoutubeType } from 'src/youtube/youtube.type';
 import { PaymentType } from 'src/payment/payment.type';
 import { RequestType } from 'src/request/request.type';
 
+import { LinkedinBasicType } from 'src/linkedin/linkedin.type';
+
 @ObjectType()
 export class UserType extends ExtendedBaseEntity {
   @Field({ nullable: true })
@@ -55,6 +57,9 @@ export class UserType extends ExtendedBaseEntity {
 
   @Field(() => [RequestType], { nullable: true })
   requests: RequestType[];
+
+  @Field(() => [LinkedinBasicType], { nullable: true })
+  linkedin: LinkedinBasicType[];
 }
 
 @ObjectType()

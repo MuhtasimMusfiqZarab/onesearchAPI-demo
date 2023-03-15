@@ -14,6 +14,7 @@ import Profile from 'src/profile/profile.entity';
 import Payment from 'src/payment/payment.entity';
 import Request from 'src/request/request.entity';
 import Youtube from 'src/youtube/youtube.entity';
+import Linkedin from 'src/linkedin/linkedin.entity';
 
 @Entity()
 export default class User extends ExtendedBaseEntity {
@@ -94,4 +95,11 @@ export default class User extends ExtendedBaseEntity {
   )
   @JoinTable({ name: 'user_youtube' })
   youtube: Youtube[];
+
+  @ManyToMany(
+    () => Linkedin,
+    linkedin => linkedin.users,
+  )
+  @JoinTable({ name: 'user_linkedin' })
+  linkedin: Linkedin[];
 }

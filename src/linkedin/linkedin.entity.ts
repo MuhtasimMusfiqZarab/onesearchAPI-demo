@@ -1,5 +1,7 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, ManyToMany } from 'typeorm';
 import { ExtendedBaseEntity } from '../config/_base.entity';
+
+import User from '../user/user.entity';
 
 @Entity()
 export default class Linkedin extends ExtendedBaseEntity {
@@ -23,4 +25,10 @@ export default class Linkedin extends ExtendedBaseEntity {
 
   @Column({ type: 'varchar' })
   url: string;
+
+  @ManyToMany(
+    () => User,
+    user => user.linkedin,
+  )
+  users: User[];
 }

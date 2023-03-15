@@ -20,6 +20,16 @@ export class LinkedinService {
     private linkedinRepository: LinkedinRepository,
   ) {}
 
+  async findOne(id: string): Promise<LinkedinBasicType> {
+    const found = await this.linkedinRepository.findOne({
+      where: { id },
+    });
+    if (!found) {
+      throw new NotFoundException(`User with id ${id} not found!`);
+    }
+    return found;
+  }
+
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async addLinkedinLeads(input: any): Promise<any> {
     try {
