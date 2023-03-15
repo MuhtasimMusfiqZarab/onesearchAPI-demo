@@ -1,4 +1,10 @@
-import { Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryColumn,
+  Column,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 import User from 'src/user/user.entity';
 import Youtube from 'src/youtube/youtube.entity';

@@ -23,6 +23,7 @@ export class LinkedinService {
   async findOne(id: string): Promise<LinkedinBasicType> {
     const found = await this.linkedinRepository.findOne({
       where: { id },
+      relations: ['users'],
     });
     if (!found) {
       throw new NotFoundException(`User with id ${id} not found!`);

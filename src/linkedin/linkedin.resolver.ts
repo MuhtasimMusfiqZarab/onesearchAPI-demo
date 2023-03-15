@@ -90,10 +90,12 @@ export class LinkedinResolver {
     const user = await this.userService.findOne(userId);
     const linkedin = await this.linkedinService.findOne(linkedinId);
 
-    // await user.linkedin.push(linkedin);
-    // await linkedin.users.push(user);
+    user.linkedin = [...user.linkedin, linkedin];
+    linkedin.users = [...linkedin.users, user];
 
     await user.save();
     await linkedin.save();
+
+    return { userId, linkedinId };
   }
 }
