@@ -221,7 +221,6 @@ type Mutation {
   addYoutubeLeads(input: [BulkYoutubeInput!]!): [YoutubeType!]!
   createUser(input: RegistrationInput!): UserType!
   unlockLinkedinLead(input: UserLinkedinInput!): UserLinkedinType!
-  unlockYoutubeLead(input: [UserYoutubeInput!]!): [UserYoutubeType!]!
 }
 
 type PaymentType {
@@ -372,16 +371,6 @@ type UserType {
   updatedAt: DateTime!
   updatedBy: String!
   youtube: [YoutubeType!]
-}
-
-input UserYoutubeInput {
-  userId: String!
-  youtubeId: String
-}
-
-type UserYoutubeType {
-  userId: String
-  youtubeId: String
 }
 
 type YoutubeBasicType {
