@@ -85,7 +85,7 @@ export class YoutubeResolver {
     youtube.users = [...youtube.users, user];
 
     await user.save();
-    // await youtube.save();
+    await youtube.save();
 
     return { userId, youtubeId };
   }

@@ -55,7 +55,7 @@ export class YoutubeType extends ExtendedBaseEntity {
 }
 
 @ObjectType()
-export class YoutubeBasicType {
+export class YoutubeBasicType extends ExtendedBaseEntity {
   @Field(() => ID)
   id: string;
 
