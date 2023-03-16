@@ -22,6 +22,17 @@ export class YoutubeService {
     private youtubeRepository: YoutubeRepository,
   ) {}
 
+  async findOne(id: string): Promise<YoutubeBasicType> {
+    const found = await this.youtubeRepository.findOne({
+      where: { id },
+      relations: ['users'],
+    });
+    if (!found) {
+      throw new NotFoundException(`User with id ${id} not found!`);
+    }
+    return found;
+  }
+
   async addYoutubeLeads(input: any): Promise<any> {
     try {
       return await this.youtubeRepository.save(input);

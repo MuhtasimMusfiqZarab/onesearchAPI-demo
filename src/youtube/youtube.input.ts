@@ -75,3 +75,12 @@ export class GetChannelsInput {
   @Field()
   limit: number;
 }
+
+@InputType()
+export class UserYoutubeInput {
+  @Field()
+  userId: string;
+
+  @Field({ nullable: true })
+  youtubeId: string;
+}

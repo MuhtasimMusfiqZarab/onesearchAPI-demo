@@ -11,12 +11,21 @@ import {
 import { AuthGuard, AdminGuard } from 'src/shared/guards/user.guard';
 import { UseGuards } from '@nestjs/common';
 
-import { BulkYoutubeInput, GetChannelsInput } from './youtube.input';
-import { YoutubeType } from './youtube.type';
+import {
+  BulkYoutubeInput,
+  GetChannelsInput,
+  UserYoutubeInput,
+} from './youtube.input';
+import { YoutubeType, UserYoutubeType } from './youtube.type';
+
+import { UserService } from 'src/user/user.service';
 
 @Resolver(() => YoutubeBasicType)
 export class YoutubeResolver {
-  constructor(private readonly youtubeService: YoutubeService) {}
+  constructor(
+    private readonly youtubeService: YoutubeService,
+    private readonly userService: UserService,
+  ) {}
 
   //add new lead
   @Mutation(() => [YoutubeType])
@@ -59,5 +68,25 @@ export class YoutubeResolver {
   @Query(() => LocationsType, { nullable: true })
   async getChannelCountries(): Promise<LocationsType | null> {
     return await this.youtubeService.getChannelCountries();
+  }
+
+  //unlockLinkedin
+  @Mutation(() => UserYoutubeType)
+  @UseGuards(AuthGuard)
+  async unlockLinkedinLead(
+    @Args('input', { type: () => UserYoutubeInput, nullable: false })
+    input: UserYoutubeInput,
+  ): Promise<any> {
+    const { userId, youtubeId } = input;
+    const user = await this.userService.findOne(userId);
+    const youtube = await this.youtubeService.findOne(youtubeId);
+
+    user.youtube = [...user.youtube, youtube];
+    youtube.users = [...youtube.users, user];
+
+    await user.save();
+    // await youtube.save();
+
+    return { userId, youtubeId };
   }
 }

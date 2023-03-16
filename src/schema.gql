@@ -370,7 +370,12 @@ type UserType {
   token: String
   updatedAt: DateTime!
   updatedBy: String!
-  youtube: [YoutubeType!]
+  youtube: [YoutubeBasicType!]
+}
+
+type UserYoutubeType {
+  userId: String
+  youtubeId: String
 }
 
 type YoutubeBasicType {
@@ -381,6 +386,7 @@ type YoutubeBasicType {
   socialblade_category: String
   subscribers: Float
   updatedAt: DateTime
+  users: [UserType!]
   views: String
 }
 

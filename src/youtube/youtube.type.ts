@@ -1,6 +1,8 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 import { ExtendedBaseEntity } from '../config/_base.entity';
 
+import { UserType } from 'src/user/user.type';
+
 @ObjectType()
 export class YoutubeType extends ExtendedBaseEntity {
   @Field({ nullable: true })
@@ -77,6 +79,9 @@ export class YoutubeBasicType {
 
   @Field({ nullable: true })
   updatedAt: Date;
+
+  @Field(() => [UserType], { nullable: true })
+  users: UserType[];
 }
 
 @ObjectType()
@@ -104,4 +109,13 @@ export class CategoriesType {
 
   @Field(() => Int, { nullable: true })
   totalCount: number;
+}
+
+@ObjectType()
+export class UserYoutubeType {
+  @Field({ nullable: true })
+  userId: string;
+
+  @Field({ nullable: true })
+  youtubeId: string;
 }
