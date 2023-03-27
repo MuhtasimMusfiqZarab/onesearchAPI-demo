@@ -4,7 +4,7 @@ import { ExtendedBaseEntity } from '../config/_base.entity';
 import { UserType } from 'src/user/user.type';
 
 @ObjectType()
-export class LinkedinBasicType {
+export class LinkedinBasicType extends ExtendedBaseEntity {
   @Field({ nullable: true })
   firstName: string;
 

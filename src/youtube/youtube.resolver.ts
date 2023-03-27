@@ -70,10 +70,10 @@ export class YoutubeResolver {
     return await this.youtubeService.getChannelCountries();
   }
 
-  //unlockLinkedin
+  //unlock youtube
   @Mutation(() => UserYoutubeType)
   @UseGuards(AuthGuard)
-  async unlockLinkedinLead(
+  async unlockYoutubeLead(
     @Args('input', { type: () => UserYoutubeInput, nullable: false })
     input: UserYoutubeInput,
   ): Promise<any> {
